@@ -19,9 +19,10 @@ class UserSeeder extends Seeder
         $role_admin = Role::where('name', 'admin')->first();
 
         $admin = new User();
-        $admin->name = 'Simon';
-        $admin->email = 'simon@onf.fr';
-        $admin->password = Hash::make('bernoud');
+        $admin->lastname = 'Bernoud';
+        $admin->firstname = 'Simon';
+        $admin->email = 'simon.bernoud@onf.fr';
+        $admin->password = Hash::make('test');
         $admin->role_id = $role_admin->id;
 	    $admin->email_verified_at = new \DateTime;
         $admin->save();
