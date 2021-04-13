@@ -1,40 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Dashboard') }}</div>
+    <div class="flex justify-center m-2 border-2 border-green-500 rounded-lg">
+        <div class="m-3 space-y-2">
+            <div class="text-center border-b border-green-500">{{ __('Dashboard') }}</div>
 
-                    <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-
-                        {{ __('You are logged in!') }}
+            <div class="text-centerspace-y-2">
+                @if (session('status'))
+                    <div class="" role="alert">
+                        {{ session('status') }}
                     </div>
-                </div>
+                @endif
 
-                <div class="mt-3 text-center">
-                    @auth
-                        <a href="{{ url('/map') }}" class="bd-highlight btn btn-success">Map</a>
-                        <a class="bd-highlight btn btn-danger" href="{{ route("logout") }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                {{ __('You are logged in!') }}
+            </div>
+            
+            <div class="flex mt-3 text-center">
+                @auth
+                    <div class="flex space-x-1">
+                        <a href="{{ url('/map') }}" class="bg-green-400 transition duration-150 ease-in-out hover:bg-green-500 rounded-md p-1">Map</a>
+                        <a href="{{ route("logout") }}" class="bg-red-500 transition duration-150 ease-in-out hover:bg-red-600 rounded-md p-1" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        <form id="" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
-                    @else
-                        <a href="{{ route('login') }}" class="bd-highlight btn btn-success">{{ __('Login') }}</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="bd-highlight btn btn-warning">{{ __('Register') }}</a>
-                        @endif
-                    @endauth
-                </div>
+                    </div>
+                @else
+                    <a href="{{ route('login') }}" class="bg-gray-300 transition duration-150 ease-in-out hover:bg-gray-500 rounded-md p-1">{{ __('Login') }}</a>
+                
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}" class="bg-gray-300 transition duration-150 ease-in-out hover:bg-gray-500 rounded-md p-1">{{ __('Register') }}</a>
+                    @endif
+                @endauth
             </div>
         </div>
     </div>
