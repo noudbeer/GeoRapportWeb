@@ -21,7 +21,7 @@
 <body>
     <div id="app">
         @guest
-            <nav class="flex justify-between p-3 pb-6 sm:px-20 bg-gradient-to-t from-white to-green-500">
+            <nav class="flex justify-between p-3 sm:px-20 bg-green-700">
                 <div class="">
                     <a class="font-black" href="{{ url('/') }}">
                         {{ config('app.name', 'GeoRapport') }}
@@ -48,7 +48,7 @@
             </nav>
         @else
             <nav>
-                <div class="m-3">
+                <div class="absolute m-3">
                     <a href="#" id="buttonOpenDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" onfocus="this.blur();" onclick="openDropdown()">
                         <svg height="40px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars" class="svg-inline--fa fa-bars fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#006432" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg>
                     </a>

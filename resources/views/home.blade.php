@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="flex justify-center m-2 border-2 border-green-500 rounded-lg">
+    <div class="flex justify-center m-2 border-2 border-green-700 rounded-lg">
         <div class="m-3 space-y-2">
-            <div class="text-center border-b border-green-500">{{ __('Dashboard') }}</div>
+            <div class="text-center border-b border-green-700">{{ __('Dashboard') }}</div>
 
             <div class="text-centerspace-y-2">
                 @if (session('status'))
@@ -18,7 +18,7 @@
             <div class="flex mt-3 text-center">
                 @auth
                     <div class="flex space-x-1">
-                        <a href="{{ url('/map') }}" class="bg-green-400 transition duration-150 ease-in-out hover:bg-green-500 rounded-md p-1">Map</a>
+                        <a href="{{ url('/map') }}" class="bg-green-600 transition duration-150 ease-in-out hover:bg-green-700 rounded-md p-1">Map</a>
                         <a href="{{ route("logout") }}" class="bg-red-500 transition duration-150 ease-in-out hover:bg-red-600 rounded-md p-1" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
