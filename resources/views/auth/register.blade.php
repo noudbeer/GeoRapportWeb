@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="flex flex-row justify-center m-2 border-2 border-green-600 rounded-lg">
-    <div class="m-3 space-y-2">
+<div class="container mx-auto flex h-96 m-auto justify-center">
+    <div class="m-auto space-y-2 border-2 border-green-700 rounded-lg p-3">
         <div class="text-center border-b border-green-600">{{ __('Register') }}</div>
 
             <form class="space-y-2" method="POST" action="{{ route('register') }}">

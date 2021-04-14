@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="flex justify-center m-2 border-2 border-green-700 rounded-lg">
-        <div class="m-3 space-y-2">
+    <div class="container flex h-96 m-auto justify-center bg-onf">
+        <div class="m-auto space-y-2 border-2 border-green-700 rounded-lg p-3">
             <div class="text-center border-b border-green-700">{{ __('Dashboard') }}</div>
 
-            <div class="text-centerspace-y-2">
+            <div class="text-center space-y-2 p-5">
                 @if (session('status'))
                     <div class="" role="alert">
                         {{ session('status') }}
@@ -15,7 +15,7 @@
                 {{ __('You are logged in!') }}
             </div>
             
-            <div class="flex mt-3 text-center">
+            <div class="flex justify-center mt-3 text-center">
                 @auth
                     <div class="flex space-x-1">
                         <a href="{{ url('/map') }}" class="bg-green-600 transition duration-150 ease-in-out hover:bg-green-700 rounded-md p-1">Map</a>
