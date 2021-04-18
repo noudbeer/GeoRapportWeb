@@ -26,15 +26,19 @@ L.control.zoom({
 
 function setPopup(lat, long) {
     var container = document.createElement("div");
+
     container.innerHTML = `
         <div class="text-center">
             <p>
-                <div>Latitude :` + lat + `</div>
-                <div>Longitude :` + long + `</div>
+                <div>Latitude:` + lat + `</div>
+                <div>Longitude:` + long + `</div>
             </p>
-            <button class="bg-green-600 hover:bg-green-700 rounded-md p-1">Créer un chantier</button>
+            <form action="#">
+                <button id="button_newSite" class="bg-green-600 transition duration-150 ease-in-out hover:bg-green-700 rounded-md p-1" onclick="openPanel("button_newSite")">Créer un chantier</button>
+            </form>
         </div>
     `;
+
     return container;
 }
 
@@ -46,6 +50,8 @@ function onMapClick(e) {
     .setContent(container)
     .openOn(map);
 }
+
+// Clic map
 map.on('click', onMapClick);
 
 

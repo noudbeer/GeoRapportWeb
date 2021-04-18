@@ -24,3 +24,6 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/map', [App\Http\Controllers\MapController::class, 'index'])->name('map');
+
+//Chantiers
+Route::post('/newSite', [App\Http\Controllers\SiteController::class, 'newSite'])->name('newSite');

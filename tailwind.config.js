@@ -8,7 +8,10 @@ module.exports = {
       }),
       zIndex: {
         '5000': '5000',
-       }
+      },
+      translate: {
+        '1/10': '90%',
+      },
     },
   },
   variants: {
