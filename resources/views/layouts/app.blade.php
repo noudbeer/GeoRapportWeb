@@ -16,7 +16,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="overflow-hidden">
     <div id="app">
         @guest
             <nav class="flex justify-between p-3 sm:px-20 bg-green-700 items-center">

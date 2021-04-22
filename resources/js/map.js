@@ -1,5 +1,6 @@
 import L, { icon } from 'leaflet'
 require("leaflet/dist/leaflet.css");
+// import {openPanel} from '../../public/js/effectsView.js';
 
 /**
  * Création de la map
@@ -30,15 +31,14 @@ function setPopup(lat, long) {
     container.innerHTML = `
         <div class="text-center">
             <p>
-                <div>Latitude:` + lat + `</div>
-                <div>Longitude:` + long + `</div>
+                <div>Latitude: ` + lat + `</div>
+                <div>Longitude: ` + long + `</div>
             </p>
             <form action="#">
-                <button id="button_newSite" class="bg-green-600 transition duration-150 ease-in-out hover:bg-green-700 rounded-md p-1" onclick="openPanel("button_newSite")">Créer un chantier</button>
+                <button id="button_newSite" name="button_newSite" class="bg-green-600 transition duration-150 ease-in-out hover:bg-green-700 rounded-md p-1" onclick="openPanel(`+lat+`, `+long+`);">Créer un chantier</button>
             </form>
         </div>
     `;
-
     return container;
 }
 
