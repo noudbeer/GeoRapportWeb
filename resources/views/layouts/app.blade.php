@@ -96,8 +96,8 @@
                     </div>
 
                     <div class="flex flex-col">
-                        <a href="#" class="px-2 hover:bg-green-600" onclick="openPanel(); closeMenu(getElementById('menu'));">Créer un nouveau chantier</a>
-                        <a href="#" class="px-2 hover:bg-green-600" onclick="">Liste des chantiers</a>
+                        <a href="#" class="px-2 hover:bg-green-600" onclick="openPanel(getElementById('panelSite')); closeMenu(getElementById('menu'));">Créer un nouveau chantier</a>
+                        <a href="#" class="px-2 hover:bg-green-600" onclick="openPanel(getElementById('panelIntervention')); closeMenu(getElementById('menu'));">Liste des chantiers</a>
                     </div>
                     
                     @if ( Auth::user()->hasRole('admin') )

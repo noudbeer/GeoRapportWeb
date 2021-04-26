@@ -7,12 +7,12 @@
     <div id="contentMap">
         <div id="map" class="h-screen w-screen"></div>
 
-        <div id="panel" class="bg-white fixed flex inset-y-0 right-0 w-full h-full z-5000 transform translate-x-full transition duration-250 ease-in-out origin-top-right lg:w-auto">
+        <div id="panelSite" class=" bg-white fixed flex inset-y-0 right-0 w-full h-full z-5000 transform translate-x-full transition duration-250 ease-in-out origin-top-right lg:w-auto">
             <div class="flex flex-col w-10 my-0.5 space-y-0.5">
-                <button type="button" id="close_button" class="bg-red-500 font-bold p-1 rounded-md hover:bg-red-600" onclick="closePanel()">x</button>
-                <button type="button" id="retract_button" class="bg-blue-500 h-full font-bold p-1 rounded-md hover:bg-blue-400" onclick="retractPanel()">></button>
+                <button type="button" id="close_button" class="bg-red-500 font-bold p-1 rounded-md hover:bg-red-600" onclick="closePanel(getElementById('panelSite'))">x</button>
+                <button type="button" id="retract_button" class="bg-blue-500 h-full font-bold p-1 rounded-md hover:bg-blue-400" onclick="retractPanel(getElementById('panelSite'))">></button>
             </div>
-            <div class="w-full m-2">
+            <div class="w-full m-2 overflow-y-auto">
                 <h1 class="font-bold text-center underline">NOUVEAU CHANTIER</h1>
 
                 <form method="POST" action="#" class="flex flex-col mt-3">
@@ -27,7 +27,7 @@
                             <input class="rounded-lg w-full" type="text" name="name" id="nameOrder" required>
                         </div>
 
-                        <div class="space-y-1">
+                        <div class="space-y-1" id="position">
                             <label>Lieu du chantier :</label>
 
                             <div class="text-center">
@@ -43,9 +43,10 @@
                                 <input class="rounded-lg" type="number" id="longitude" required>
                             </div>
 
-                            <form action="#">
-                                <button class="w-full bg-blue-400 rounded-lg p-1 hover:bg-blue-500">Ajouter un point sur la carte</button>
-                            </form>
+                            <div class="items-center text-center">
+                                <label>Ajouter un point sur la carte</label>
+                                <input type="checkbox" class="bg-blue-400 rounded-lg p-1 hover:bg-blue-500" onclick="addPoint();">
+                            </div>
                         </div>
 
                         <div>
@@ -97,6 +98,25 @@
                         <button class="bg-green-600 w-full transition duration-150 ease-in-out hover:bg-green-700 rounded-md p-1">Valider ce chantier</button>
                     </div>
                 </form>
+            </div>
+        </div>
+
+        <div id="panelIntervention" class="bg-white fixed flex inset-y-0 right-0 w-full h-full z-5000 transform translate-x-full transition duration-250 ease-in-out origin-top-right lg:w-auto">
+            <div class="flex flex-col w-10 my-0.5 space-y-0.5">
+                <button type="button" id="close_button" class="bg-red-500 font-bold p-1 rounded-md hover:bg-red-600" onclick="closePanel(getElementById('panelIntervention'))">x</button>
+                <button type="button" id="retract_button" class="bg-blue-500 h-full font-bold p-1 rounded-md hover:bg-blue-400" onclick="retractPanel(getElementById('panelIntervention'))">></button>
+            </div>
+            <div class="w-full m-2 overflow-y-autoloca">
+                <h1 class="font-bold text-center underline">LISTE DES CHANTIERS</h1>
+                <ul class="flex flex-col mt-3 space-y-1">
+                    <li class="flex content-between items-center space-x-3">
+                        <h2>CHANTIER 1</h2>
+                        <div>
+                            <button class="bg-yellow-300 h-full p-1 rounded-md hover:bg-yellow-400">Modifier le chantier</button>
+                            <button class="bg-blue-500 h-full p-1 rounded-md hover:bg-blue-600">Voir le chantier</button>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
