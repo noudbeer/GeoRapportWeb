@@ -41,7 +41,8 @@ function setPopup(latlng) {
             <button id="buttonCreateSite" class="bg-green-600 transition duration-150 ease-in-out hover:bg-green-700 rounded-md p-1">Créer un chantier</button>
         </div>
     `;
-    container.querySelector('#buttonCreateSite').onclick = () => { openPanel(document.querySelector('#panelSite'), latlng); };
+    container.querySelector('#buttonCreateSite').onclick = () => { openPanel(document.querySelector('#panelSite'), latlng); createGeometry(sitePoints); sitePoints = [latlng]; };
+    
     return container;
 }
 
@@ -49,22 +50,18 @@ function setPopup(latlng) {
 let sitePoints = []; // tableau contenant les points d'un chantier
 
 function onMapClick(e) {
-    if(panelOpen == false) {
+    if((document.querySelector("#checkbox_addPoint:checked") == null) || (panelOpen == false)) {
         var container = setPopup(e.latlng);
         
         L.popup()
         .setLatLng(e.latlng)
         .setContent(container)
         .openOn(map);
-        sitePoints = [e.latlng];
-        L.polygon(sitePoints).addTo(map);
     } 
     else {
-        if(document.querySelector("#checkbox_addPoint:checked") != null) {
             sitePoints.push(e.latlng);
             addPointOnPanel(e.latlng);
             createGeometry(sitePoints);
-        }
     }
 }
 
