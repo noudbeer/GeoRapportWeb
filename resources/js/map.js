@@ -1,5 +1,10 @@
-import L, { icon } from 'leaflet'
+import L, { icon, point } from 'leaflet'
 require("leaflet/dist/leaflet.css");
+
+
+const mark = L.icon({
+    iconUrl: '../storage/app/public/img/marker-icon.png',
+ });
 
 /**
  * Création de la map
@@ -24,51 +29,76 @@ L.control.zoom({
 		position: "bottomright"
 	}).addTo(map);
 
-function setPopup(lat, long) {
+function setPopup(latlng) {
     var container = document.createElement("div");
 
     container.innerHTML = `
         <div class="text-center">
             <p>
-                <div>Latitude: ` + lat + `</div>
-                <div>Longitude: ` + long + `</div>
+                <div>Latitude: ` + latlng.lat + `</div>
+                <div>Longitude: ` + latlng.lng + `</div>
             </p>
             <button id="buttonCreateSite" class="bg-green-600 transition duration-150 ease-in-out hover:bg-green-700 rounded-md p-1">Créer un chantier</button>
         </div>
     `;
-    container.querySelector('#buttonCreateSite').onclick = () => { openPanel(document.querySelector('#panelSite'), lat, long) };
+    container.querySelector('#buttonCreateSite').onclick = () => { openPanel(document.querySelector('#panelSite'), latlng); };
     return container;
 }
 
+
+let sitePoints = []; // tableau contenant les points d'un chantier
+
 function onMapClick(e) {
-    var container = setPopup(e.latlng.lat, e.latlng.lng);
-    
-    L.popup()
-    .setLatLng(e.latlng)
-    .setContent(container)
-    .openOn(map);
+    if(panelOpen == false) {
+        var container = setPopup(e.latlng);
+        
+        L.popup()
+        .setLatLng(e.latlng)
+        .setContent(container)
+        .openOn(map);
+        sitePoints = [e.latlng];
+        L.polygon(sitePoints).addTo(map);
+    } 
+    else {
+        if(document.querySelector("#checkbox_addPoint:checked") != null) {
+            sitePoints.push(e.latlng);
+            addPointOnPanel(e.latlng);
+            createGeometry(sitePoints);
+        }
+    }
+}
+
+function createGeometry(table) {
+    if(document.querySelector("#checkbox_linear:checked") == null) {
+        // map.removeLayer(L); //ça ne march point !!
+        L.polyline(table).addTo(map);
+    }
+    else { 
+        // map.removeLayer(L);
+        L.polygon(table).addTo(map);
+    }
 }
 
 // Clic map
 map.on('click', onMapClick);
 
-
-var marker = L.marker([46.68336307047757, 2.1368408203125004])
-    .addTo(map);
+L.marker([45.77901739936284, 3.1146240234375004], {icon: mark}).addTo(map);
+// var marker = L.marker([46.68336307047757, 2.1368408203125004])
+//     .addTo(map);
 
     
-var polygon = L.polygon([
-    [43, 4],
-    [43, 2],
-    [45, 2],
-    [45, 4]
-]).addTo(map);
+// var polygon = L.polygon([
+//     [43, 4],
+//     [43, 2],
+//     [45, 2],
+//     [45, 4]
+// ]).addTo(map);
     
 
 
 
-marker.bindPopup("Je suis un chantier d'un point");
-polygon.bindPopup("Je suis une zone de chantier");
+// marker.bindPopup("Je suis un chantier d'un point");
+// polygon.bindPopup("Je suis une zone de chantier");
 
 // var circle = L.circle([46.68, 2.13], {
 //     color: 'red',
@@ -86,4 +116,3 @@ polygon.bindPopup("Je suis une zone de chantier");
 // function onMapClickAlert(e) {
 //     alert("You clicked the map at " + e.latlng);
 // }
-    

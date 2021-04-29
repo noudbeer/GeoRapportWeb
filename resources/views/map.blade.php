@@ -2,7 +2,7 @@
 
 @section('content')
     <script src="{{ asset('js/map.js') }}" defer></script>
-    
+
     <style id="marker-size"></style>
     <div id="contentMap">
         <div id="map" class="h-screen w-screen"></div>
@@ -30,22 +30,14 @@
                         <div class="space-y-1" id="position">
                             <label>Lieu du chantier :</label>
 
-                            <div class="text-center">
-                                <input class="rounded" type="checkbox" name="zone" checked="true">
+                            <div class="items-center text-center p-1" id="contentCheckboxAddPoint">
+                                <input type="checkbox" id="checkbox_addPoint" class="rounded p-1 hover:bg-blue-500" onchange="removeError();" checked>
+                                <label>Ajouter des points de délimitation</label>
+                            </div>
+
+                            <div class="text-center" id="content_checkbox_linear">
+                                <input type="checkbox" id="checkbox_linear" class="rounded" type="checkbox" name="zone" checked="true">
                                 <label>Ce chantier est une zone (non linéaire)</label>
-                            </div>
-
-                            <div class="text-center">
-                                <label>Latitude :</label>
-                                <input class="rounded-lg" type="number" id="latitude" required>
-
-                                <label>Longitude :</label>
-                                <input class="rounded-lg" type="number" id="longitude" required>
-                            </div>
-
-                            <div class="items-center text-center">
-                                <label>Ajouter un point sur la carte</label>
-                                <input type="checkbox" class="bg-blue-400 rounded-lg p-1 hover:bg-blue-500" onclick="addPoint();">
                             </div>
                         </div>
 
