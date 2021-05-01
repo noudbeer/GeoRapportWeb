@@ -58,4 +58,12 @@ class User extends Authenticatable implements MustVerifyEmail
 	public function hasRole($name) {
 		return ($this->role->name === $name);
 	}
+
+    /**
+     * The society that belong to the user.
+     */
+    public function societies()
+    {
+        return $this->belongsToMany(Society::class);
+    }
 }

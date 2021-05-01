@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Society;
 
 class MapController extends Controller
 {
@@ -23,6 +24,8 @@ class MapController extends Controller
 	 */
 	public function index() {
 		$users = User::all();
-		return view('map', compact('users'));
+		$societies = Society::all();
+
+		return view('map', compact('users', 'societies'));
 	}
 }

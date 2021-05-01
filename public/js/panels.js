@@ -94,16 +94,16 @@ function addPointOnPanel(point) {
     newDiv.innerHTML = `
         <div class="mx-1">
             <label>Latitude :</label>
-            <input class="rounded-lg w-full" type="number" step="0.0000000000001" id="latitude" required>
+            <input class="rounded-lg w-full" type="number" step="0.0000000000001" id="inputLat" oninput="changePopup('inputLat', 'latPop');" required>
         </div>
 
         <div class="mx-1">
             <label>Longitude :</label>
-            <input class="rounded-lg w-full" type="number" step="0.0000000000001" id="longitude" required>
+            <input class="rounded-lg w-full" type="number" step="0.0000000000001" id="inputLng" oninput="changePopup('inputLng', 'lngPop');" required>
         </div>`;
 
-    newDiv.querySelector('#latitude').value = point.lat;
-    newDiv.querySelector('#longitude').value = point.lng;
+    newDiv.querySelector('#inputLat').value = point.lat;
+    newDiv.querySelector('#inputLng').value = point.lng;
 
     parent.insertBefore(newDiv, button); // Add "newDiv" befor the "button"
 }
@@ -117,3 +117,16 @@ function removeError() {
     document.querySelector("#contentCheckboxAddPoint").classList.remove("border-red-600");
     document.querySelector("#contentCheckboxAddPoint").classList.remove("animate-pulse");
 }
+
+function changePopup(input_id, div_id) {
+    let text = document.getElementById(input_id).value.trim();
+    document.getElementById(div_id).innerHTML = text;
+    document.querySelector("#buttonCreateSite").className = "hidden";
+}
+
+// function updateLatLng(latitude, longitude) {
+//     let lat = document.getElementById(latitude).value;
+//     let lng = document.getElementById(longitude).value;
+    
+//     L.popup().setLatLng([lat, lng]);
+// }
