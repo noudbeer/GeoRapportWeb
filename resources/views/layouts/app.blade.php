@@ -14,7 +14,8 @@
     <script src="{{ asset('js/panels.js') }}" defer></script>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/autocomplete.css') }}">
 </head>
 <body class="overflow-hidden">
     <div id="app">

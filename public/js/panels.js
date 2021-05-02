@@ -66,6 +66,16 @@ function closePanel(panel) {
     }
 }
 
+/**
+ * Remove annimations from errors 
+ */
+ function removeError() {
+    document.querySelector("#contentCheckboxAddPoint").classList.remove("rounded");
+    document.querySelector("#contentCheckboxAddPoint").classList.remove("border-2");
+    document.querySelector("#contentCheckboxAddPoint").classList.remove("border-red-600");
+    document.querySelector("#contentCheckboxAddPoint").classList.remove("animate-pulse");
+}
+
 function retractPanel(panel) {
     if(panel.classList.contains('translate-x-retracted'))
         panel.querySelector("#retract_button").innerHTML = ">";
@@ -106,16 +116,6 @@ function addPointOnPanel(point) {
     newDiv.querySelector('#inputLng').value = point.lng;
 
     parent.insertBefore(newDiv, button); // Add "newDiv" befor the "button"
-}
-
-/**
- * Remove annimations from errors 
- */
-function removeError() {
-    document.querySelector("#contentCheckboxAddPoint").classList.remove("rounded");
-    document.querySelector("#contentCheckboxAddPoint").classList.remove("border-2");
-    document.querySelector("#contentCheckboxAddPoint").classList.remove("border-red-600");
-    document.querySelector("#contentCheckboxAddPoint").classList.remove("animate-pulse");
 }
 
 function changePopup(input_id, div_id) {
