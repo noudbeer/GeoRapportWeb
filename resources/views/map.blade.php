@@ -53,7 +53,7 @@
                             </div>
 
                             <div class="text-center" id="content_checkbox_linear">
-                                <input type="checkbox" id="checkbox_linear" class="rounded" type="checkbox" name="zone" checked="true">
+                                <input type="checkbox" id="checkbox_linear" class="rounded" type="checkbox" name="zone">
                                 <label>Ce chantier est une zone (non linéaire)</label>
                             </div>
                         </div>
@@ -67,18 +67,18 @@
                         </div>
 
                         <div>
+                            <?php $tabContributors  = array() ?>
                             <label>Contributeurs :</label>
-
-                            @foreach ($users as $user)
+                            @foreach ($tabContributors as $user)
                                 <div class="flex justify-around items-center">{{$user->firstname}} {{$user->lastname}} ({{$user->email}}) <button class="bg-red-500 p-1 hover:bg-red-600 rounded">Supprimer des contributeurs</button></div>
                             @endforeach
                         </div>
 
                         <div class="space-y-1">
-                            <label>Médiateurs :</label>
-
-                            @foreach ($users as $user)
-                                <div class="flex justify-around items-center">{{$user->firstname}} {{$user->lastname}} ({{$user->email}}) <button class="bg-red-500 p-1 hover:bg-red-600 rounded">Supprimer des médiateurs</button></div>
+                            <?php $tabController  = array() ?>
+                            <label>Contrôleur :</label>
+                            @foreach ($tabController as $user)
+                                <div class="flex justify-around items-center">{{$user->firstname}} {{$user->lastname}} ({{$user->email}}) <button class="bg-red-500 p-1 hover:bg-red-600 rounded">Supprimer des contrôleurs</button></div>
                             @endforeach
 
                             <div>
@@ -94,15 +94,24 @@
                                     <div class="flex justify-around items-center bg-gray-200 p-1 rounded">
                                         {{$user->firstname}} {{$user->lastname}} ({{$user->email}}) 
                                         <div class="flex flex-col space-y-0.5">
-                                            <button class="bg-yellow-300 p-1 hover:bg-yellow-400 rounded">Ajouter comme médiateur</button>
-                                            <button class="bg-green-600 p-1 hover:bg-green-700 rounded">Ajouter comme contributeur</button>
+                                            <button class="bg-yellow-300 p-1 hover:bg-yellow-400 rounded" onclick="addController($user)">Ajouter comme contrôleur</button>
+                                            <button class="bg-green-600 p-1 hover:bg-green-700 rounded" onclick="addContributor($user)">Ajouter comme contributeur</button>
+                                            <?php
+                                                function addController($user) {
+                                                    echo "The addController function is called.";
+                                                }
+
+                                                function addContributor($user) {
+                                                    echo "The addContributor function is called.";
+                                                }
+                                            ?>
                                         </div>
                                     </div>
                                 @endforeach
                             </form>
                         </div>
 
-                        <button class="bg-green-600 w-full transition duration-150 ease-in-out hover:bg-green-700 rounded-md p-1">Valider ce chantier</button>
+                        <button class="bg-green-600 w-full transition duration-150 ease-in-out hover:bg-green-700 rounded-md p-3">Valider ce chantier</button>
                     </div>
                 </form>
             </div>
