@@ -50,7 +50,7 @@ function setPopup(latlng) {
     return container;
 }
 
-let sitePoints = []; // tableau contenant les points d'un chantier
+const sitePoints = []; // tableau contenant les points d'un chantier
 
 function onMapClick(e) {
     if((document.querySelector("#checkbox_addPoint:checked") == null) || (panelOpen == false)) {
@@ -70,12 +70,12 @@ function onMapClick(e) {
 
 function createGeometry(table) {
     if(document.querySelector("#checkbox_linear:checked") == null) {
-        // map.removeLayer(L); //ça ne march point !!
-        L.polyline(table).addTo(map);
+        // polyline.removeLayer();
+        const polyline = L.polyline(table).addTo(map);
     }
     else { 
         // map.removeLayer(L);
-        L.polygon(table).addTo(map);
+        const polygon = L.polygon(table).addTo(map);
     }
 }
 
@@ -83,10 +83,10 @@ function createGeometry(table) {
 map.on('click', onMapClick);
 
 // Example to use marker
-// L.marker([45.77901739936284, 3.1146240234375004], {icon: mark}).addTo(map);
+// var marker = L.marker([45.77901739936284, 3.1146240234375004], {icon: mark}).addTo(map);
 
 // Example of popup
-// marker.bindPopup("Je suis un chantier d'un point");
+marker.bindPopup("Je suis un chantier d'un point");
 // polygon.bindPopup("Je suis une zone de chantier");
 
 // Example of cercle

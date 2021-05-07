@@ -10,7 +10,14 @@ class SiteController extends Controller
 		$this->middleware(['auth', 'verified']);
 	}
 
-    public function newSite() {
+    public function editSite() {
+
+        $contributors = collect(json_decode($data['contributors']));
+        $contributors = $contributors->map(function($user_data) {
+            return User::find($user_data['id']);
+            // jeter une erreur si l'utilisateur existe pas
+        });
+
         return view('home');
     }
 }

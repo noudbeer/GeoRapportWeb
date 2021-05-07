@@ -2,7 +2,9 @@
 
 @section('content')
     <script src="{{ asset('js/map.js') }}" defer></script>
+    <script src="{{ asset('js/panels.js') }}" defer></script>
     <script src="{{ asset('js/autocomplete.js') }}" async></script>
+    <script src="{{ asset('js/site_users.js') }}" defer></script>
 
     <style id="marker-size"></style>
     <div id="contentMap">
@@ -38,7 +40,6 @@
                                     for(let i=0; i<soc.length; i++) {
                                         table.push(soc[i].name);
                                     }
-                                    // var countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia &amp; Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central Arfrican Republic","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cuba","Curacao","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kiribati","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauro","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","North Korea","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre &amp; Miquelon","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","St Kitts &amp; Nevis","St Lucia","St Vincent","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad &amp; Tobago","Tunisia","Turkey","Turkmenistan","Turks &amp; Caicos","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States of America","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
                                     autocomplete(document.querySelector('#inputClient'), table);
                                 </script>
                             </div>
@@ -51,6 +52,11 @@
                                 <input type="checkbox" id="checkbox_addPoint" class="rounded p-1 hover:bg-blue-500" onchange="removeError();" checked>
                                 <label>Ajouter des points de délimitation</label>
                             </div>
+
+                            <div class="flex justify-around items-center text-center newPoint mx-1">
+                                <label>Latitude :</label>
+                                <label>Longitude :</label>
+                            </div>                            
 
                             <div class="text-center" id="content_checkbox_linear">
                                 <input type="checkbox" id="checkbox_linear" class="rounded" type="checkbox" name="zone">
@@ -66,49 +72,30 @@
                             </select>
                         </div>
 
-                        <div>
-                            <?php $tabContributors  = array() ?>
-                            <label>Contributeurs :</label>
-                            @foreach ($tabContributors as $user)
-                                <div class="flex justify-around items-center">{{$user->firstname}} {{$user->lastname}} ({{$user->email}}) <button class="bg-red-500 p-1 hover:bg-red-600 rounded">Supprimer des contributeurs</button></div>
-                            @endforeach
-                        </div>
-
+                        
                         <div class="space-y-1">
-                            <?php $tabController  = array() ?>
-                            <label>Contrôleur :</label>
-                            @foreach ($tabController as $user)
-                                <div class="flex justify-around items-center">{{$user->firstname}} {{$user->lastname}} ({{$user->email}}) <button class="bg-red-500 p-1 hover:bg-red-600 rounded">Supprimer des contrôleurs</button></div>
-                            @endforeach
+                            <div>
+                                <label>Contributeurs :</label>
+                                <div id="contributors"></div>
+                            </div>
+                            
+                            <div>
+                                <label>Contrôleur :</label>
+                                <div id="controllers"></div>
+                            </div>
 
                             <div>
                                 <label>Ajouter un controlleur ou contributeur :</label>
-                                <div class="text-center ">
-                                    <input class="rounded-lg w-1/2" type="text" name="mediatorsSearch" id="mediatorsSearch">
-                                    <input type="button" class="bg-blue-400 p-2 hover:bg-blue-500 rounded w-1/3" name="mediatorsSearchButton" id="mediatorsSearchButton" value="Chercher">
+                                <div class="text-center">
+                                    <input class="rounded-lg w-1/2" type="text" name="userSearch" id="userSearch">
+                                    <input type="button" class="bg-blue-400 p-2 hover:bg-blue-500 rounded w-1/3" name="userSearchButton" id="userSearchButton" value="Chercher">
                                 </div>
-                            </div>
-                            
-                            <form class="rounded-lg w-full bg-gray-200 p-2" action="#">
-                                @foreach ($users as $user)
-                                    <div class="flex justify-around items-center bg-gray-200 p-1 rounded">
-                                        {{$user->firstname}} {{$user->lastname}} ({{$user->email}}) 
-                                        <div class="flex flex-col space-y-0.5">
-                                            <button class="bg-yellow-300 p-1 hover:bg-yellow-400 rounded" onclick="addController($user)">Ajouter comme contrôleur</button>
-                                            <button class="bg-green-600 p-1 hover:bg-green-700 rounded" onclick="addContributor($user)">Ajouter comme contributeur</button>
-                                            <?php
-                                                function addController($user) {
-                                                    echo "The addController function is called.";
-                                                }
 
-                                                function addContributor($user) {
-                                                    echo "The addContributor function is called.";
-                                                }
-                                            ?>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </form>
+                                <input type="hidden" name="controllers"  value="[]">
+                                <input type="hidden" name="contributors" value="[]">
+                            </div>
+
+                            <div id="reponseRequest"></div>
                         </div>
 
                         <button class="bg-green-600 w-full transition duration-150 ease-in-out hover:bg-green-700 rounded-md p-3">Valider ce chantier</button>
@@ -119,7 +106,7 @@
 
         <div id="panelIntervention" class="bg-white fixed flex inset-y-0 right-0 w-full h-full z-5000 transform translate-x-full transition duration-250 ease-in-out origin-top-right lg:w-auto">
             <div class="flex flex-col w-10 my-0.5 space-y-0.5">
-                <button type="button" id="close_button" class="bg-red-500 font-bold p-1 rounded-md hover:bg-red-600" onclick="closePanel(getElementById('panelIntervention'))">x</button>
+                <button type="button" id="close_button"   class="bg-red-500 font-bold p-1 rounded-md hover:bg-red-600"          onclick="closePanel(getElementById('panelIntervention'))">x</button>
                 <button type="button" id="retract_button" class="bg-blue-500 h-full font-bold p-1 rounded-md hover:bg-blue-400" onclick="retractPanel(getElementById('panelIntervention'))">></button>
             </div>
             <div class="w-full m-2 overflow-y-autoloca">
@@ -129,7 +116,7 @@
                         <h2>CHANTIER 1</h2>
                         <div>
                             <button class="bg-yellow-300 h-full p-1 rounded-md hover:bg-yellow-400">Modifier le chantier</button>
-                            <button class="bg-blue-500 h-full p-1 rounded-md hover:bg-blue-600">Voir le chantier</button>
+                            <button class="bg-blue-500   h-full p-1 rounded-md hover:bg-blue-600">Voir le chantier</button>
                         </div>
                     </li>
                 </ul>
