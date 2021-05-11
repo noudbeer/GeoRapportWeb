@@ -22,7 +22,7 @@ const notEqualsUser = (user) =>
 const deleteUserFrom = (user, array) =>
     array.filter(notEqualsUser(user))
 
-
+// Recupère en JSON la valeur du controller_input
 const getControllers = () =>
     JSON.parse(controllers_input.value)
 
