@@ -15,17 +15,18 @@ class CreateSitesTable extends Migration
     {
         Schema::create('sites', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->foreignId('owner')
                 ->constrained('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->string('name');
+            $table->bigInteger('orderNumber');
+            $table->dateTime('beginning');
             $table->integer('status')
                 ->constrained('status')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->dateTime('beginning');
-            $table->dateTime('end');
+            $table->dateTime('end')->nullable();
             $table->timestamps();
         });
     }

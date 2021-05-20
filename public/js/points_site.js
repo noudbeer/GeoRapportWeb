@@ -37,8 +37,8 @@ const redrawPoints = () => {
         //     </div>
         el.innerHTML = `
             <div class="flex justify-center items-center text-center mx-1">
-                <input class="rounded-lg w-1/2" type="number" step="0.0000000000001" value="${point.lat}" id="inputLng" oninput="changePopup('inputLng', 'lngPop');" required>
-                <input class="rounded-lg w-1/2" type="number" step="0.0000000000001" value="${point.lng}" id="inputLat" oninput="changePopup('inputLat', 'latPop');" required>
+                <input class="rounded-lg w-1/2" type="text" step="0.0000000000001" value="${point.lat}" id="inputLng" oninput="changePopup('inputLng', 'lngPop');" required>
+                <input class="rounded-lg w-1/2" type="text" step="0.0000000000001" value="${point.lng}" id="inputLat" oninput="changePopup('inputLat', 'latPop');" required>
             </div>
 
             <button class="rounded-lg w-9 h-9 bg-red-500 hover:bg-red-600 font-bold mx-1" type="button" onclick="deletePoint(${point})">X</button>

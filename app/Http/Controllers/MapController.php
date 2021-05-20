@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Society;
+use App\Models\Status;
 
 class MapController extends Controller
 {
@@ -24,8 +25,9 @@ class MapController extends Controller
 	 */
 	public function index() {
 		$societies = Society::all();
+		$status    = Status::all();
 
-		return view('map', compact('societies'));
+		return view('map', compact('societies', 'status'));
 	}
 
 	public function users($search = "") {

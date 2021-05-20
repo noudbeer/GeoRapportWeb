@@ -29,4 +29,4 @@ Route::get('/map', [App\Http\Controllers\MapController::class, 'index'])->name('
 Route::get('/map/users/{search}', [App\Http\Controllers\MapController::class, 'users'])->name('users');
 
 //Chantiers
-Route::post('/newSite', [App\Http\Controllers\SiteController::class, 'newSite'])->name('newSite');
+Route::post('/editSite', [App\Http\Controllers\SiteController::class, 'editSite'])->name('editSite');

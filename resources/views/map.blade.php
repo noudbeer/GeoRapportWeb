@@ -19,22 +19,32 @@
             <div class="w-full m-2 overflow-y-auto">
                 <h1 class="font-bold text-center underline">NOUVEAU CHANTIER</h1>
 
-                <form method="POST" action="#" autocomplete="off" class="flex flex-col mt-3">
+                <form method="POST" action="{{ route('editSite') }}" autocomplete="off" class="flex flex-col mt-3">
+                    @csrf
+                    {{ $errors }}
                     <div class="space-y-5">
                         <div>
                             <div>
                                 <label>Nom du chantier :</label>
-                                <input class="rounded-lg w-full" type="text" name="name" id="nameOrder" oninput="changePopup('nameOrder', 'titlePopup')" required>
+                                <input id="nameOrder" class="rounded-lg w-full @error('nameOrder') is-invalid @enderror" type="text" name="name" oninput="changePopup('nameOrder', 'titlePopup')" required>
                             </div>
+                            @error('nameOrder')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                             
+
                             <div>
                                 <label>N° de commande chantier :</label>
-                                <input class="rounded-lg w-full" type="number" name="commande" id="inputOrder" oninput="changePopup('inputOrder', 'orderNumberPopup')" required>
+                                <input id="inputOrder" class="rounded-lg w-full @error('inputOrder') is-invalid @enderror" type="number" name="orderNumber" oninput="changePopup('inputOrder', 'orderNumberPopup')" required>
                             </div>
+                            @error('inputOrder')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+
 
                             <div class="autocomplete">
                                 <label>Client :</label>  
-                                <input class="rounded-lg w-full" type="text" name="client" id="inputClient" oninput="changePopup('inputClient', 'clientPopup');" required>
+                                <input id="inputClient" class="rounded-lg w-full @error('inputClient') is-invalid @enderror" type="text" name="client" oninput="changePopup('inputClient', 'clientPopup');" required>
                                 {{-- A dépacer dans un fichier js --}}
                                 <script> 
                                     var soc = @json($societies);
@@ -45,7 +55,12 @@
                                     autocomplete(document.querySelector('#inputClient'), table);
                                 </script>
                             </div>
+                            @error('inputClient')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+
                         </div>
+
 
                         <div class="space-y-1" id="position">
                             <label>Lieu du chantier :</label>
@@ -60,29 +75,38 @@
                                 <label>Longitude :</label>
                             </div>
                             
-                            <input id="inputPoints" class="hidden" value="[]">
-                            <div id="points">
-                            </div>
+                            <input id="inputPoints" name="points" class="hidden" value="[]">
+                            <div id="points"></div>
 
                             <div class="text-center" id="content_checkbox_linear">
-                                <input type="checkbox" id="checkbox_linear" class="rounded" type="checkbox" name="zone">
+                                <input type="checkbox" id="checkbox_linear" class="rounded" type="checkbox" name="checkbox_linear">
                                 <label>Ce chantier est une zone (non linéaire)</label>
                             </div>
                         </div>
 
+
                         <div>
-                            <label>Date de début du chantier :</label>
-                            <input type="date" id="date_start" class="rounded-lg">
+                            <label for="beginning">Date de début du chantier :</label>
+                            <input type="date" id="beginning" name="beginning" class="rounded-lg @error('beginning') is-invalid @enderror" required>
                         </div>
+                        @error('beginning')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+
 
                         <div>
                             <label>Status :</label>
-                            <select class="rounded-lg w-full" name="status" id="status" required>
-                                <option>En cours</option>
-                                <option>Chantier terminé</option>
+                            <select  id="status" class="rounded-lg w-full @error('status') is-invalid @enderror" name="status" required>
+                                @foreach ($status as $stat)
+                                    <option value={{ $stat->id }}>{{ $stat->name }}</option>
+                                @endforeach
                             </select>
                         </div>
-                        
+                        @error('status')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+
+
                         <div class="space-y-2">
                             <div>
                                 <div class="flex items-center space-x-1">
@@ -114,6 +138,7 @@
                             <div id="reponseRequest"></div>
                         </div>
 
+
                         <button class="bg-green-600 w-full transition duration-150 ease-in-out hover:bg-green-700 rounded-md p-3">Valider ce chantier</button>
                     </div>
                 </form>
@@ -125,6 +150,7 @@
                 <button type="button" id="close_button"   class="bg-red-500 font-bold p-1 rounded-md hover:bg-red-600"          onclick="closePanel(getElementById('panelIntervention'))">x</button>
                 <button type="button" id="retract_button" class="bg-blue-500 h-full font-bold p-1 rounded-md hover:bg-blue-400" onclick="retractPanel(getElementById('panelIntervention'))">></button>
             </div>
+            
             <div class="w-full m-2 overflow-y-autoloca">
                 <h1 class="font-bold text-center underline">LISTE DES CHANTIERS</h1>
                 <ul class="flex flex-col mt-3 space-y-1">
