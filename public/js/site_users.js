@@ -132,6 +132,3 @@ user_search_button.addEventListener("click", (e) => {
         })
         .catch(err => console.log(err))
 })
-
-/* <div class="flex justify-around items-center">Prénom Nom (email)<button class="bg-red-500 p-1 hover:bg-red-600 rounded">Supprimer des contributeurs</button></div>
-<div class="flex justify-around items-center">Prénom Nom (email)<button class="bg-red-500 p-1 hover:bg-red-600 rounded">Supprimer des contrôleurs</button></div> */

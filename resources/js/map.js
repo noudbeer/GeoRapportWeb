@@ -3,7 +3,7 @@ require("leaflet/dist/leaflet.css");
 
 
 const mark = L.icon({
-    iconUrl: '../storage/app/public/img/marker-icon.png',
+    iconUrl: '/storage/app/public/img/marker-icon.png',
  });
 
 /**
@@ -31,8 +31,6 @@ L.control.zoom({
 
 
 
-let sitePoints = []; // tableau contenant les points d'un chantier
-
 /**
  * Function to set a popup
  * @param {array of float} latlng 
@@ -56,8 +54,7 @@ function setPopup(latlng) {
     container.querySelector('#buttonCreateSite').onclick = () => { 
         openPanel(document.querySelector('#panelSite'), latlng)
         addPointInput(latlng)
-        sitePoints.push(latlng)
-        draw(sitePoints)
+        drawEdit(getPoints())
     };
     
     return container
@@ -73,38 +70,26 @@ function onMapClick(e) {
         .openOn(map);
     } 
     else {
-        sitePoints.push(e.latlng);
-        addPointOnPanel(e.latlng);
-        draw(sitePoints);
-    }
-}
-
-function draw(table) {
-    if(document.querySelector("#checkbox_linear:checked") == null) {
-        // polyline.removeLayer();
-        const polyline = L.polyline(table).addTo(map);
-    }
-    else { 
-        // map.removeLayer(L);
-        const polygon = L.polygon(table).addTo(map);
+        addPointInput(e.latlng)
+        drawEdit(getPoints());
     }
 }
 
 // Clic map
 map.on('click', onMapClick);
 
-// Example to use marker
-// var marker = L.marker([45.77901739936284, 3.1146240234375004], {icon: mark}).addTo(map);
 
-// Example of popup
-// marker.bindPopup("Je suis un chantier d'un point");
-// polygon.bindPopup("Je suis une zone de chantier");
+// LAYER EDIT
 
-// Example of cercle
-// var circle = L.circle([46.68, 2.13], {
-//     color: 'red',
-//     fillColor: '#f03',
-//     fillOpacity: 0.5,
-//     radius: 500
-// }).addTo(map);
-// circle.bindPopup("I am a circle.");
+let layerEdit = L.polyline(points).addTo(map);
+
+function drawEdit(points) {
+    layerEdit.remove()
+
+    if(document.querySelector("#checkbox_linear:checked") == null) {
+       layerEdit = L.polyline(points).addTo(map);
+    }
+    else { 
+        layerEdit = L.polygon(points).addTo(map);
+    }
+}

@@ -1,19 +1,19 @@
 const controller_infomation  = document.querySelector("#controller_infomation")
 const contributor_infomation = document.querySelector("#contributor_infomation")
+const checkbox_addPoints = document.querySelector("#checkbox_addPoint")
 
 let panelOpen = false
 let panelRetracted = false
 
-function openPanel(panel, point) {
+function openPanel(panel) {
     if(panelOpen)
         closePanel(panel)
+
+    checkbox_addPoints.checked = true
 
     panel.classList.toggle("translate-x-full")
     panel.querySelector('#retract_button').innerHTML = ">"
 
-    if(point != null) {
-        addPointOnPanel(point)
-    }
     panelOpen = true
     panelRetracted = false
 }
@@ -23,7 +23,7 @@ function closePanel(panel) {
         if(panelRetracted) {
             panel.classList.toggle("translate-x-retracted")
             panel.classList.toggle("translate-x-full")
-        }
+        } 
         else {
             panel.classList.toggle("translate-x-full")
         }
@@ -36,14 +36,15 @@ function closePanel(panel) {
         panel.querySelectorAll(".newPoint").forEach((point) => {
             point.remove()
         })
-
-        removeError();
+        
+        removePoints()
+        // removeLayer()
+        removeError()
 
         panel.querySelector('#reponseRequest').innerHTML = ""
-
         panelOpen = false
         panelRetracted = false
-    }
+    } 
     else {
         document.querySelector("#contentCheckboxAddPoint").classList.add("rounded")
         document.querySelector("#contentCheckboxAddPoint").classList.add("border-2")

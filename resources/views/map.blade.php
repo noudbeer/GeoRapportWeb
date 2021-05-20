@@ -35,6 +35,7 @@
                             <div class="autocomplete">
                                 <label>Client :</label>  
                                 <input class="rounded-lg w-full" type="text" name="client" id="inputClient" oninput="changePopup('inputClient', 'clientPopup');" required>
+                                {{-- A dépacer dans un fichier js --}}
                                 <script> 
                                     var soc = @json($societies);
                                     var table = [];
@@ -54,13 +55,13 @@
                                 <label>Ajouter des points de délimitation</label>
                             </div>
 
-                            <div class="flex justify-around items-center text-center newPoint mx-1">
+                            <div class="grid grid-flow-row grid-cols-2 grid-rows-1 items-center newPoint mx-1">
                                 <label>Latitude :</label>
                                 <label>Longitude :</label>
                             </div>
                             
+                            <input id="inputPoints" class="hidden" value="[]">
                             <div id="points">
-                                <input id="inputPoints" class="hidden" value="[]">
                             </div>
 
                             <div class="text-center" id="content_checkbox_linear">
