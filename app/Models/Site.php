@@ -18,8 +18,10 @@ class Site extends Model
 		'owner',
 		'name',
 		'orderNumber',
+    'client',
+    'isZone',
 		'beginning',
-        'status',
-        'end', 
+    'status',
+    'end', 
 	];
 }

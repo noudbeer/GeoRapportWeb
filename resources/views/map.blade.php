@@ -79,7 +79,7 @@
                             <div id="points"></div>
 
                             <div class="text-center" id="content_checkbox_linear">
-                                <input type="checkbox" id="checkbox_linear" class="rounded" type="checkbox" name="checkbox_linear">
+                                <input type="checkbox" id="checkbox_zone" class="rounded" type="checkbox" name="isZone">
                                 <label>Ce chantier est une zone (non linéaire)</label>
                             </div>
                         </div>

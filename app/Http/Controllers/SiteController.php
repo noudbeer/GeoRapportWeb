@@ -20,10 +20,17 @@ class SiteController extends Controller
 
         
         $client = $request['client'];
-        $society = Society::where('name', $client)->get();
+        $society = Society::where('name', $client)->get()->first();
         //Check si la societé indiqué dans le champ existe déjà
         if($society == null)
-            $society = Society::create(['name' => $client]);
+            $society = Society::create(['name' => $client])->get()->first();
+
+        $request['client'] = $society->id;
+        
+        if($request['isZone'] == 'on')
+            $request['isZone'] = true;
+        else
+            $request['isZone'] = false;
 
         
         $contributors = collect(json_decode($request['contributors']));
@@ -43,6 +50,8 @@ class SiteController extends Controller
 		$fields = [
 			'name'        => 'required|string',
             'orderNumber' => 'required|integer',
+            'client'      => 'required|integer',
+            'isZone'      => 'required|boolean',
             'beginning'   => 'required|date',
 			'status'      => 'required|integer',
 		];
