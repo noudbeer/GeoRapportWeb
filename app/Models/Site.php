@@ -20,8 +20,25 @@ class Site extends Model
 		'orderNumber',
     'client',
     'isZone',
+    'points',
 		'beginning',
     'status',
     'end', 
 	];
+
+  /**
+     * get the users who are controller.
+     */
+    public function controllers()
+    {
+        return $this->belongsToMany(Site::class);
+    }
+
+    /**
+     * get the users who are contributor.
+     */
+    public function contributors()
+    {
+        return $this->belongsToMany(Site::class);
+    }
 }

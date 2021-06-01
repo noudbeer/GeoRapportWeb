@@ -66,4 +66,21 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany(Society::class);
     }
+
+
+    /**
+     * get sites that the user is controller.
+     */
+    public function controls()
+    {
+        return $this->belongsToMany(Site::class, 'controller_site');
+    }
+
+    /**
+     * get sites that the user is contributor. 
+     */
+    public function contributions()
+    {
+        return $this->belongsToMany(Site::class, 'contributor_site');
+    }
 }

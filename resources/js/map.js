@@ -86,7 +86,7 @@ let layerEdit = L.polyline(points).addTo(map);
 function drawEdit(points) {
     layerEdit.remove()
 
-    if(document.querySelector("#checkbox_linear:checked") == null) {
+    if(document.querySelector("#checkbox_zone:checked") == null) {
        layerEdit = L.polyline(points).addTo(map);
     }
     else { 

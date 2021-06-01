@@ -32,6 +32,8 @@ class CreateSitesTable extends Migration
 
             $table->boolean('isZone');
 
+            $table->json('points');
+
             $table->dateTime('beginning');
 
             $table->foreignId('status')

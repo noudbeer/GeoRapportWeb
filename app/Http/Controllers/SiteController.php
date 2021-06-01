@@ -15,27 +15,35 @@ class SiteController extends Controller
 	}
 
     public function editSite(Request $request) {
-
-        $owner = auth()->user();
-
+        // OWNER
+        $request['owner'] = auth()->user()->id;
         
+
+        // CLIENT
         $client = $request['client'];
-        $society = Society::where('name', $client)->get()->first();
-        //Check si la societé indiqué dans le champ existe déjà
-        if($society == null)
-            $society = Society::create(['name' => $client])->get()->first();
-
-        $request['client'] = $society->id;
+        $society = Society::where('name', $client)->get()->first(); // search the society $request['client] in bdd
         
+        // If society dosen't excite in bdd
+        if($society == null) {
+            Society::create(['name' => $client]);
+            $society = Society::where('name', $client)->get()->first();
+        }
+
+        $request['client'] = $society->id; 
+        
+
+        // IS ZONE
         if($request['isZone'] == 'on')
             $request['isZone'] = true;
         else
             $request['isZone'] = false;
 
-        
-        $contributors = collect(json_decode($request['contributors']));
-        $contributors = $contributors->map(function($user_data) {
-            $user = User::find($user_data['id']);
+
+
+        //CONTROLERS
+        $controllers = collect(json_decode($request['controllers']));
+        $controllers = $controllers->map(function($user_data) {
+            $user = User::find($user_data->id);
             if($user != null)
                 return $user;
             else {
@@ -44,25 +52,49 @@ class SiteController extends Controller
             }
         });
 
-        $points = collect(json_decode($request['points']));
+        
+        // CONTRIBUTORS
+        $contributors = collect(json_decode($request['contributors']));
+        $contributors = $contributors->map(function($user_data) {
+            $user = User::find($user_data->id);
+            if($user != null)
+                return $user;
+            else {
+                // jeter une erreur si l'utilisateur existe pas
+                trigger_error("Erreur lors de la recheche de l'utilisateur ". $user_data);
+            }
+        });
+
+
+        // END
+        if( $request['status'] == Status::where('name', 'cloturé')->first()->id )
+            $request['end'] = new \DateTime;
+
 
         // Champs à valider
 		$fields = [
+            'owner'       => 'required|integer',
 			'name'        => 'required|string',
             'orderNumber' => 'required|integer',
             'client'      => 'required|integer',
             'isZone'      => 'required|boolean',
+            'points'      => 'required|json',
             'beginning'   => 'required|date',
 			'status'      => 'required|integer',
+            'end'         => 'datetime'
 		];
 
         $data = $request->validate($fields);
-        $data['owner'] = $owner->id;
-
-        if( $data['status'] == Status::where('name', 'cloturé')->first()->id )
-            $data['end'] = new \DateTime;
 
         $site = Site::create($data);
+
+        // Controllers attachement
+        foreach($controllers as $user)
+            $user->controls()->attach($site->id);
+
+        // Contributors attachement
+        foreach($controllers as $user)
+            $user->contributions()->attach($site->id);
 
         return redirect('map');
     }
