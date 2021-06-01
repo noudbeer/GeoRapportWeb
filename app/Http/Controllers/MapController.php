@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Society;
 use App\Models\Status;
+use App\Models\Site;
 
 class MapController extends Controller
 {
@@ -26,8 +27,9 @@ class MapController extends Controller
 	public function index() {
 		$societies = Society::all();
 		$status    = Status::all();
+		$sites 	   = Site::all();
 
-		return view('map', compact('societies', 'status'));
+		return view('map', compact('societies', 'status', 'sites'));
 	}
 
 	public function users($search = "") {

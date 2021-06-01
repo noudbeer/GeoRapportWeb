@@ -9,6 +9,9 @@
 
     <style id="marker-size"></style>
     <div id="contentMap">
+
+        <input id="sites" value="{{ $sites }}" class="w-full" hidden/>
+
         <div id="map" class="h-screen w-screen"></div>
 
         <div id="panelSite" class=" bg-white fixed flex inset-y-0 right-0 w-full h-full z-5000 transform translate-x-full transition duration-250 ease-in-out origin-top-right lg:w-auto">

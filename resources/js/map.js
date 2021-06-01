@@ -1,7 +1,6 @@
 import L, { icon, point } from 'leaflet'
 require("leaflet/dist/leaflet.css");
 
-
 const mark = L.icon({
     iconUrl: '/storage/app/public/img/marker-icon.png',
  });
@@ -29,8 +28,6 @@ L.control.zoom({
 		position: "bottomright"
 	}).addTo(map);
 
-
-
 /**
  * Function to set a popup
  * @param {array of float} latlng 
@@ -42,8 +39,8 @@ function setPopup(latlng) {
     container.innerHTML = `
         <h1 class="text-center underline font-bold" id="titlePopup"></h1>
         <div>
-            <h1 class="text-center">N° de commande : <span id="orderNumberPopup"></span></h1>
-            <h1 class="text-center">Nom du client : <span id="clientPopup"></span></h1>
+            <h1 class="text-center" id="orderPop" hidden>N° de commande : <span id="orderNumberPopup"></span></h1>
+            <h1 class="text-center" id="clientPop" hidden>Client : <span id="clientPopup"></span></h1>
         </div>
         <p>
             <div>Latitude: <span id="latPop">` + latlng.lat + `</span></div>
@@ -79,17 +76,52 @@ function onMapClick(e) {
 map.on('click', onMapClick);
 
 
-// LAYER EDIT
 
+
+// SITE LAYER
+const sites = JSON.parse(document.querySelector("#sites").value)
+
+function setPopupSite(site) {
+    var container = document.createElement("div")
+    container.className = "text-center"
+    container.innerHTML = `
+        <h1 class="text-center underline font-bold" id="titlePopup">`+ (site.name) +`</h1>
+        <div>
+            <h1 class="text-center">N° de commande : <span id="orderNumberPopup">`+ (site.orderNumber) +`</span></h1>
+            <h1 class="text-center">Nom du client : <span id="clientPopup">`+ (site.client) +`</span></h1>
+            <h1 class="text-center">Date du début du chantier : <span id="clientPopup">`+ (site.beginning) +`</span></h1>
+            <h1 class="text-center">Status du chantier : <span id="clientPopup">`+ (site.status) +`</span></h1>
+            <h1 class="text-center">Owner : <span id="clientPopup">`+ (site.owner) +`</span></h1>
+        </div>
+        <button id="buttonShowSite" class="bg-green-600 transition duration-150 ease-in-out hover:bg-green-700 rounded-md p-1">Afficher le chantier</button>
+    `
+    return container
+}
+
+sites.forEach(site => {
+    let form
+    if(site.isZone)
+        form = L.polygon(JSON.parse(site.points)).addTo(map)
+    else
+        form = L.polyline(JSON.parse(site.points)).addTo(map)
+
+
+    let container = setPopupSite(site)
+    form.bindPopup(container)
+})
+
+
+
+
+
+// LAYER EDIT
 let layerEdit = L.polyline(points).addTo(map);
 
 function drawEdit(points) {
     layerEdit.remove()
 
-    if(document.querySelector("#checkbox_zone:checked") == null) {
+    if(document.querySelector("#checkbox_zone:checked") == null)
        layerEdit = L.polyline(points).addTo(map);
-    }
-    else { 
+    else
         layerEdit = L.polygon(points).addTo(map);
-    }
 }
