@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Society;
 use App\Models\Status;
 use App\Models\Site;
+use App\Http\Resources\SiteResource;
 
 class MapController extends Controller
 {
@@ -27,14 +28,16 @@ class MapController extends Controller
 	public function index() {
 		$societies = Society::all();
 		$status    = Status::all();
-		$sites 	   = Site::all();
+		$sites	   = SiteResource::collection(Site::all())->toJson();
 
 		return view('map', compact('societies', 'status', 'sites'));
 	}
 
 	public function users($search = "") {
 
-		$users = User::all()->filter(function($user) use($search) {
+		$users = collect();
+
+		User::all()->filter(function($user) use($search) {
 			$data = $user->firstname . ' ' . $user->lastname . ' ' . $user->email;
             $data = $this->normalize($data);
 
@@ -45,6 +48,8 @@ class MapController extends Controller
                     return true;
 
             return false;
+		})->each(function($user) use($users) {
+			$users->push($user);
 		});
 
 		return $users->toJson();

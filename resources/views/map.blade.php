@@ -130,8 +130,8 @@
                             <div>
                                 <label>Ajouter de contrôleurs ou contributeurs :</label>
                                 <div class="text-center">
-                                    <input class="rounded-lg w-1/2" type="text" name="userSearch" id="userSearch">
-                                    <input type="button" class="bg-blue-400 p-2 hover:bg-blue-500 rounded w-1/3" name="userSearchButton" id="userSearchButton" value="Chercher">
+                                    <input type="text"   name="userSearch"       id="userSearch"       class="rounded-lg w-1/2" >
+                                    <input type="button" name="userSearchButton" id="userSearchButton" class="bg-blue-400 p-2 hover:bg-blue-500 rounded w-1/3"  value="Chercher">
                                 </div>
 
                                 <input type="hidden" name="controllers"  value="[]">

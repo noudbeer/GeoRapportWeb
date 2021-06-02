@@ -35,17 +35,17 @@ L.control.zoom({
  */
 function setPopup(latlng) {
     var container = document.createElement("div")
-    container.className = "text-center"
+    container.classList.add("text-center", "space-y-2")
     container.innerHTML = `
         <h1 class="text-center underline font-bold" id="titlePopup"></h1>
-        <div>
-            <h1 class="text-center" id="orderPop" hidden>N° de commande : <span id="orderNumberPopup"></span></h1>
-            <h1 class="text-center" id="clientPop" hidden>Client : <span id="clientPopup"></span></h1>
+        <div id="siteInformations">
+            <h1 class="text-center">N° de commande : <span id="orderNumberPopup"></span></h1>
+            <h1 class="text-center">Client : <span id="clientPopup"></span></h1>
         </div>
-        <p>
+        <div>
             <div>Latitude: <span id="latPop">` + latlng.lat + `</span></div>
             <div>Longitude: <span id="lngPop">` + latlng.lng + `</span></div>
-        </p>
+        </div>
         <button id="buttonCreateSite" class="bg-green-600 transition duration-150 ease-in-out hover:bg-green-700 rounded-md p-1">Créer un chantier</button>
     `
     container.querySelector('#buttonCreateSite').onclick = () => { 
@@ -83,18 +83,26 @@ const sites = JSON.parse(document.querySelector("#sites").value)
 
 function setPopupSite(site) {
     var container = document.createElement("div")
-    container.className = "text-center"
+    container.classList.add("text-center", "space-y-2")
     container.innerHTML = `
         <h1 class="text-center underline font-bold" id="titlePopup">`+ (site.name) +`</h1>
         <div>
-            <h1 class="text-center">N° de commande : <span id="orderNumberPopup">`+ (site.orderNumber) +`</span></h1>
-            <h1 class="text-center">Nom du client : <span id="clientPopup">`+ (site.client) +`</span></h1>
-            <h1 class="text-center">Date du début du chantier : <span id="clientPopup">`+ (site.beginning) +`</span></h1>
-            <h1 class="text-center">Status du chantier : <span id="clientPopup">`+ (site.status) +`</span></h1>
-            <h1 class="text-center">Owner : <span id="clientPopup">`+ (site.owner) +`</span></h1>
+            <h1 class="text-center">N° de commande : `+ (site.orderNumber) +`</h1>
+            <h1 class="text-center">Nom du client : `+ (site.client.name) +`</h1>
+            <h1 class="text-center">Status du chantier : `+ (site.status.name) +`</h1>
+            <h1 class="text-center">Date du début du chantier : `+ (site.beginning) +`</h1>
+            <h1 class="text-center">Owner : `+ (site.owner.firstname) +` `+ (site.owner.lastname) +` (`+ (site.owner.email) +`)</h1>
         </div>
-        <button id="buttonShowSite" class="bg-green-600 transition duration-150 ease-in-out hover:bg-green-700 rounded-md p-1">Afficher le chantier</button>
+        <div class="flex content-around space-x-1">
+            <button id="buttonEditSite" class="bg-yellow-400 transition duration-150 ease-in-out hover:bg-yellow-500 rounded-md p-1">Modifier le chantier</button>
+            <button id="buttonShowIntervention" class="bg-green-600 transition duration-150 ease-in-out hover:bg-green-700 rounded-md p-1">Afficher les interventions du chantier</button>
+        </div>
     `
+
+    container.querySelector('#buttonShowIntervention').onclick = () => { 
+        console.log("ouverture paneau interventions")
+    };
+
     return container
 }
 

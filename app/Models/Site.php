@@ -15,30 +15,38 @@ class Site extends Model
      * @var array
      */
     protected $fillable = [
-		'owner',
+		'owner_id',
 		'name',
 		'orderNumber',
-    'client',
+    'client_id',
     'isZone',
     'points',
 		'beginning',
-    'status',
+    'status_id',
     'end', 
 	];
 
   /**
-     * get the users who are controller.
-     */
-    public function controllers()
-    {
-        return $this->belongsToMany(Site::class);
-    }
+ * get the users who are controller.
+ */
+  public function client()
+  {
+      return $this->belongsTo(Society::class);
+  }
 
-    /**
-     * get the users who are contributor.
-     */
-    public function contributors()
-    {
-        return $this->belongsToMany(Site::class);
-    }
+  /**
+ * get the users who make this site.
+ */
+  public function owner()
+  {
+      return $this->belongsTo(User::class);
+  } 
+
+  /**
+  * get the status.
+  */
+ public function status()
+ {
+     return $this->belongsTo(Status::class);
+ }
 }

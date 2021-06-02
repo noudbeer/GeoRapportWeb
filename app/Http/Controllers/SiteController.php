@@ -73,15 +73,15 @@ class SiteController extends Controller
 
         // Champs à valider
 		$fields = [
-            'owner'       => 'required|integer',
+            'owner_id'    => 'required|integer',
 			'name'        => 'required|string',
             'orderNumber' => 'required|integer',
-            'client'      => 'required|integer',
+            'client_id'   => 'required|integer',
             'isZone'      => 'required|boolean',
             'points'      => 'required|json',
             'beginning'   => 'required|date',
-			'status'      => 'required|integer',
-            'end'         => 'datetime'
+			'status_id'   => 'required|integer',
+            'end'         => 'date'
 		];
 
         $data = $request->validate($fields);

@@ -62,11 +62,9 @@ function deletePoint(point) {
  * @param {button} div_id 
  */
 function changePopup(input_id, div_id) {
-    let text = document.getElementById(input_id).value.trim()
-    document.getElementById(div_id).innerHTML = text
+    let text = document.querySelector("#"+input_id).value.trim()
+    document.querySelector("#"+div_id).innerHTML = text
     
-    document.querySelector("#orderPop").removeAttribute("hidden")
-    document.querySelector("#clientPop").removeAttribute("hidden")
-
-    document.querySelector("#buttonCreateSite").className   = "hidden"
+    // Show site's informations
+    document.querySelector("#siteInformations").removeAttribute("hidden")
 }
