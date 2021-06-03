@@ -16,11 +16,12 @@ class SiteController extends Controller
 
     public function editSite(Request $request) {
         // OWNER
-        $request['owner'] = auth()->user()->id;
+        $request['owner_id'] = auth()->user()->id;
         
 
         // CLIENT
         $client = $request['client'];
+        var_dump($client);
         $society = Society::where('name', $client)->get()->first(); // search the society $request['client] in bdd
         
         // If society dosen't excite in bdd
@@ -29,7 +30,7 @@ class SiteController extends Controller
             $society = Society::where('name', $client)->get()->first();
         }
 
-        $request['client'] = $society->id; 
+        $request['client_id'] = $society->id; 
         
 
         // IS ZONE
@@ -67,7 +68,7 @@ class SiteController extends Controller
 
 
         // END
-        if( $request['status'] == Status::where('name', 'cloturé')->first()->id )
+        if( $request['status_id'] == Status::where('name', 'cloturé')->first()->id )
             $request['end'] = new \DateTime;
 
 

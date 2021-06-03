@@ -15,14 +15,6 @@ class Society extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 
+        'name'
     ];
-
-    /**
-     * The roles that belong to the user.
-     */
-    public function users()
-    {
-        return $this->belongsToMany(User::class);
-    }
 }

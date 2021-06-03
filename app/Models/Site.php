@@ -27,8 +27,8 @@ class Site extends Model
 	];
 
   /**
- * get the users who are controller.
- */
+  * get the users who are controller.
+  */
   public function client()
   {
       return $this->belongsTo(Society::class);
@@ -45,8 +45,8 @@ class Site extends Model
   /**
   * get the status.
   */
- public function status()
- {
-     return $this->belongsTo(Status::class);
- }
+  public function status()
+  {
+      return $this->belongsTo(Status::class);
+  }
 }

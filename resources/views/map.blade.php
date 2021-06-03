@@ -29,25 +29,25 @@
                         <div>
                             <div>
                                 <label>Nom du chantier :</label>
-                                <input id="nameOrder" class="rounded-lg w-full @error('nameOrder') is-invalid @enderror" type="text" name="name" oninput="changePopup('nameOrder', 'titlePopup')" required>
+                                <input id="nameOrder" class="rounded-lg w-full @error('nameOrder') text-red-600 @enderror" type="text" name="name" oninput="changePopup('nameOrder', 'titlePopup')" required>
                             </div>
                             @error('nameOrder')
-                                <div class="alert alert-danger">{{ $message }}</div>
+                                <div class="text-red-600">{{ $message }}</div>
                             @enderror
                             
 
                             <div>
                                 <label>N° de commande chantier :</label>
-                                <input id="inputOrder" class="rounded-lg w-full @error('inputOrder') is-invalid @enderror" type="number" name="orderNumber" oninput="changePopup('inputOrder', 'orderNumberPopup')" required>
+                                <input id="inputOrder" class="rounded-lg w-full @error('inputOrder') text-red-600 @enderror" type="number" name="orderNumber" oninput="changePopup('inputOrder', 'orderNumberPopup')" required>
                             </div>
                             @error('inputOrder')
-                                <div class="alert alert-danger">{{ $message }}</div>
+                                <div class="text-red-600">{{ $message }}</div>
                             @enderror
 
 
                             <div class="autocomplete">
                                 <label>Client :</label>  
-                                <input id="inputClient" class="rounded-lg w-full @error('inputClient') is-invalid @enderror" type="text" name="client" oninput="changePopup('inputClient', 'clientPopup');" required>
+                                <input id="inputClient" class="rounded-lg w-full @error('inputClient') text-red-600 @enderror" type="text" name="client" oninput="changePopup('inputClient', 'clientPopup');" required>
                                 {{-- A dépacer dans un fichier js --}}
                                 <script> 
                                     var soc = @json($societies);
@@ -59,7 +59,7 @@
                                 </script>
                             </div>
                             @error('inputClient')
-                                <div class="alert alert-danger">{{ $message }}</div>
+                                <div class="text-red-600">{{ $message }}</div>
                             @enderror
 
                         </div>
@@ -90,23 +90,23 @@
 
                         <div>
                             <label for="beginning">Date de début du chantier :</label>
-                            <input type="date" id="beginning" name="beginning" class="rounded-lg @error('beginning') is-invalid @enderror" required>
+                            <input type="date" id="beginning" name="beginning" class="rounded-lg @error('beginning') text-red-600 @enderror" required>
                         </div>
                         @error('beginning')
-                            <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="text-red-600">{{ $message }}</div>
                         @enderror
 
 
                         <div>
                             <label>Status :</label>
-                            <select  id="status" class="rounded-lg w-full @error('status') is-invalid @enderror" name="status" required>
+                            <select  id="status" class="rounded-lg w-full @error('status') text-red-600 @enderror" name="status_id" required>
                                 @foreach ($status as $stat)
                                     <option value={{ $stat->id }}>{{ $stat->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         @error('status')
-                            <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="text-red-600">{{ $message }}</div>
                         @enderror
 
 
