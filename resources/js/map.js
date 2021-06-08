@@ -49,7 +49,9 @@ function setPopup(latlng) {
         <button id="buttonCreateSite" class="bg-green-600 transition duration-150 ease-in-out hover:bg-green-700 rounded-md p-1">Créer un chantier</button>
     `
     container.querySelector('#buttonCreateSite').onclick = () => { 
-        openPanel(document.querySelector('#panelSite'))
+        hidePanelContent(document.querySelector('#panel'))
+        document.querySelector('#panelContent_site').classList.remove("hidden")
+        openPanel(document.querySelector('#panel'))
         addPointInput(latlng)
         drawEdit(getPoints())
     };
@@ -100,7 +102,9 @@ function setPopupSite(site) {
     `
 
     container.querySelector('#buttonShowIntervention').onclick = () => { 
-        openPanel(document.querySelector("#panelIntervention"))
+        hidePanelContent()
+        document.querySelector('#panelContent_intervention').classList.remove("hidden")
+        openPanel(document.querySelector("#panel"))
         showInterventions(site)
     };
 
