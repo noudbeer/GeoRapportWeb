@@ -51,6 +51,7 @@ function setPopup(latlng) {
     container.querySelector('#buttonCreateSite').onclick = () => { 
         hidePanelContent(document.querySelector('#panel'))
         document.querySelector('#panelContent_site').classList.remove("hidden")
+        scriptAutocomplete()
         openPanel(document.querySelector('#panel'))
         addPointInput(latlng)
         drawEdit(getPoints())

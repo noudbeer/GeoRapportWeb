@@ -55,6 +55,17 @@ class MapController extends Controller
 		return $users->toJson();
 	}
 
+	public function societies() {
+
+		$societies = collect();
+
+		Society::all()->each(function($society) use($societies) {
+			$societies->push($society);
+		});
+
+		return $societies->toJson();
+	}
+
     private function normalize($string) {
         $table = array(
             'Š'=>'S', 'š'=>'s', 'Đ'=>'Dj', 'đ'=>'dj', 'Ž'=>'Z', 'ž'=>'z', 'Č'=>'C', 'č'=>'c', 'Ć'=>'C', 'ć'=>'c',

@@ -16,6 +16,19 @@ function hidePanelContent() {
     }
 }
 
+function scriptAutocomplete() {
+
+    fetch("map/societies")
+        .then(json => json.json())
+        .then(data => {
+            var table = []
+            for(let i=0; i<data.length; i++) {
+                table.push(data[i].name);
+            }
+            autocomplete(document.querySelector('#inputClient'), table);
+        });
+}
+
 function openPanel(panel) {
     if(panelOpen)
         closePanel(panel)
@@ -49,12 +62,13 @@ function closePanel(panel) {
         })
         
         removePoints()
-        // removeLayer()
         removeError()
 
         panel.querySelector('#reponseRequest').innerHTML = ""
         panelOpen = false
         panelRetracted = false
+
+        // TODO : Désactiver l'autocomplete
     } 
     else {
         document.querySelector("#contentCheckboxAddPoint").classList.add("rounded")

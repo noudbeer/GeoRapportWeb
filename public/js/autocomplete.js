@@ -36,7 +36,7 @@ function autocomplete(inp, arr) {
                     closeAllLists();
                 });
                 a.appendChild(b);
-          }
+        }
         }
     });
     /*execute a function presses a key on the keyboard:*/
@@ -61,9 +61,11 @@ function autocomplete(inp, arr) {
             if (currentFocus > -1) {
                 /*and simulate a click on the "active" item:*/
                 if (x) x[currentFocus].click();
+                changePopup('inputClient', 'clientPopup');
             }
         }
     });
+    
     function addActive(x) {
         /*a function to classify an item as "active":*/
         if (!x) return false;
@@ -87,12 +89,12 @@ function autocomplete(inp, arr) {
         for (var i = 0; i < x.length; i++) {
             if (elmnt != x[i] && elmnt != inp) {
                 x[i].parentNode.removeChild(x[i]);
+            }
         }
     }
-  }
-  /*execute a function when someone clicks in the document:*/
-  document.addEventListener("click", function (e) {
+    /*execute a function when someone clicks in the document:*/
+    document.getElementById('panel').addEventListener("click", function (e) {
         closeAllLists(e.target);
         changePopup('inputClient', 'clientPopup');
-  });
+    });
 } 

@@ -48,15 +48,6 @@
                             <div class="autocomplete">
                                 <label>Client :</label>  
                                 <input id="inputClient" class="rounded-lg w-full @error('inputClient') text-red-600 @enderror" type="text" name="client" oninput="changePopup('inputClient', 'clientPopup');" required>
-                                {{-- A dépacer dans un fichier js --}}
-                                <script> 
-                                    var soc = @json($societies);
-                                    var table = [];
-                                    for(let i=0; i<soc.length; i++) {
-                                        table.push(soc[i].name);
-                                    }
-                                    autocomplete(document.querySelector('#inputClient'), table);
-                                </script>
                             </div>
                             @error('inputClient')
                                 <div class="text-red-600">{{ $message }}</div>
