@@ -11,7 +11,7 @@ function openPanel(panel) {
     if(panelOpen)
         closePanel(panel)
 
-    checkbox_addPoints.checked = true
+    checkbox_addPoints.checked = false
 
     panel.classList.toggle("translate-x-full")
     panel.querySelector('#retract_button').innerHTML = ">"
