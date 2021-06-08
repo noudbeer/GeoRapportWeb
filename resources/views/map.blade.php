@@ -3,7 +3,7 @@
 @section('content')
     <script src="{{ asset('js/map.js') }}" defer></script>
     <script src="{{ asset('js/panels.js') }}" defer></script>
-    <script src="{{ asset('js/autocomplete.js') }}" async></script>
+    <script src="{{ asset('js/autocomplete.js') }}"></script>
     <script src="{{ asset('js/points_site.js') }}" defer></script>
     <script src="{{ asset('js/site_users.js') }}" defer></script>
 

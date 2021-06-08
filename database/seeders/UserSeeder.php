@@ -28,6 +28,15 @@ class UserSeeder extends Seeder
         $admin->save();
 
         $admin = new User();
+        $admin->lastname = 'Commandeur';
+        $admin->firstname = 'Nicolas';
+        $admin->email = 'nicolas.commandeur@onf.fr';
+        $admin->password = Hash::make('test');
+        $admin->role_id = $role_admin->id;
+	    $admin->email_verified_at = new \DateTime;
+        $admin->save();
+
+        $admin = new User();
         $admin->lastname = 'Brun';
         $admin->firstname = 'Aurélie';
         $admin->email = 'aurelie.brun@onf.fr';
