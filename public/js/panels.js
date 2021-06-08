@@ -1,6 +1,8 @@
-const controller_infomation  = document.querySelector("#controller_infomation")
-const contributor_infomation = document.querySelector("#contributor_infomation")
-const checkbox_addPoints = document.querySelector("#checkbox_addPoint")
+const controller_infomation      = document.querySelector("#controller_infomation")
+const contributor_infomation     = document.querySelector("#contributor_infomation")
+const checkbox_addPoints         = document.querySelector("#checkbox_addPoint")
+const titleSiteInterventionPanel = document.querySelector("#siteName")
+const interventionsSite          = document.querySelector("#interventionsSite")
 
 let panelOpen = false
 let panelRetracted = false
@@ -73,6 +75,10 @@ function retractPanel(panel) {
 
     panel.classList.toggle("translate-x-retracted")
     panelRetracted = !panelRetracted
+}
+
+function showInterventions(site) {
+    titleSiteInterventionPanel.textContent = site.name
 }
 
 /**

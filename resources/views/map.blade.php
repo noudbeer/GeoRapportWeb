@@ -155,14 +155,13 @@
             </div>
             
             <div class="w-full m-2 overflow-y-autoloca">
-                <h1 class="font-bold text-center underline">LISTE DES CHANTIERS</h1>
-                <ul class="flex flex-col mt-3 space-y-1">
+                <h1 class="font-bold text-center underline" id="siteName"></h1>
+                <ul class="flex flex-col content-center mt-3 space-y-1">
+                    <h2 class="text-center">INTERVENTIONS :</h2>
                     <li class="flex content-between items-center space-x-3">
-                        <h2>CHANTIER 1</h2>
-                        <div>
-                            <button class="bg-yellow-300 h-full p-1 rounded-md hover:bg-yellow-400">Modifier le chantier</button>
-                            <button class="bg-blue-500   h-full p-1 rounded-md hover:bg-blue-600">Voir le chantier</button>
-                        </div>
+                        <div id="interventionsSite"></div>
+                        {{-- <button class="bg-yellow-300 h-full p-1 rounded-md hover:bg-yellow-400">Modifier le chantier</button>
+                        <button class="bg-blue-500   h-full p-1 rounded-md hover:bg-blue-600">Voir le chantier</button> --}}
                     </li>
                 </ul>
             </div>
