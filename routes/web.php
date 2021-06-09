@@ -24,12 +24,11 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Map
 Route::get('/map', [App\Http\Controllers\MapController::class, 'index'])->name('map');
-Route::get('/map/users/{search}', [App\Http\Controllers\MapController::class, 'users'])->name('users');
-
-//Chantiers
 Route::post('/editSite', [App\Http\Controllers\SiteController::class, 'editSite'])->name('editSite');
 
-//Societies
-Route::get('/map/societies', [App\Http\Controllers\MapController::class, 'societies'])->name('societies');
+// Ajax link
+//Route::get('/sites/{search}', [App\Http\Controllers\UserController::class, 'site'])->name('site');
+Route::get('/users/{search}', [App\Http\Controllers\UserController::class, 'users'])->name('users');
+Route::get('/societies/all', [App\Http\Controllers\SocietyController::class, 'societies'])->name('societies');
+Route::get('/status/all', [App\Http\Controllers\StatusController::class, 'status'])->name('status');

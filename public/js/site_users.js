@@ -88,7 +88,7 @@ const setContributors = (data) => {
 
 
 user_search_button.addEventListener("click", (e) => {
-    fetch("map/users/" + encodeURIComponent(user_search_input.value))
+    fetch("users/" + encodeURIComponent(user_search_input.value))
         .then(json => json.json())
         .then(data => {
             

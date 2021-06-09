@@ -16,9 +16,11 @@ function hidePanelContent() {
     }
 }
 
+/**
+ * takes the names of the companies and use them in the autocomplete 
+ */
 function scriptAutocomplete() {
-
-    fetch("map/societies")
+    fetch("societies/all")
         .then(json => json.json())
         .then(data => {
             var table = []
