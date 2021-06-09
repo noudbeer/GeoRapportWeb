@@ -3,7 +3,7 @@
 @section('content')
     <script src="{{ asset('js/map.js') }}" defer></script>
     <script src="{{ asset('js/panels.js') }}" defer></script>
-    <script src="{{ asset('js/autocomplete.js') }}" async></script>
+    <script src="{{ asset('js/autocomplete.js') }}"></script>
     <script src="{{ asset('js/points_site.js') }}" defer></script>
     <script src="{{ asset('js/site_users.js') }}" defer></script>
 
@@ -14,12 +14,12 @@
 
         <div id="map" class="h-screen w-screen"></div>
 
-        <div id="panelSite" class=" bg-white fixed flex inset-y-0 right-0 w-full h-full z-5000 transform translate-x-full transition duration-250 ease-in-out origin-top-right lg:w-auto">
+        <div id="panel" class=" bg-white fixed flex inset-y-0 right-0 w-full h-full z-5000 transform translate-x-full transition duration-250 ease-in-out origin-top-right lg:w-auto">
             <div class="flex flex-col w-10 my-0.5 space-y-0.5">
-                <button type="button" id="close_button" class="bg-red-500 font-bold p-1 rounded-md hover:bg-red-600" onclick="closePanel(getElementById('panelSite'))">x</button>
-                <button type="button" id="retract_button" class="bg-blue-500 h-full font-bold p-1 rounded-md hover:bg-blue-400" onclick="retractPanel(getElementById('panelSite'))">></button>
+                <button type="button" id="close_button" class="bg-red-500 font-bold p-1 rounded-md hover:bg-red-600" onclick="closePanel(getElementById('panel'))">x</button>
+                <button type="button" id="retract_button" class="bg-blue-500 h-full font-bold p-1 rounded-md hover:bg-blue-400" onclick="retractPanel(getElementById('panel'))">></button>
             </div>
-            <div class="w-full m-2 overflow-y-auto">
+            <div id="panelContent_site" class="hidden w-full m-2 overflow-y-auto">
                 <h1 class="font-bold text-center underline">NOUVEAU CHANTIER</h1>
 
                 <form method="POST" action="{{ route('editSite') }}" autocomplete="off" class="flex flex-col mt-3">
@@ -48,15 +48,6 @@
                             <div class="autocomplete">
                                 <label>Client :</label>  
                                 <input id="inputClient" class="rounded-lg w-full @error('inputClient') text-red-600 @enderror" type="text" name="client" oninput="changePopup('inputClient', 'clientPopup');" required>
-                                {{-- A dépacer dans un fichier js --}}
-                                <script> 
-                                    var soc = @json($societies);
-                                    var table = [];
-                                    for(let i=0; i<soc.length; i++) {
-                                        table.push(soc[i].name);
-                                    }
-                                    autocomplete(document.querySelector('#inputClient'), table);
-                                </script>
                             </div>
                             @error('inputClient')
                                 <div class="text-red-600">{{ $message }}</div>
@@ -146,15 +137,7 @@
                     </div>
                 </form>
             </div>
-        </div>
-
-        <div id="panelIntervention" class="bg-white fixed flex inset-y-0 right-0 w-full h-full z-5000 transform translate-x-full transition duration-250 ease-in-out origin-top-right lg:w-auto">
-            <div class="flex flex-col w-10 my-0.5 space-y-0.5">
-                <button type="button" id="close_button"   class="bg-red-500 font-bold p-1 rounded-md hover:bg-red-600"          onclick="closePanel(getElementById('panelIntervention'))">x</button>
-                <button type="button" id="retract_button" class="bg-blue-500 h-full font-bold p-1 rounded-md hover:bg-blue-400" onclick="retractPanel(getElementById('panelIntervention'))">></button>
-            </div>
-            
-            <div class="w-full m-2 overflow-y-autoloca">
+            <div id="panelContent_intervention" class="hidden w-full m-2 overflow-y-autoloca">
                 <h1 class="font-bold text-center underline" id="siteName"></h1>
                 <ul class="flex flex-col content-center mt-3 space-y-1">
                     <h2 class="text-center">INTERVENTIONS :</h2>

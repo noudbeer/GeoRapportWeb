@@ -30,3 +30,6 @@ Route::get('/map/users/{search}', [App\Http\Controllers\MapController::class, 'u
 
 //Chantiers
 Route::post('/editSite', [App\Http\Controllers\SiteController::class, 'editSite'])->name('editSite');
+
+//Societies
+Route::get('/map/societies', [App\Http\Controllers\MapController::class, 'societies'])->name('societies');

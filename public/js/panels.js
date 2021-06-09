@@ -7,11 +7,33 @@ const interventionsSite          = document.querySelector("#interventionsSite")
 let panelOpen = false
 let panelRetracted = false
 
+function hidePanelContent() {
+    var children = document.getElementById('panel').children;
+    for(var i=0; i<children.length; i++) {
+        if(children[i].id.match(/panelContent/g)) {
+            children[i].classList.add('hidden')
+        }
+    }
+}
+
+function scriptAutocomplete() {
+
+    fetch("map/societies")
+        .then(json => json.json())
+        .then(data => {
+            var table = []
+            for(let i=0; i<data.length; i++) {
+                table.push(data[i].name);
+            }
+            autocomplete(document.querySelector('#inputClient'), table);
+        });
+}
+
 function openPanel(panel) {
     if(panelOpen)
         closePanel(panel)
 
-    checkbox_addPoints.checked = true
+    checkbox_addPoints.checked = false
 
     panel.classList.toggle("translate-x-full")
     panel.querySelector('#retract_button').innerHTML = ">"
@@ -30,7 +52,7 @@ function closePanel(panel) {
             panel.classList.toggle("translate-x-full")
         }
         
-        if(panel == document.querySelector('panelSite')) {
+        if(panel == document.querySelector('panel')) {
             panel.querySelector("#latitude").value = null
             panel.querySelector("#longitude").value = null
         }
@@ -40,12 +62,13 @@ function closePanel(panel) {
         })
         
         removePoints()
-        // removeLayer()
         removeError()
 
         panel.querySelector('#reponseRequest').innerHTML = ""
         panelOpen = false
         panelRetracted = false
+
+        // TODO : Désactiver l'autocomplete
     } 
     else {
         document.querySelector("#contentCheckboxAddPoint").classList.add("rounded")
@@ -68,10 +91,13 @@ function closePanel(panel) {
 }
 
 function retractPanel(panel) {
-    if(panel.classList.contains('translate-x-retracted'))
+    if(panel.classList.contains('translate-x-retracted')) {
         panel.querySelector("#retract_button").innerHTML = ">"
-    else
+        panel.querySelector("#close_button").classList.remove("hidden")
+    } else {
         panel.querySelector("#retract_button").innerHTML = "<"
+        panel.querySelector("#close_button").classList.add("hidden")
+    }
 
     panel.classList.toggle("translate-x-retracted")
     panelRetracted = !panelRetracted
