@@ -28,6 +28,36 @@ class InterventionSeeder extends Seeder
         $test->interventionsGroup_id = InterventionsGroup::find(1)->id;
         $test->type_id = InterventionsType::find(1)->id;
         $test->quantity = 1;
+        $test->unit = 'arbre';
+        $test->description = 'description test';
+        $test->timeSpent = 50;
+        $test->unitOfTime_id = UnitOfTime::find(1)->id;
+        $test->save();
+
+        $test = new Intervention();
+        $test->site_id = Site::find(1)->id;
+        $test->location = '[{"lat":45.9236921010712,"lng":6.085739135742188}]';
+        $test->datetimeOfIntervention = new \DateTime;
+        $test->owner_id = User::where('firstname', 'simon')->first()->id;
+        $test->teamMembers = 'Michel';
+        $test->interventionsGroup_id = InterventionsGroup::find(1)->id;
+        $test->type_id = InterventionsType::find(1)->id;
+        $test->quantity = 2;
+        $test->unit = 'panneaux';
+        $test->description = 'description test';
+        $test->timeSpent = 50;
+        $test->unitOfTime_id = UnitOfTime::find(1)->id;
+        $test->save();
+
+        $test = new Intervention();
+        $test->site_id = Site::find(1)->id;
+        $test->location = '[{"lat":45.94028765874568,"lng":6.138267517089845},{"lat":45.93646753871873,"lng":6.167106628417969}]';
+        $test->datetimeOfIntervention = new \DateTime;
+        $test->owner_id = User::where('firstname', 'simon')->first()->id;
+        $test->teamMembers = 'Jack';
+        $test->interventionsGroup_id = InterventionsGroup::find(1)->id;
+        $test->type_id = InterventionsType::find(1)->id;
+        $test->quantity = 1;
         $test->unit = 'test d\'unité';
         $test->description = 'description test';
         $test->timeSpent = 50;

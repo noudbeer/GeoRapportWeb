@@ -106,7 +106,7 @@ function setPopupSite(site) {
         hidePanelContent()
         document.querySelector('#panelContent_intervention').classList.remove("hidden")
         openPanel(document.querySelector("#panel"))
-        showInterventions(site)
+        displayInterventions(site)
     };
 
     return container

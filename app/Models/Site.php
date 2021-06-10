@@ -7,24 +7,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class Site extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-		'owner_id',
-		'name',
-		'orderNumber',
+  /**
+   * The attributes that are mass assignable.
+   *
+   * @var array
+   */
+  protected $fillable = [
+    'owner_id',
+    'name',
+    'orderNumber',
     'client_id',
     'isZone',
     'points',
-		'beginning',
+    'beginning',
     'status_id',
     'end', 
-	];
+  ];
 
   /**
   * get the users who are controller.

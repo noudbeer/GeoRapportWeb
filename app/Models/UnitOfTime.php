@@ -17,6 +17,6 @@ class UnitOfTime extends Model
      * @var array
      */
     protected $fillable = [
-    'name',
+        'name',
     ];
 }

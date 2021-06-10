@@ -29,12 +29,41 @@ class Intervention extends Model
         'description',
         'timeSpent',
         'unitOfTime_id'
-	];
+    ];
 
     /**
-     * retrun the attachement site 
+     * return the attachement site 
      */
     public function site() {
         return $this->belongsTo(Site::class);
+    }
+
+    /**
+     * return the owner of the intervention 
+     */
+    public function owner() {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * return the group of the intervention 
+     */
+    public function interventionsGroup() {
+        return $this->belongsTo(InterventionsGroup::class, 'interventionsGroup_id');
+    }
+
+
+    /**
+     * return the type of the intervention 
+     */
+    public function type() {
+        return $this->belongsTo(InterventionsType::class);
+    }
+
+    /**
+     * return the unit of time
+     */
+    public function unitOfTime() {
+        return $this->belongsTo(UnitOfTime::class, 'unitOfTime_id');
     }
 }

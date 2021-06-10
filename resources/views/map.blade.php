@@ -6,6 +6,7 @@
     <script src="{{ asset('js/autocomplete.js') }}"></script>
     <script src="{{ asset('js/points_site.js') }}" defer></script>
     <script src="{{ asset('js/site_users.js') }}" defer></script>
+    <script src="{{ asset('js/interventionsPanel.js') }}" defer></script>
 
     <style id="marker-size"></style>
     <div id="contentMap">
@@ -24,7 +25,7 @@
 
                 <form method="POST" action="{{ route('editSite') }}" autocomplete="off" class="flex flex-col mt-3">
                     @csrf
-                    {{ $errors }}
+                    {{-- {{ $errors }} --}}
                     <div class="space-y-5">
                         <div>
                             <div>
@@ -137,16 +138,28 @@
                     </div>
                 </form>
             </div>
-            <div id="panelContent_intervention" class="hidden w-full m-2 overflow-y-autoloca">
+
+            <div id="panelContent_intervention" class="hidden w-full m-2 overflow-y-auto px-1">
                 <h1 class="font-bold text-center underline" id="siteName"></h1>
-                <ul class="flex flex-col content-center mt-3 space-y-1">
-                    <h2 class="text-center">INTERVENTIONS :</h2>
-                    <li class="flex content-between items-center space-x-3">
-                        <div id="interventionsSite"></div>
-                        {{-- <button class="bg-yellow-300 h-full p-1 rounded-md hover:bg-yellow-400">Modifier le chantier</button>
-                        <button class="bg-blue-500   h-full p-1 rounded-md hover:bg-blue-600">Voir le chantier</button> --}}
-                    </li>
-                </ul>
+
+                <div class="flex flex-col content-center mt-3 space-y-1">
+                    <h2 class="underline">Interventions :</h2>
+                    <table class="table-fixed">
+                        <thead>
+                            <tr>
+                                <th class="w-20">Type d'intervention</th>
+                                <th class="w-20">Date</th>
+                                <th class="w-20">Groupe d'intervention</th>
+                                <th class="w-20">Créateur</th>
+                                <th class="w-20">Membre équipe</th>
+                                <th class="w-20">Quantité</th>
+                                <th class="w-20">Temps de l'intervention</th>
+                            </tr>
+
+                            <tbody id="interventionsSite"></tbody>
+                        </thead>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

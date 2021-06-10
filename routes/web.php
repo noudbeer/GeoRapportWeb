@@ -29,6 +29,7 @@ Route::post('/editSite', [App\Http\Controllers\SiteController::class, 'editSite'
 
 // Ajax link
 //Route::get('/sites/{search}', [App\Http\Controllers\UserController::class, 'site'])->name('site');
+Route::get('site/{number}/interventions', [App\Http\Controllers\InterventionController::class, 'getInterventions'])->name('getInterventions');
 Route::get('/users/{search}', [App\Http\Controllers\UserController::class, 'users'])->name('users');
 Route::get('/societies/all', [App\Http\Controllers\SocietyController::class, 'societies'])->name('societies');
 Route::get('/status/all', [App\Http\Controllers\StatusController::class, 'status'])->name('status');

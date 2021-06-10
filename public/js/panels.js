@@ -105,10 +105,6 @@ function retractPanel(panel) {
     panelRetracted = !panelRetracted
 }
 
-function showInterventions(site) {
-    titleSiteInterventionPanel.textContent = site.name
-}
-
 /**
  * Popup information role controller
  */
