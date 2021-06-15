@@ -147,11 +147,10 @@
                     <table class="table-fixed">
                         <thead>
                             <tr>
-                                <th class="w-20">Type d'intervention</th>
                                 <th class="w-20">Date</th>
+                                <th class="w-20">Type d'intervention</th>
                                 <th class="w-20">Groupe d'intervention</th>
                                 <th class="w-20">Créateur</th>
-                                <th class="w-20">Membre équipe</th>
                                 <th class="w-20">Quantité</th>
                                 <th class="w-20">Temps de l'intervention</th>
                             </tr>
@@ -160,6 +159,22 @@
                         </thead>
                     </table>
                 </div>
+            </div>
+
+            <div id="panelContent_sitesList" class="hidden w-full m-2 overflow-y-auto px-1">
+                <h1 class="font-bold text-center underline">Chantiers</h1>
+
+                <table class="table-fixed">
+                    <thead>
+                        <tr>
+                            <th class="w-20">Status (date de fermeture du chantier)</th>
+                            <th class="w-20">Date d'ouverture du chantier</th>
+                            <th class="w-20">Nom</th>
+                            <th class="w-20">Créateur</th>
+                        </tr>
+                        <tbody id="sitesTable"></tbody>
+                    </thead>
+                </table>
             </div>
         </div>
     </div>

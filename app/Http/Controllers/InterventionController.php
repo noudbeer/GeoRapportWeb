@@ -13,8 +13,9 @@ class InterventionController extends Controller
 	}
 
   public function getInterventions($number) {
-    $interventions = Intervention::all()->where('site_id', '=', $number);
 
+    $interventions = Intervention::all()->where('site_id', '=', $number)->sortByDesc('datetimeOfIntervention');
+    
     return InterventionResource::collection($interventions);
   }
 }

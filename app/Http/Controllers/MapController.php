@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Status;
 use App\Models\Site;
 use App\Http\Resources\SiteResource;
+use App\Models\ContributorSite;
+use App\Models\ControllerSite;
 
 class MapController extends Controller
 {
@@ -24,9 +26,20 @@ class MapController extends Controller
 	 * @return \Illuminate\Contracts\Support\Renderable
 	 */
 	public function index() {
-		$sites	   = SiteResource::collection(Site::all())->toJson();
-		$status    = Status::all();
 
+		$status	= Status::all();
+		$user 	= auth()->user()->id;
+		
+		$sites = Site::where("owner_id", $user)->get()
+				->concat(ControllerSite::where('user_id', $user)->get()->map(function ($obj) {
+					return $obj->site;
+				}))
+				->concat(ContributorSite::where('user_id', $user)->get()->map(function ($obj) {
+					return $obj->site;
+				}));
+
+		$sites = SiteResource::collection($sites)->toJson();
+		
 		return view('map', compact('sites', 'status'));
 	}
 }

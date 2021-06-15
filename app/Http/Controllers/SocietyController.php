@@ -16,13 +16,7 @@ class SocietyController extends Controller
 		$this->middleware(['auth', 'verified']);
 	}
 
-    public function societies() 
-    {
-		$societies = collect();
-		Society::all()->each(function($society) use($societies) {
-			$societies->push($society);
-		});
-
-		return $societies;
+    public function societies() {
+		return Society::all();
 	}
 }

@@ -7,12 +7,20 @@ use App\Models\User;
 use App\Models\Society;
 use App\Models\Site;
 use App\Models\Status;
+use App\Http\Resources\SiteResource;
 
 class SiteController extends Controller
 {
     public function __construct() {
 		$this->middleware(['auth', 'verified']);
 	}
+
+    /**
+     * Return all sites 
+     */
+    public function getSites() {
+        return SiteResource::collection(Site::all());
+    }
 
     public function editSite(Request $request) {
         // OWNER

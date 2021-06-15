@@ -1,13 +1,11 @@
-const divInterventionsSite = document.querySelector("#interventionsSite");
+const divsitesTable = document.querySelector('#sitesTable')
 
 /**
- * display interventions of a site
+ * display visible sites
  * @param {integer} siteNumber 
  */
-function displayInterventions(site) {
-    titleSiteInterventionPanel.textContent = site.name
-
-    fetch("site/" + site.id + "/interventions/")
+ function displaySitesTable($user) {
+    fetch("sites/")
         .then(json => json.json())
         .then(data => {
             divInterventionsSite.innerHTML = ""

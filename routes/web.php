@@ -28,7 +28,7 @@ Route::get('/map', [App\Http\Controllers\MapController::class, 'index'])->name('
 Route::post('/editSite', [App\Http\Controllers\SiteController::class, 'editSite'])->name('editSite');
 
 // Ajax link
-//Route::get('/sites/{search}', [App\Http\Controllers\UserController::class, 'site'])->name('site');
+Route::get('sites/all', [App\Http\Controllers\SiteController::class, 'getSites'])->name('getSites');
 Route::get('site/{number}/interventions', [App\Http\Controllers\InterventionController::class, 'getInterventions'])->name('getInterventions');
 Route::get('/users/{search}', [App\Http\Controllers\UserController::class, 'users'])->name('users');
 Route::get('/societies/all', [App\Http\Controllers\SocietyController::class, 'societies'])->name('societies');

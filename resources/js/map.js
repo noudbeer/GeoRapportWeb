@@ -25,7 +25,7 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
  * Position du zoom
  */
 L.control.zoom({
-		position: "bottomright"
+		position: "bottomleft"
 	}).addTo(map);
 
 /**

@@ -18,12 +18,12 @@ class RoleSeeder extends Seeder
         $role_admin->name = 'admin';
         $role_admin->save();
 
-        $role_contributor = new Role();
-        $role_contributor->name = 'contributor';
-        $role_contributor->save();
+        $role_user = new Role();
+        $role_user->name = 'user';
+        $role_user->save();
 
-        $role_other = new Role();
-        $role_other->name = 'other';
-        $role_other->save();
+        $role_client = new Role();
+        $role_client->name = 'client';
+        $role_client->save();
     }
 }
