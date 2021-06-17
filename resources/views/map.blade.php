@@ -139,8 +139,8 @@
                 </form>
             </div>
 
-            <div id="panelContent_intervention" class="hidden w-full m-2 overflow-y-auto px-1">
-                <h1 class="font-bold text-center underline" id="siteName"></h1>
+            <div id="panelContent_interventions" class="hidden w-full m-2 overflow-y-auto px-1">
+                <h1 class="font-bold text-center underline" id="titleSiteInterventionsPanel"></h1>
 
                 <div class="flex flex-col content-center mt-3 space-y-1">
                     <h2 class="underline">Interventions :</h2>

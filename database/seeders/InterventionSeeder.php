@@ -25,7 +25,7 @@ class InterventionSeeder extends Seeder
         $test->datetimeOfIntervention = new \DateTime;
         $test->owner_id = User::where('firstname', 'simon')->first()->id;
         $test->teamMembers = 'Team Issou';
-        $test->interventionsGroup_id = InterventionsGroup::find(1)->id;
+        $test->interventionsGroup_id = null;
         $test->type_id = InterventionsType::find(1)->id;
         $test->quantity = 1;
         $test->unit = 'arbre';

@@ -5,7 +5,7 @@ const divInterventionsSite = document.querySelector("#interventionsSite");
  * @param {integer} siteNumber 
  */
 function displayInterventions(site) {
-    titleSiteInterventionPanel.textContent = site.name
+    titleSiteInterventionsPanel.textContent = site.name
 
     fetch("site/" + site.id + "/interventions/")
         .then(json => json.json())
@@ -18,6 +18,9 @@ function displayInterventions(site) {
                 el.classList = "hover:bg-gray-200"
 
                 el.innerHTML = `
+                    <td class="border px-2 py-1 text-center">
+                        <a href="intervention/${intervention.id}" class="bg-gray-300 h-full p-1 rounded-md hover:bg-gray-400">Détails</a
+                    td>
                     <td class="border px-2 py-1 text-center">${intervention.datetimeOfIntervention}</td>
                     <td class="border px-2 py-1 text-center">${intervention.type.name}</td>
                     <td class="border px-2 py-1 text-center">${intervention.interventionsGroup.name}</td>
