@@ -71,7 +71,7 @@ function closePanel(panel) {
         panelOpen = false
         panelRetracted = false
 
-        // TODO : Désactiver l'autocomplete
+        checkbox_addPoints.checked = false
     } 
     else {
         document.querySelector("#contentCheckboxAddPoint").classList.add("rounded")
