@@ -39,6 +39,7 @@ function openPanel(panel) {
 
     panel.classList.toggle("translate-x-full")
     panel.querySelector('#retract_button').innerHTML = ">"
+    panel.querySelector("#close_button").classList.remove("hidden")
 
     panelOpen = true
     panelRetracted = false
