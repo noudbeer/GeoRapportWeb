@@ -1,4 +1,4 @@
-import L, { icon, point } from 'leaflet'
+import L, { bounds, icon, point } from 'leaflet'
 require("leaflet/dist/leaflet.css");
 
 const mark = L.icon({
@@ -68,11 +68,17 @@ function onMapClick(e) {
         .setLatLng(e.latlng)
         .setContent(container)
         .openOn(map);
+
+        map.setView(e.latlng, 12)
     } 
     else {
         addPointInput(e.latlng)
         drawEdit(getPoints());
     }
+}
+
+function onSiteClick(e) {
+    map.fitBounds(e.target._bounds)
 }
 
 // Clic map
@@ -115,17 +121,16 @@ function setPopupSite(site) {
 sites.forEach(site => {
     let form
     if(site.isZone)
-        form = L.polygon(JSON.parse(site.points)).addTo(map)
+        form = L.polygon(JSON.parse(site.points))
     else
-        form = L.polyline(JSON.parse(site.points)).addTo(map)
+        form = L.polyline(JSON.parse(site.points))
 
+    form.on('click', onSiteClick)
+    form.addTo(map)
 
     let container = setPopupSite(site)
     form.bindPopup(container)
 })
-
-
-
 
 
 // LAYER EDIT
