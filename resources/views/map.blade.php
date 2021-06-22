@@ -20,6 +20,8 @@
                 <button type="button" id="close_button" class="bg-red-500 font-bold p-1 rounded-md hover:bg-red-600" onclick="closePanel(getElementById('panel'))">x</button>
                 <button type="button" id="retract_button" class="bg-blue-500 h-full font-bold p-1 rounded-md hover:bg-blue-400" onclick="retractPanel(getElementById('panel'))">></button>
             </div>
+
+            {{-- Panneau nouveau chantier --}}
             <div id="panelContent_site" class="hidden w-full m-2 overflow-y-auto">
                 <h1 class="font-bold text-center underline">NOUVEAU CHANTIER</h1>
 
@@ -142,11 +144,14 @@
             <div id="panelContent_interventions" class="hidden w-full m-2 overflow-y-auto px-1">
                 <h1 class="font-bold text-center underline" id="titleSiteInterventionsPanel"></h1>
 
-                <div class="flex flex-col content-center mt-3 space-y-1">
+                <div class="flex flex-col justify-center mt-3 space-y-1">
                     <h2 class="underline">Interventions :</h2>
+                    <button class="rounded-md p-2 m-20 bg-green-600 hover:bg-green-700">Ajouter une intervention</button>
+
                     <table class="table-fixed">
                         <thead>
                             <tr>
+                                <th></th>
                                 <th class="w-20">Date</th>
                                 <th class="w-20">Type d'intervention</th>
                                 <th class="w-20">Groupe d'intervention</th>
@@ -161,6 +166,21 @@
                 </div>
             </div>
 
+
+            {{-- Création d'une intervention --}}
+            <div id="panelCreate_intervention" class="hidden w-full m-2 overflow-y-auto px-1">
+                <h1 class="font-bold text-center underline">Nouvelle intervention</h1>
+
+                <form method="POST" action="#" autocomplete="off" class="flex flex-col mt-3">
+                    @csrf
+                    {{-- {{ $errors }} --}}
+                    <div class="space-y-5">
+                        <button class="bg-green-600 w-full transition duration-150 ease-in-out hover:bg-green-700 rounded-md p-3">Valider ce chantier</button>
+                    </div>
+                </form>
+            </div>
+
+            {{-- Panneau de visualisation de la liste des chantiers --}}
             <div id="panelContent_sitesList" class="hidden w-full m-2 overflow-y-auto px-1">
                 <h1 class="font-bold text-center underline">Chantiers</h1>
 
