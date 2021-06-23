@@ -19,7 +19,7 @@ function hidePanelContent() {
 /**
  * takes the names of the companies and use them in the autocomplete 
  */
-function scriptAutocomplete() {
+function scriptAutocomplete(popup) {
     fetch("societies/all")
         .then(json => json.json())
         .then(data => {
@@ -27,7 +27,7 @@ function scriptAutocomplete() {
             for(let i=0; i<data.length; i++) {
                 table.push(data[i].name);
             }
-            autocomplete(document.querySelector('#inputClient'), table);
+            autocomplete(document.querySelector('#inputClient'), table, popup);
         });
 }
 

@@ -1,4 +1,4 @@
-import L, { bounds, icon, point } from 'leaflet'
+import L, { bounds, icon, point, popup } from 'leaflet'
 require("leaflet/dist/leaflet.css");
 
 const mark = L.icon({
@@ -51,7 +51,6 @@ function setPopup(latlng) {
     container.querySelector('#buttonCreateSite').onclick = () => { 
         hidePanelContent(document.querySelector('#panel'))
         document.querySelector('#panelContent_site').classList.remove("hidden")
-        scriptAutocomplete()
         openPanel(document.querySelector('#panel'))
         addPointInput(latlng)
         drawEdit(getPoints())
@@ -63,11 +62,12 @@ function setPopup(latlng) {
 function onMapClick(e) {
     if((document.querySelector("#checkbox_addPoint:checked") == null) || (panelOpen == false)) {
         var container = setPopup(e.latlng);
-        
         L.popup()
         .setLatLng(e.latlng)
         .setContent(container)
         .openOn(map);
+
+        scriptAutocomplete(map._popup)
 
         map.setView(e.latlng, 12)
     } 
