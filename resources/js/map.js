@@ -144,3 +144,11 @@ function drawEdit(points) {
     else
         layerEdit = L.polygon(points).addTo(map);
 }
+
+document.querySelector("#checkbox_zone").onclick = function() {
+    layerEdit.remove()
+    if (this.checked)
+        layerEdit = L.polygon(getPoints()).addTo(map);
+    else
+        layerEdit = L.polyline(getPoints()).addTo(map);
+}
