@@ -54,6 +54,8 @@ function setPopup(latlng) {
         openPanel(document.querySelector('#panel'))
         addPointInput(latlng)
         drawEdit(getPoints())
+
+        // TODO: utiliser un proxy pour drawEdit quand on supprime un point
     };
     
     return container
