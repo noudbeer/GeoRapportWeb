@@ -25,9 +25,13 @@ Auth::routes(['verify' => true]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/map', [App\Http\Controllers\MapController::class, 'index'])->name('map');
-Route::get('/intervention/{intervention_id}', [App\Http\Controllers\InterventionController::class, 'index'])->name('intervention');
 
 Route::post('/editSite', [App\Http\Controllers\SiteController::class, 'editSite'])->name('editSite');
+Route::get('/intervention/{intervention_id}', [App\Http\Controllers\InterventionController::class, 'index'])->name('intervention');
+
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin')
+    ->middleware('role:admin');
+
 
 
 // Ajax link
