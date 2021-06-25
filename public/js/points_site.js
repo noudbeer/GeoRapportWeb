@@ -52,6 +52,7 @@ function deletePoint(point) {
     const points = getPoints()
     points.splice(point, 1)
     setPoints(points)
+    window.drawEdit(getPoints())
 }
 
 /**

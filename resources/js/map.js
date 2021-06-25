@@ -138,7 +138,7 @@ sites.forEach(site => {
 // LAYER EDIT
 let layerEdit = L.polyline(points).addTo(map);
 
-function drawEdit(points) {
+global.drawEdit = function(points) {
     layerEdit.remove()
 
     if(document.querySelector("#checkbox_zone:checked") == null)
