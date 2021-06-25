@@ -1,4 +1,4 @@
-function autocomplete(inp, arr) {
+function autocomplete(inp, arr, popup) {
     /*the autocomplete function takes two arguments,
     the text field element and an array of possible autocompleted values:*/
     var currentFocus;
@@ -34,6 +34,8 @@ function autocomplete(inp, arr) {
                     /*close the list of autocompleted values,
                     (or any other open lists of autocompleted values:*/
                     closeAllLists();
+                    if (popup.isOpen())
+                        changePopup('inputClient', 'clientPopup');
                 });
                 a.appendChild(b);
         }
@@ -61,7 +63,8 @@ function autocomplete(inp, arr) {
             if (currentFocus > -1) {
                 /*and simulate a click on the "active" item:*/
                 if (x) x[currentFocus].click();
-                changePopup('inputClient', 'clientPopup');
+                if (popup.isOpen())
+                    changePopup('inputClient', 'clientPopup');
             }
         }
     });
@@ -92,9 +95,4 @@ function autocomplete(inp, arr) {
             }
         }
     }
-    /*execute a function when someone clicks in the document:*/
-    document.getElementById('panel').addEventListener("click", function (e) {
-        closeAllLists(e.target);
-        changePopup('inputClient', 'clientPopup');
-    });
 } 

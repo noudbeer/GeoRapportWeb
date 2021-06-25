@@ -16,7 +16,7 @@ const removePoints = () => {
 
 const redrawPoints = () => {
     const points = getPoints()
-    
+
     points_view.innerHTML = ""
 
     points.forEach(point => {
@@ -28,7 +28,7 @@ const redrawPoints = () => {
                 <input class="rounded-lg w-1/2" type="text" step="0.0000000000001" value="${point.lng}" id="inputLat" oninput="changePopup('inputLat', 'latPop');" required>
             </div>
 
-            <button class="rounded-lg w-9 h-9 bg-red-500 hover:bg-red-600 font-bold mx-1" type="button" onclick="deletePoint(${point})">X</button>
+            <button class="rounded-lg w-9 h-9 bg-red-500 hover:bg-red-600 font-bold mx-1" type="button" onclick="deletePoint(${points.indexOf(point)})">X</button>
         `
         points_view.appendChild(el)
     });
@@ -46,14 +46,13 @@ function addPointInput(point) {
 
 /**
  * function to delete one point
- * @param {array} point 
+ * @param {integer} point
  */
 function deletePoint(point) {
-    let points = getPoints()
-    console.log(points)
-    points.splice(0, 1, point)
+    const points = getPoints()
+    points.splice(point, 1)
     setPoints(points)
-    console.log(points)
+    window.drawEdit(getPoints())
 }
 
 /**

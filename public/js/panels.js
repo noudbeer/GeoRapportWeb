@@ -19,7 +19,7 @@ function hidePanelContent() {
 /**
  * takes the names of the companies and use them in the autocomplete 
  */
-function scriptAutocomplete() {
+function scriptAutocomplete(popup) {
     fetch("societies/all")
         .then(json => json.json())
         .then(data => {
@@ -27,7 +27,7 @@ function scriptAutocomplete() {
             for(let i=0; i<data.length; i++) {
                 table.push(data[i].name);
             }
-            autocomplete(document.querySelector('#inputClient'), table);
+            autocomplete(document.querySelector('#inputClient'), table, popup);
         });
 }
 
@@ -39,6 +39,7 @@ function openPanel(panel) {
 
     panel.classList.toggle("translate-x-full")
     panel.querySelector('#retract_button').innerHTML = ">"
+    panel.querySelector("#close_button").classList.remove("hidden")
 
     panelOpen = true
     panelRetracted = false
@@ -70,7 +71,7 @@ function closePanel(panel) {
         panelOpen = false
         panelRetracted = false
 
-        // TODO : Désactiver l'autocomplete
+        checkbox_addPoints.checked = false
     } 
     else {
         document.querySelector("#contentCheckboxAddPoint").classList.add("rounded")
