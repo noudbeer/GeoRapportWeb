@@ -103,7 +103,8 @@
                     
                     @if ( Auth::user()->hasRole('admin') )
                         <div class="flex flex-col">
-                            <a href="#" class="px-2 hover:bg-green-600">Gestion des rôles</a>
+                            <a class="px-2 hover:bg-green-600" href="{{ route('admin') }}">Panneau d'administrateur</a>
+                            <a class="px-2 hover:bg-green-600" href="#">Gestion des rôles</a>
                         </div>
                     @endif
 
