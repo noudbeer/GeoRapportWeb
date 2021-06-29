@@ -7,7 +7,7 @@
                 <ul>
                     <li>Nom : {{ $intervention->site->name }}</li>
                     <li>N° de devis : {{ $intervention->site->orderNumber }}</li>
-                    <li>N° CPD :</li>
+                    <li>N° CPD : {{ $intervention->site->cpdNumber }}</li>
                 </ul>
             </div>
 

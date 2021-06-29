@@ -19,6 +19,7 @@ class SiteResource extends JsonResource
             'owner'       => $this->owner,
 			'name'        => $this->name,
             'orderNumber' => $this->orderNumber,
+            'cpdNumber'   => $this->cpdNumber,
             'client'      => $this->client,
             'isZone'      => $this->isZone,
             'points'      => $this->points,

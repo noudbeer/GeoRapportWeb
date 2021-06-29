@@ -18,6 +18,7 @@ class Site extends Model
     'owner_id',
     'name',
     'orderNumber',
+    'cpdNumber',
     'client_id',
     'isZone',
     'points',

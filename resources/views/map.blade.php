@@ -32,18 +32,26 @@
                         <div>
                             <div>
                                 <label>Nom du chantier :</label>
-                                <input id="nameOrder" class="rounded-lg w-full @error('nameOrder') text-red-600 @enderror" type="text" name="name" oninput="changePopup('nameOrder', 'titlePopup')" required>
+                                <input id="nameSite" class="rounded-lg w-full @error('nameSite') text-red-600 @enderror" type="text" name="name" oninput="changePopup('nameSite', 'titlePopup')" required>
                             </div>
-                            @error('nameOrder')
+                            @error('nameSite')
                                 <div class="text-red-600">{{ $message }}</div>
                             @enderror
                             
 
                             <div>
                                 <label>N° de devis :</label>
-                                <input id="inputOrder" class="rounded-lg w-full @error('inputOrder') text-red-600 @enderror" type="number" name="orderNumber" oninput="changePopup('inputOrder', 'orderNumberPopup')" required>
+                                <input id="inputOrder" class="rounded-lg w-full @error('inputOrder') text-red-600 @enderror" type="text" name="orderNumber" oninput="changePopup('inputOrder', 'orderNumberPopup')" required>
                             </div>
                             @error('inputOrder')
+                                <div class="text-red-600">{{ $message }}</div>
+                            @enderror
+
+                            <div>
+                                <label>N° de CPD :</label>
+                                <input id="inputCpd" class="rounded-lg w-full @error('inputCpd') text-red-600 @enderror" type="text" name="cpdNumber" oninput="changePopup('inputCpd', 'cpdNumberPopup')" required>
+                            </div>
+                            @error('inputCpd')
                                 <div class="text-red-600">{{ $message }}</div>
                             @enderror
 

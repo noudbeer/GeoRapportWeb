@@ -84,7 +84,8 @@ class SiteController extends Controller
 		$fields = [
             'owner_id'    => 'required|integer',
 			'name'        => 'required|string',
-            'orderNumber' => 'required|integer',
+            'orderNumber' => 'required|string',
+            'cpdNumber'   => 'required|string',
             'client_id'   => 'required|integer',
             'isZone'      => 'required|boolean',
             'points'      => 'required|json',

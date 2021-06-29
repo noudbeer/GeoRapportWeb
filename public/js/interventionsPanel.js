@@ -61,7 +61,7 @@ function displayInterventionDetails(intervention) {
         <p class="text-xl font-semibold my-2 w-64">Chantier : ${i.site.name}</p>
         <div class="flex flex-col gap-2 text-gray-400 text-sm">
             <div class="2xl">N° de devis : ${i.site.orderNumber}</div>
-            <div class="2xl">N° CPD : ${i.site.orderNumber}</div>
+            <div class="2xl">N° CPD : ${i.site.cpdNumber}</div>
         </div>
     `
     document.querySelector("#intervention_comment").innerHTML = `

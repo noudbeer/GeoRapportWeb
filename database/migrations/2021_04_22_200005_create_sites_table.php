@@ -23,7 +23,8 @@ class CreateSitesTable extends Migration
 
             $table->string('name');
 
-            $table->bigInteger('orderNumber');
+            $table->string('orderNumber');
+            $table->string('cpdNumber');
 
             $table->foreignId('client_id')
                 ->constrained('societies')

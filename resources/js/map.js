@@ -40,6 +40,7 @@ function setPopup(latlng) {
         <h1 class="text-center underline font-bold" id="titlePopup"></h1>
         <div id="siteInformations">
             <h1 class="text-center">N° de devis : <span id="orderNumberPopup"></span></h1>
+            <h1 class="text-center">N° de CPD : <span id="cpdNumberPopup"></span></h1>
             <h1 class="text-center">Client : <span id="clientPopup"></span></h1>
         </div>
         <div>
@@ -99,6 +100,7 @@ function setPopupSite(site) {
         <h1 class="text-center underline font-bold" id="titlePopup">`+ (site.name) +`</h1>
         <div>
             <h1 class="text-center">N° de devis : `+ (site.orderNumber) +`</h1>
+            <h1 class="text-center">N° de CPD : `+ (site.cpdNumber) +`</h1>
             <h1 class="text-center">Nom du client : `+ (site.client.name) +`</h1>
             <h1 class="text-center">Statut du chantier : `+ (site.status.name) +`</h1>
             <h1 class="text-center">Date du début du chantier : `+ (site.beginning) +`</h1>
