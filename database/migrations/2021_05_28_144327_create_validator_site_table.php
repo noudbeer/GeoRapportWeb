@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateControllerSiteTable extends Migration
+class CreateValidatorSiteTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateControllerSiteTable extends Migration
      */
     public function up()
     {
-        Schema::create('controller_site', function (Blueprint $table) {
+        Schema::create('validator_site', function (Blueprint $table) {
             $table->id();
 
             $table->foreignId('user_id')
@@ -37,6 +37,6 @@ class CreateControllerSiteTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('controller_site');
+        Schema::dropIfExists('validator_site');
     }
 }

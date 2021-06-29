@@ -27,7 +27,7 @@ class Site extends Model
   ];
 
   /**
-  * get the users who are controller.
+  * get the users who are validator.
   */
   public function client()
   {

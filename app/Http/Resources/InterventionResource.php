@@ -25,7 +25,7 @@ class InterventionResource extends JsonResource
             'type'                      => $this->type,
             'quantity'                  => $this->quantity,
             'unit'                      => $this->unit,
-            'description'               => $this->description,
+            'comment'                   => $this->comment,
             'timeSpent'                 => $this->timeSpent,
             'unitOfTime'                => $this->unitOfTime
         ];

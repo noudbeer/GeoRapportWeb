@@ -7,7 +7,7 @@ use App\Models\Status;
 use App\Models\Site;
 use App\Http\Resources\SiteResource;
 use App\Models\ContributorSite;
-use App\Models\ControllerSite;
+use App\Models\ValidatorSite;
 
 class MapController extends Controller
 {
@@ -31,7 +31,7 @@ class MapController extends Controller
 		$user 	= auth()->user()->id;
 		
 		$sites = Site::where("owner_id", $user)->get()
-				->concat(ControllerSite::where('user_id', $user)->get()->map(function ($obj) {
+				->concat(ValidatorSite::where('user_id', $user)->get()->map(function ($obj) {
 					return $obj->site;
 				}))
 				->concat(ContributorSite::where('user_id', $user)->get()->map(function ($obj) {

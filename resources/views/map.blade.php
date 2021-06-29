@@ -40,7 +40,7 @@
                             
 
                             <div>
-                                <label>N° de commande chantier :</label>
+                                <label>N° de devis :</label>
                                 <input id="inputOrder" class="rounded-lg w-full @error('inputOrder') text-red-600 @enderror" type="number" name="orderNumber" oninput="changePopup('inputOrder', 'orderNumberPopup')" required>
                             </div>
                             @error('inputOrder')
@@ -60,10 +60,10 @@
 
 
                         <div class="space-y-1" id="position">
-                            <label>Lieu du chantier :</label>
+                            <label>Localisation du chantier :</label>
 
                             <div class="items-center text-center p-1" id="contentCheckboxAddPoint">
-                                <input type="checkbox" id="checkbox_addPoint" class="rounded p-1 hover:bg-blue-500" onchange="removeError();" checked>
+                                <input type="checkbox" id="checkbox_addPoint" class="rounded p-1 hover:bg-blue-500" onchange="removeError();">
                                 <label>Ajouter des points de délimitation</label>
                             </div>
 
@@ -92,7 +92,7 @@
 
 
                         <div>
-                            <label>Status :</label>
+                            <label>Statut :</label>
                             <select  id="status" class="rounded-lg w-full @error('status') text-red-600 @enderror" name="status_id" required>
                                 @foreach ($status as $stat)
                                     <option value={{ $stat->id }}>{{ $stat->name }}</option>
@@ -107,10 +107,10 @@
                         <div class="space-y-2">
                             <div>
                                 <div class="flex items-center space-x-1">
-                                    <button id="controller_infomation"><svg width="15px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info-circle" class="svg-inline--fa fa-info-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"></path></svg></button>
-                                    <label>Contrôleurs :</label>
+                                    <button id="validator_infomation"><svg width="15px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info-circle" class="svg-inline--fa fa-info-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"></path></svg></button>
+                                    <label>Valideur(s) :</label>
                                 </div>
-                                <div id="controllers"></div>
+                                <div id="validators"></div>
                             </div>
 
                             <div>
@@ -122,13 +122,13 @@
                             </div>
 
                             <div>
-                                <label>Ajouter de contrôleurs ou contributeurs :</label>
+                                <label>Ajouter un valideur ou un contributeur :</label>
                                 <div class="text-center">
                                     <input type="text"   name="userSearch"       id="userSearch"       class="rounded-lg w-1/2" >
                                     <input type="button" name="userSearchButton" id="userSearchButton" class="bg-blue-400 p-2 hover:bg-blue-500 rounded w-1/3"  value="Chercher">
                                 </div>
 
-                                <input type="hidden" name="controllers"  value="[]">
+                                <input type="hidden" name="validators"  value="[]">
                                 <input type="hidden" name="contributors" value="[]">
                             </div>
 
@@ -146,16 +146,16 @@
 
                 <div class="flex flex-col justify-center mt-3 space-y-1">
                     <h2 class="underline">Interventions :</h2>
-                    <button class="rounded-md p-2 m-20 bg-green-600 hover:bg-green-700">Ajouter une intervention</button>
+                    <button class="rounded-md p-2 m-20 text-white bg-green-600 hover:bg-green-700">Ajouter une intervention</button>
 
                     <table class="table-fixed">
                         <thead>
                             <tr>
                                 <th></th>
                                 <th class="w-20">Date</th>
-                                <th class="w-20">Type d'intervention</th>
-                                <th class="w-20">Groupe d'intervention</th>
-                                <th class="w-20">Créateur</th>
+                                <th class="w-20">Nature des travaux</th>
+                                <th class="w-20">Secteur d'intervention</th>
+                                <th class="w-20">Équipe</th>
                                 <th class="w-20">Quantité</th>
                                 <th class="w-20">Temps de l'intervention</th>
                             </tr>
@@ -163,6 +163,26 @@
                             <tbody id="interventionsSite"></tbody>
                         </thead>
                     </table>
+                </div>
+            </div>
+
+            <div id="panelContent_interventionDetails" class="hidden w-full m-2 overflow-y-auto px-1">
+                <div class="py-8 flex flex-col gap-4 items-center mx-4" id="interventionInfo">
+
+                    <div class="w-full flex flex-row items-center">
+                        <button id="intervention_backButton" type="button" class="bg-gray-500 text-white px-4 py-2 rounded font-medium hover:bg-gray-600 transition duration-200 each-in-out">
+                            <img src="{{ asset('assets/left-arrow_white.svg') }}" class="w-5" />
+                        </button>
+                        {{-- <div class="flex-grow" ></div> --}}
+                        <div id="intervention_name" class="mx-2 flex-grow text-center"></div>
+                    </div>
+                    
+                    <div class="p-3 bg-gray-100 rounded-lg flex items-center justify-between space-x-8">
+                        <div id="intervention_site"></div>
+                    </div>
+                    <div class="p-3 bg-gray-100 rounded-lg flex items-center justify-between space-x-8">
+                        <div id="intervention_comment"></div>
+                    </div>
                 </div>
             </div>
 
@@ -187,10 +207,10 @@
                 <table class="table-fixed">
                     <thead>
                         <tr>
-                            <th class="w-20">Status (date de fermeture du chantier)</th>
+                            <th class="w-20">Statut (date de fermeture du chantier)</th>
                             <th class="w-20">Date d'ouverture du chantier</th>
                             <th class="w-20">Nom</th>
-                            <th class="w-20">Créateur</th>
+                            <th class="w-20">Équipe</th>
                         </tr>
                         <tbody id="sitesTable"></tbody>
                     </thead>

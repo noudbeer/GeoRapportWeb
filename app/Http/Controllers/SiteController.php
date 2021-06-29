@@ -49,9 +49,9 @@ class SiteController extends Controller
 
 
 
-        //CONTROLERS
-        $controllers = collect(json_decode($request['controllers']));
-        $controllers = $controllers->map(function($user_data) {
+        //VALIDATORS
+        $validators = collect(json_decode($request['validators']));
+        $validators = $validators->map(function($user_data) {
             $user = User::find($user_data->id);
             if($user != null)
                 return $user;
@@ -97,12 +97,12 @@ class SiteController extends Controller
 
         $site = Site::create($data);
 
-        // Controllers attachement
-        foreach($controllers as $user)
+        // Validators attachement
+        foreach($validators as $user)
             $user->controls()->attach($site->id);
 
         // Contributors attachement
-        foreach($controllers as $user)
+        foreach($contributors as $user)
             $user->contributions()->attach($site->id);
 
         return redirect('map');

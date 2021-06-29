@@ -26,7 +26,7 @@ class Intervention extends Model
         'type_id',
         'quantity',
         'unit',
-        'description',
+        'comment',
         'timeSpent',
         'unitOfTime_id'
     ];

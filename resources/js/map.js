@@ -39,7 +39,7 @@ function setPopup(latlng) {
     container.innerHTML = `
         <h1 class="text-center underline font-bold" id="titlePopup"></h1>
         <div id="siteInformations">
-            <h1 class="text-center">N° de commande : <span id="orderNumberPopup"></span></h1>
+            <h1 class="text-center">N° de devis : <span id="orderNumberPopup"></span></h1>
             <h1 class="text-center">Client : <span id="clientPopup"></span></h1>
         </div>
         <div>
@@ -98,11 +98,11 @@ function setPopupSite(site) {
     container.innerHTML = `
         <h1 class="text-center underline font-bold" id="titlePopup">`+ (site.name) +`</h1>
         <div>
-            <h1 class="text-center">N° de commande : `+ (site.orderNumber) +`</h1>
+            <h1 class="text-center">N° de devis : `+ (site.orderNumber) +`</h1>
             <h1 class="text-center">Nom du client : `+ (site.client.name) +`</h1>
-            <h1 class="text-center">Status du chantier : `+ (site.status.name) +`</h1>
+            <h1 class="text-center">Statut du chantier : `+ (site.status.name) +`</h1>
             <h1 class="text-center">Date du début du chantier : `+ (site.beginning) +`</h1>
-            <h1 class="text-center">Owner : `+ (site.owner.firstname) +` `+ (site.owner.lastname) +` (`+ (site.owner.email) +`)</h1>
+            <h1 class="text-center">Créateur : `+ (site.owner.firstname) +` `+ (site.owner.lastname) +` (`+ (site.owner.email) +`)</h1>
         </div>
         <div class="flex content-around space-x-1">
             <button id="buttonEditSite" class="bg-yellow-400 transition duration-150 ease-in-out hover:bg-yellow-500 rounded-md p-1">Modifier le chantier</button>

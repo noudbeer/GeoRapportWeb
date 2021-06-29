@@ -1,4 +1,4 @@
-const controller_infomation      = document.querySelector("#controller_infomation")
+const validator_infomation      = document.querySelector("#validator_infomation")
 const contributor_infomation     = document.querySelector("#contributor_infomation")
 const checkbox_addPoints         = document.querySelector("#checkbox_addPoint")
 const titleSiteInterventionPanel = document.querySelector("#siteName")
@@ -107,12 +107,12 @@ function retractPanel(panel) {
 }
 
 /**
- * Popup information role controller
+ * Popup information role validator
  */
-controller_infomation.addEventListener("click", (e) => {
+ validator_infomation.addEventListener("click", (e) => {
     window.alert(`
-            \tQu'est ce qu'un contrôleur ?\n\n
-        Un contrôleur est un utilisateur qui peut donner les droits de contributeur (visibilité et ajout d'interventions) à un autre utilisateur.
+            \tQu'est ce qu'un valideur ?\n\n
+        Un valideur est un utilisateur qui peut donner les droits de contributeur (visibilité et ajout d'interventions) à un autre utilisateur.
         Il possède également les droits de contributeur.
     `)
 })

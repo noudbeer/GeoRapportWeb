@@ -6,12 +6,12 @@
             <div>
                 <ul>
                     <li>Nom : {{ $intervention->site->name }}</li>
-                    <li>N° Commande : {{ $intervention->site->orderNumber }}</li>
+                    <li>N° de devis : {{ $intervention->site->orderNumber }}</li>
                     <li>N° CPD :</li>
                 </ul>
             </div>
 
-            <div class="underline text-right">Créateur : </div>
+            <div class="underline text-right">Équipe : </div>
             <div>{{ $intervention->owner->firstname }} {{ $intervention->owner->lastname }} ({{ $intervention->owner->email }})</div>
 
 
@@ -21,10 +21,10 @@
             <div class="underline text-right">Date de l'intervention : </div>
             <div>{{ $intervention->datetimeOfIntervention }})</div>
 
-            <div class="underline text-right">Appartient au groupe d'intervention :</div>
+            <div class="underline text-right">Appartient au secteur d'intervention :</div>
             <div>
                 @if ($intervention->interventionsGroup == null)
-                    Pas de groupe d'intervention
+                    Pas de secteur d'intervention
                 @else
                     <a href="#" class="hover:underline text-right">{{ $intervention->interventionsGroup->name }} (Voir plus) </a>
                 @endif
@@ -41,15 +41,17 @@
 
             <div class="underline text-right">Temps passé : </div>
             <div>{{ $intervention->timeSpent }} {{ $intervention->unitOfTime->name }}</div>
+
+            
+            <div class="px-16 flex justify-end space-x-1">
+                <div class="underline text-right">Créé le : </div>
+                <div>{{ $intervention->created_at->format('d-m-Y') }}</div>
+            </div>
+            
+            <div class="px-16 flex justify-end space-x-1">
+                <div class="underline text-right">Dernière fois mis à jour le : </div>
+                <div>{{ $intervention->updated_at->format('d-m-Y')}}</div>
+            </div>
         </div>
 
-        <div class="px-16 flex justify-end space-x-1">
-            <div class="underline text-right">Créé le : </div>
-            <div>{{ $intervention->created_at->format('d-m-Y') }}</div>
-        </div>
-        
-        <div class="px-16 flex justify-end space-x-1">
-            <div class="underline text-right">Dernière fois mis à jour le : </div>
-            <div>{{ $intervention->updated_at->format('d-m-Y')}}</div>
-        </div>
 @endsection

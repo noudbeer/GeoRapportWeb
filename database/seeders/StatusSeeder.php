@@ -14,6 +14,10 @@ class StatusSeeder extends Seeder
      */
     public function run()
     {
+        $finished = new Status();
+        $finished->name = "Ouvert";
+        $finished->save();
+
         $inProgress = new Status();
         $inProgress->name = "En cours";
         $inProgress->save();

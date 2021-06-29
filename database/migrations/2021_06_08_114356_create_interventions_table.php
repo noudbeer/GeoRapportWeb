@@ -51,7 +51,7 @@ class CreateInterventionsTable extends Migration
             
             $table->integer('quantity');
             $table->string('unit');
-            $table->text('description');
+            $table->text('comment');
             
             // time passed on the intervention
             $table->integer('timeSpent');

@@ -1,6 +1,6 @@
-const controllers_input  = document.querySelector("[name='controllers'")
+const validators_input   = document.querySelector("[name='validators'")
 const contributors_input = document.querySelector("[name='contributors'")
-const controllers_view   = document.querySelector("#controllers")
+const validators_view   = document.querySelector("#validators")
 const contributors_view  = document.querySelector("#contributors")
 
 const user_search_input  = document.querySelector("#userSearch")
@@ -22,36 +22,36 @@ const notEqualsUser = (user) =>
 const deleteUserFrom = (user, array) =>
     array.filter(notEqualsUser(user))
 
-// Recupère en JSON la valeur du controller_input
-const getControllers = () =>
-    JSON.parse(controllers_input.value)
+// Recupère en JSON la valeur du validator_input
+const getValidators = () =>
+    JSON.parse(validators_input.value)
 
-const redrawControllers = () => {
-    const controllers = getControllers()
+const redrawValidators = () => {
+    const validators = getValidators()
 
-    controllers_view.innerHTML = ""
+    validators_view.innerHTML = ""
 
-    controllers.forEach(user => {
+    validators.forEach(user => {
         const el = document.createElement("div")
         el.classList = "flex justify-around items-center"
         el.innerHTML = `
             ${user.firstname} ${user.lastname} (${user.email})
-            <button class="delete_controller bg-red-500 p-1 hover:bg-red-600 rounded">Supprimer des contrôleurs</button>
+            <button class="delete_validator bg-red-500 p-1 hover:bg-red-600 rounded">Supprimer des valideurs</button>
         `
 
-        el.querySelector(".delete_controller").addEventListener("click", (e) => {
+        el.querySelector(".delete_validator").addEventListener("click", (e) => {
             e.preventDefault()
 
-            setControllers(deleteUserFrom(user, controllers))
+            setValidators(deleteUserFrom(user, validators))
         })
 
-        controllers_view.appendChild(el)
+        validators_view.appendChild(el)
     })
 }
 
-const setControllers = (data) => {
-    controllers_input.value = JSON.stringify(data)
-    redrawControllers()
+const setValidators = (data) => {
+    validators_input.value = JSON.stringify(data)
+    redrawValidators()
 }
 
 
@@ -100,19 +100,19 @@ user_search_button.addEventListener("click", (e) => {
                 el.innerHTML = `
                     ${user.firstname} ${user.lastname} (${user.email})
                     <div class="flex flex-col space-y-0.5">
-                        <button class="add_controller  bg-yellow-300 p-1 hover:bg-yellow-400 rounded">Ajouter comme contrôleur</button>
+                        <button class="add_validator  bg-yellow-300 p-1 hover:bg-yellow-400 rounded">Ajouter comme valideur</button>
                         <button class="add_contributor bg-green-600  p-1 hover:bg-green-700  rounded">Ajouter comme contributeur</button>
                     </div>
                 `
 
-                el.querySelector(".add_controller").addEventListener("click", (e) => {
+                el.querySelector(".add_validator").addEventListener("click", (e) => {
                     e.preventDefault()
 
-                    const controllers = getControllers()
+                    const validators = getValidators()
 
-                    if (!controllers.find(equalsUser(user))) {
-                        controllers.push(user)
-                        setControllers(controllers)
+                    if (!validators.find(equalsUser(user))) {
+                        validators.push(user)
+                        setValidators(validators)
                     }
                 })
                 el.querySelector(".add_contributor").addEventListener("click", (e) => {

@@ -25,7 +25,7 @@
 						
 
 						<div>
-							<label>N° de commande chantier :</label>
+							<label>N° de devis :</label>
 							<input id="inputOrder" class="rounded-lg w-full @error('inputOrder') text-red-600 @enderror" type="number" name="orderNumber" oninput="changePopup('inputOrder', 'orderNumberPopup')" required>
 						</div>
 						@error('inputOrder')
@@ -54,10 +54,10 @@
 
 
 					<div class="space-y-1" id="position">
-						<label>Lieu du chantier :</label>
+						<label>Localisation du chantier :</label>
 
 						<div class="items-center text-center p-1" id="contentCheckboxAddPoint">
-							<input type="checkbox" id="checkbox_addPoint" class="rounded p-1 hover:bg-blue-500" onchange="removeError();" checked>
+							<input type="checkbox" id="checkbox_addPoint" class="rounded p-1 hover:bg-blue-500" onchange="removeError();">
 							<label>Ajouter des points de délimitation</label>
 						</div>
 
@@ -86,7 +86,7 @@
 
 
 					<div>
-						<label>Status :</label>
+						<label>Statut :</label>
 						<select  id="status" class="rounded-lg w-full @error('status') text-red-600 @enderror" name="status_id" required>
 							@foreach ($status as $stat)
 								<option value={{ $stat->id }}>{{ $stat->name }}</option>
@@ -101,10 +101,10 @@
 					<div class="space-y-2">
 						<div>
 							<div class="flex items-center space-x-1">
-								<button id="controller_infomation"><svg width="15px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info-circle" class="svg-inline--fa fa-info-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"></path></svg></button>
-								<label>Contrôleurs :</label>
+								<button id="validator_infomation"><svg width="15px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info-circle" class="svg-inline--fa fa-info-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"></path></svg></button>
+								<label>Valideur :</label>
 							</div>
-							<div id="controllers"></div>
+							<div id="validators"></div>
 						</div>
 
 						<div>
@@ -116,13 +116,13 @@
 						</div>
 
 						<div>
-							<label>Ajouter de contrôleurs ou contributeurs :</label>
+							<label>Ajouter un valideur ou un contributeur :</label>
 							<div class="text-center">
 								<input type="text"   name="userSearch"       id="userSearch"       class="rounded-lg w-1/2" >
 								<input type="button" name="userSearchButton" id="userSearchButton" class="bg-blue-400 p-2 hover:bg-blue-500 rounded w-1/3"  value="Chercher">
 							</div>
 
-							<input type="hidden" name="controllers"  value="[]">
+							<input type="hidden" name="validators"  value="[]">
 							<input type="hidden" name="contributors" value="[]">
 						</div>
 

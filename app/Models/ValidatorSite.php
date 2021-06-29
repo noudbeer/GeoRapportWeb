@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Site;
 
-class ControllerSite extends Model
+class ValidatorSite extends Model
 {
   use HasFactory;
 
-  protected $table = 'controller_site';
+  protected $table = 'validator_site';
 
   /**
    * The attributes that are mass assignable.
