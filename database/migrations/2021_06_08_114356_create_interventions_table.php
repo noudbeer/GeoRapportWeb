@@ -38,10 +38,10 @@ class CreateInterventionsTable extends Migration
 
             // id of group of interventions 
             $table->foreignId('interventionsGroup_id')
+                ->nullable()
                 ->constrained('interventionsGroup')
                 ->onUpdate('cascade')
-                ->ondDelete('cascade')
-                ->nullable();
+                ->ondDelete('cascade');
 
             // id intervention type
             $table->foreignId('type_id')

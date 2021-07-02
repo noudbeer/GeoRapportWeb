@@ -200,10 +200,3 @@ function scriptAutocomplete() {
             autocomplete(inputSociety, table);
         });
 }
-
-/**
- * function to generate access for a client
- */
-// function generateAccess() {
-
-// }

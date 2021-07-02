@@ -14,10 +14,6 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        $role_admin = new Role();
-        $role_admin->name = 'admin';
-        $role_admin->save();
-
         $role_user = new Role();
         $role_user->name = 'user';
         $role_user->save();
@@ -25,5 +21,9 @@ class RoleSeeder extends Seeder
         $role_client = new Role();
         $role_client->name = 'client';
         $role_client->save();
+
+        $role_admin = new Role();
+        $role_admin->name = 'admin';
+        $role_admin->save();   
     }
 }

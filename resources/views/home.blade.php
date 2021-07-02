@@ -29,9 +29,9 @@
                 @else
                     <a href="{{ route('login') }}" class="bg-gray-300 transition duration-150 ease-in-out hover:bg-gray-500 rounded-md p-1">{{ __('Login') }}</a>
                 
-                    @if (Route::has('register'))
+                    {{-- @if (Route::has('register'))
                         <a href="{{ route('register') }}" class="bg-gray-300 transition duration-150 ease-in-out hover:bg-gray-500 rounded-md p-1">{{ __('Register') }}</a>
-                    @endif
+                    @endif --}}
                 @endauth
             </div>
         </div>

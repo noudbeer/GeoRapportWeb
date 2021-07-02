@@ -66,11 +66,11 @@
                         </li>
                     @endif
                     
-                    @if (Route::has('register'))
+                    {{-- @if (Route::has('register'))
                         <li class="">
                             <a class="hover:underline" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
-                    @endif
+                    @endif --}}
                 </ul>
             </nav>
         @else
@@ -103,8 +103,8 @@
                     
                     @if ( Auth::user()->hasRole('admin') )
                         <div class="flex flex-col">
-                            <a class="px-2 hover:bg-green-600" href="{{ route('admin') }}">Panneau d'administrateur</a>
-                            <a class="px-2 hover:bg-green-600" href="#">Gestion des rôles</a>
+                            <a class="px-2 hover:bg-green-600" href="{{ route('createUserPage') }}">Créé un nouvel utilisateur</a>
+                            <a class="px-2 hover:bg-green-600" href="{{ route('customersManagement') }}">Gestion des clients</a>
                         </div>
                     @endif
 

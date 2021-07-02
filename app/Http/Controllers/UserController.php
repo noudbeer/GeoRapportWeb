@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Role;
 
 class UserController extends Controller
 {
@@ -15,6 +16,15 @@ class UserController extends Controller
     public function __construct() {
 		$this->middleware(['auth', 'verified']);
 	}
+
+    public function createUserPage() {
+        $roles = Role::all();
+        return view('admin.createUser', compact('roles'));
+    }
+
+    public function confirmationNewUser() {
+        return view('admin.confirmationNewUser');
+    }
 
     /**
      * returns all users matching the search 

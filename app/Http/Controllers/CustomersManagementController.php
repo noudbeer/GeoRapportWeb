@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\SocietyUserResource;
 use App\Models\SocietyUser;
 
-class AdminController extends Controller
+class CustomersManagementController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -21,6 +21,6 @@ class AdminController extends Controller
     public function index()
     {
         $society_user =  SocietyUserResource::collection(SocietyUser::all());
-        return view('admin', compact('society_user'));
+        return view('admin.customersManagement', compact('society_user'));
     }
 }
