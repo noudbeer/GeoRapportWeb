@@ -12,7 +12,7 @@ class Picture extends Model
     protected $table = 'picture';
 
     /**
-     * retrun the intervention
+     * return the intervention
      */
     public function relatedIntervention () {
         return $this->belongsTo(Intervention::class);

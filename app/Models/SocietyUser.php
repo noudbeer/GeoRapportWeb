@@ -9,6 +9,8 @@ class SocietyUser extends Model
 {
     use HasFactory;
 
+    protected $table = 'society_user';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -18,4 +20,18 @@ class SocietyUser extends Model
         'user_id',
         'society_id'
     ];
+
+    /**
+     * return the user
+     */
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * return the society
+     */
+    public function society() {
+        return $this->belongsTo(Society::class);
+    }
 }

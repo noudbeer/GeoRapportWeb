@@ -83,4 +83,8 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany(Site::class, 'contributor_site');
     }
+
+    public function clients() {
+        return $this->belongsToMany(SocietyUser::class, 'society_user');
+    }
 }

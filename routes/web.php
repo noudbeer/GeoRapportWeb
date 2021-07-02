@@ -17,17 +17,26 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\MapController::class, 'index'])->name('home');
 
 Auth::routes(['verify' => true]);
 
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::get('/map', [App\Http\Controllers\MapController::class, 'index'])->name('map');
-Route::get('/intervention/{intervention_id}', [App\Http\Controllers\InterventionController::class, 'index'])->name('intervention');
 
 Route::post('/editSite', [App\Http\Controllers\SiteController::class, 'editSite'])->name('editSite');
+Route::get('/intervention/{intervention_id}', [App\Http\Controllers\InterventionController::class, 'index'])->name('intervention');
+
+
+// Admin page
+Route::get('/createUser', [App\Http\Controllers\UserController::class, 'createUserPage'])
+    ->name('createUserPage')
+    ->middleware('role:admin');
+Route::get('/confirmationNewUser', [App\Http\Controllers\UserController::class, 'confirmationNewUser'])
+    ->middleware('role:admin')
+    ->name('confirmationNewUser');
+Route::get('/customersManagement', [App\Http\Controllers\CustomersManagementController::class, 'index'])
+    ->middleware('role:admin')
+    ->name('customersManagement');
 
 
 // Ajax link
