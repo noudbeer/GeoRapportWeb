@@ -3,12 +3,11 @@
 @section('content')
     <div class="sm:mx-56 space-y-5 divide-y-2 divide-green-700 divide-dashed text-center">
 
-        <div>
-            <h1 class="text-xl font-black underline py-5">Création d'un nouvel utilisateur</h1>
-        </div>
+        <h1 class="text-xl font-black underline py-5">Création d'un nouvel utilisateur</h1>
 
-        <form class="space-y-6" method="POST" action="{{ route('register') }}">
+        <form class="space-y-6" method="POST" action="{{ route('registerUser') }}">
             @csrf
+            
             <div class="flex justify-around">
                 <div>
                     <label for="lastname" class="@error('lastname') text-red-600 @enderror">{{ __('LastName') }} :</label>
@@ -53,7 +52,7 @@
                 @enderror
             </div>
 
-            <button class="bg-green-600 p-2 rounded-lg hover:bg-green-700">Créer</button>
+            <button class="bg-green-600 p-2 rounded-lg hover:bg-green-700" type="submit">Créer</button>
         </form>
     </div>
 @endsection

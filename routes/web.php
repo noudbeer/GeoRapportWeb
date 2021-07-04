@@ -28,12 +28,18 @@ Route::get('/intervention/{intervention_id}', [App\Http\Controllers\Intervention
 
 
 // Admin page
-Route::get('/createUser', [App\Http\Controllers\UserController::class, 'createUserPage'])
-    ->name('createUserPage')
-    ->middleware('role:admin');
-Route::get('/confirmationNewUser', [App\Http\Controllers\UserController::class, 'confirmationNewUser'])
+Route::get('/registerUserPage', [App\Http\Controllers\UserController::class, 'registerUserPage'])
     ->middleware('role:admin')
-    ->name('confirmationNewUser');
+    ->name('registerUserPage');
+
+Route::post('/registerUser', [App\Http\Controllers\UserController::class, 'registerUser'])
+    ->middleware('role:admin')
+    ->name('registerUser');
+
+Route::get('/confirmationRegistration', [App\Http\Controllers\UserController::class, 'confirmationRegistration'])
+    ->middleware('role:admin')
+    ->name('confirmationRegistration');
+
 Route::get('/customersManagement', [App\Http\Controllers\CustomersManagementController::class, 'index'])
     ->middleware('role:admin')
     ->name('customersManagement');
