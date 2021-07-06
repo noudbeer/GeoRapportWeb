@@ -28,10 +28,9 @@ Route::get('/intervention/{intervention_id}', [App\Http\Controllers\Intervention
 
 
 // Admin page
-Route::get('/registerUserPage', [App\Http\Controllers\UserController::class, 'registerUserPage'])
+Route::get('/registerUser', [App\Http\Controllers\UserController::class, 'registerUserPage'])
     ->middleware('role:admin')
     ->name('registerUserPage');
-
 Route::post('/registerUser', [App\Http\Controllers\UserController::class, 'registerUser'])
     ->middleware('role:admin')
     ->name('registerUser');

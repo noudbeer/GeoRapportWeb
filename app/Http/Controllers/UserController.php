@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\VerificationMail;
 
 class UserController extends Controller
 {
@@ -45,6 +47,8 @@ class UserController extends Controller
 
         $data = $request->validate($fields);
         $user = User::create($data);
+
+        Mail::to($data['email'])->send(new VerificationMail($data, $randomString));
 
         return view('admin.confirmationRegistration', compact('user'));
     }
