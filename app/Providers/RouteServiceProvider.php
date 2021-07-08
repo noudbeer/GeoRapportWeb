@@ -18,7 +18,7 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     public const MAP = '/map';
-    public const CONFIRMATION = '/confirmationNewUser';
+    public const CONFIRMATION = '/confirmationRegistration';
 
     /**
      * The controller namespace for the application.

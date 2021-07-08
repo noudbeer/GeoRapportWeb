@@ -17,37 +17,63 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', [App\Http\Controllers\MapController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\MapController::class, 'index'])
+    ->middleware('verified')
+    ->name('home');
 
 Auth::routes(['verify' => true]);
 
-Route::get('/map', [App\Http\Controllers\MapController::class, 'index'])->name('map');
+Route::get('/map', [App\Http\Controllers\MapController::class, 'index'])
+    ->middleware('verified')
+    ->name('map');
 
-Route::post('/editSite', [App\Http\Controllers\SiteController::class, 'editSite'])->name('editSite');
-Route::get('/intervention/{intervention_id}', [App\Http\Controllers\InterventionController::class, 'index'])->name('intervention');
+Route::post('/editSite', [App\Http\Controllers\SiteController::class, 'editSite'])
+    ->middleware('verified')
+    ->name('editSite');
+Route::get('/intervention/{intervention_id}', [App\Http\Controllers\InterventionController::class, 'index'])
+    ->middleware('verified')
+    ->name('intervention');
 
 
 // Admin page
-Route::get('/registerUser', [App\Http\Controllers\UserController::class, 'registerUserPage'])
-    ->middleware('role:admin')
-    ->name('registerUserPage');
+Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'index'])
+    ->middleware('verified', 'role:admin')
+    ->name('register');
+
 Route::post('/registerUser', [App\Http\Controllers\UserController::class, 'registerUser'])
-    ->middleware('role:admin')
+    ->middleware('verified', 'role:admin')
     ->name('registerUser');
 
-Route::get('/confirmationRegistration', [App\Http\Controllers\UserController::class, 'confirmationRegistration'])
-    ->middleware('role:admin')
+Route::get('/confirmationRegistration', [App\Http\Controllers\Auth\RegisterController::class, 'confirmationRegistration'])
+    ->middleware('verified', 'role:admin')
     ->name('confirmationRegistration');
 
 Route::get('/customersManagement', [App\Http\Controllers\CustomersManagementController::class, 'index'])
-    ->middleware('role:admin')
+    ->middleware('verified', 'role:admin')
     ->name('customersManagement');
 
 
 // Ajax link
-Route::get('sites/all', [App\Http\Controllers\SiteController::class, 'getSites'])->name('getSites');
-Route::get('site/{site_id}/interventions', [App\Http\Controllers\InterventionController::class, 'getInterventions'])->name('getInterventions');
-Route::get('site/{site_id}/intervention/{intervention_id}', [App\Http\Controllers\InterventionController::class, 'getIntervention'])->name('getIntervention');
-Route::get('/users/{search}', [App\Http\Controllers\UserController::class, 'users'])->name('users');
-Route::get('/societies/all', [App\Http\Controllers\SocietyController::class, 'societies'])->name('societies');
-Route::get('/status/all', [App\Http\Controllers\StatusController::class, 'status'])->name('status');
+Route::get('sites/all', [App\Http\Controllers\SiteController::class, 'getSites'])
+    ->middleware('verified')
+    ->name('getSites');
+
+Route::get('site/{site_id}/interventions', [App\Http\Controllers\InterventionController::class, 'getInterventions'])
+    ->middleware('verified')
+    ->name('getInterventions');
+
+Route::get('site/{site_id}/intervention/{intervention_id}', [App\Http\Controllers\InterventionController::class, 'getIntervention'])
+    ->middleware('verified')
+    ->name('getIntervention');
+
+Route::get('/users/{search}', [App\Http\Controllers\UserController::class, 'users'])
+    ->middleware('verified')
+    ->name('users');
+
+Route::get('/societies/all', [App\Http\Controllers\SocietyController::class, 'societies'])
+    ->middleware('verified')
+    ->name('societies');
+    
+Route::get('/status/all', [App\Http\Controllers\StatusController::class, 'status'])
+    ->middleware('verified')
+    ->name('status');

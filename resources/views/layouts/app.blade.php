@@ -103,7 +103,7 @@
                     
                     @if ( Auth::user()->hasRole('admin') )
                         <div class="flex flex-col">
-                            <a class="px-2 hover:bg-green-600" href="{{ route('registerUserPage') }}">Créé un nouvel utilisateur</a>
+                            <a class="px-2 hover:bg-green-600" href="{{ route('register') }}">Créé un nouvel utilisateur</a>
                             <a class="px-2 hover:bg-green-600" href="{{ route('customersManagement') }}">Gestion des clients</a>
                         </div>
                     @endif

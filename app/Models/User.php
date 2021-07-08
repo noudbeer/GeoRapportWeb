@@ -67,7 +67,6 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Society::class);
     }
 
-
     /**
      * get sites where the user is validator.
      */
@@ -86,5 +85,10 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function clients() {
         return $this->belongsToMany(SocietyUser::class, 'society_user');
+    }
+
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new \App\Notifications\UserVerificationEmail);
     }
 }

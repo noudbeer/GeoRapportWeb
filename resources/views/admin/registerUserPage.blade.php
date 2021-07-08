@@ -5,7 +5,7 @@
 
         <h1 class="text-xl font-black underline py-5">Création d'un nouvel utilisateur</h1>
 
-        <form class="space-y-6" method="POST" action="{{ route('registerUser') }}">
+        <form class="space-y-6" method="POST" action="{{ route('register') }}">
             @csrf
             
             <div class="flex justify-around">
