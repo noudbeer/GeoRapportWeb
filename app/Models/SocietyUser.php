@@ -34,4 +34,8 @@ class SocietyUser extends Model
     public function society() {
         return $this->belongsTo(Society::class);
     }
+
+    public static function checkExistRelation(User $user, Society $society) {        
+        return static::where(['user_id' => $user->id, 'society_id' => $society->id])->exists();
+    }
 }

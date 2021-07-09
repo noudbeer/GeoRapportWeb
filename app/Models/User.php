@@ -84,7 +84,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function clients() {
-        return $this->belongsToMany(SocietyUser::class, 'society_user');
+        return $this->belongsToMany(SocietyUser::class, 'society_user', 'user_id', 'society_id');
     }
 
     public function sendEmailVerificationNotification()

@@ -10,7 +10,7 @@
         <div id="addClientAccess">
             <h2 class="text-base font-semibold underline">Ajouter des accès clients</h2>
 
-            <form class="space-y-6" action="#">
+            <form class="space-y-6" method="POST" action="{{ route('addClients') }}">
                 @csrf
 
                 <div class="flex flex-col justify-center space-y-1 sm:flex-row sm:justify-around ">
@@ -44,7 +44,7 @@
                     </div>
                 </div>
 
-                <button class="bg-green-600 hover:bg-green-700 rounded p-1">Valider les accès aux clients</button>
+                <button type="submit" class="bg-green-600 hover:bg-green-700 rounded p-1">Valider les accès aux clients</button>
             </form>
         </div>
 
@@ -64,7 +64,12 @@
                     <tr class="hover:bg-green-700 hover:bg-opacity-75">
                         <td class="p-1">{{ $item->society->name }}</td>
                         <td class="p-1">{{ $item->user->firstname }} {{ $item->user->lastname }} ( {{ $item->user->email }} )</td>
-                        <td class="p-1"><a href="#" class="p-1 rounded bg-red-600 hover:bg-red-700">Supprimer</a>
+                        <td class="p-1">
+                            <a href="#" class="p-1 rounded bg-red-600 hover:bg-red-700">Supprimer
+
+                            </a>
+                        </td>
+                    </tr>
                 @endforeach
             </table>
         </div>

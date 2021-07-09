@@ -52,6 +52,10 @@ Route::get('/customersManagement', [App\Http\Controllers\CustomersManagementCont
     ->middleware('verified', 'role:admin')
     ->name('customersManagement');
 
+Route::post('/customerManagement', [App\Http\Controllers\CustomersManagementController::class, 'addClients'])
+    ->middleware('verified', 'role:admin')
+    ->name('addClients');
+
 
 // Ajax link
 Route::get('sites/all', [App\Http\Controllers\SiteController::class, 'getSites'])
