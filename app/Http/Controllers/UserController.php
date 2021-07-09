@@ -4,10 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Role;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\EmailVerification;
 
 class UserController extends Controller
 {
@@ -19,39 +15,6 @@ class UserController extends Controller
     public function __construct() {
 		$this->middleware(['auth', 'verified']);
 	}
-
-    // public function registerUserPage() {
-    //     $roles = Role::all();
-    //     return view('admin.registerUserPage', compact('roles'));
-    // }
-
-    // public function registerUser(Request $request) {
-
-    //    // Champs à valider
-	// 	$fields = [
-    //         'firstname'         => ['required', 'string', 'max:255'],
-    //         'lastname'          => ['required', 'string', 'max:255'],
-    //         'email'             => ['required', 'string', 'email', 'max:255', 'unique:users'],
-    //         'role_id'           => ['required', 'integer'],
-    //         'password'          => ['required', 'string', 'min:8'],
-	// 	];
-
-    //     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    //     $charactersLength = strlen($characters);
-    //     $randomString = '';
-    //     for ($i = 0; $i < 10; $i++) {
-    //         $randomString .= $characters[rand(0, $charactersLength - 1)];
-    //     }
-
-    //     $request['password'] = Hash::make($randomString);
-
-    //     $data = $request->validate($fields);
-        
-    //     $user = User::create($data);
-    //     // Mail::to($data['email'])->send(new EmailVerification($data, $randomString));
-        
-    //     return view('admin.confirmationRegistration', compact('user'));
-    // }
 
     /**
      * returns all users matching the search 

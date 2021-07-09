@@ -17,11 +17,11 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+Auth::routes(['verify' => true]);
+
 Route::get('/', [App\Http\Controllers\MapController::class, 'index'])
     ->middleware('verified')
     ->name('home');
-
-Auth::routes(['verify' => true]);
 
 Route::get('/map', [App\Http\Controllers\MapController::class, 'index'])
     ->middleware('verified')

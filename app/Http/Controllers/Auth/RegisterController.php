@@ -9,6 +9,8 @@ use App\Models\Role;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\LoginCredentialsMail;
 
 class RegisterController extends Controller
 {
@@ -80,12 +82,13 @@ class RegisterController extends Controller
         }
 
         $data['password'] = Hash::make($randomString);
+        Mail::to($data['email'])->send(new LoginCredentialsMail($data, $randomString));
 
         return User::create([
             'firstname' => $data['firstname'],
             'lastname' => $data['lastname'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']), 
+            'password' => $data['password'], 
             'role_id' => $data['role_id'],
         ]);
     }

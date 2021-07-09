@@ -6,7 +6,7 @@
             <div class="text-center border-b border-green-700">Validation de l'ajout d'un nouvel utilisateur</div>
 
             <div class="text-center space-y-2 p-5">
-                Un mail de vérification de l'addresse email a été envoyé. {{--à {{ $user->lastname }} {{ $user->firstname }} sur l'adresse {{ $user->email }} --}}
+                Un mail de vérification de l'addresse email a été envoyé.
             </div>
             
             <div class="flex justify-around mt-3 text-center">

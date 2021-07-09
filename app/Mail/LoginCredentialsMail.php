@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class EmailVerification extends Mailable
+class LoginCredentialsMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -19,10 +19,10 @@ class EmailVerification extends Mailable
      *
      * @return void
      */
-    public function __construct($url, $user)
+    public function __construct(array $data, $password)
     {
-        $this->verifyUrl = $url;
-        $this->user = $user;
+        $this->data = $data;
+        $this->password = $password;
     }
 
     /**
@@ -32,8 +32,7 @@ class EmailVerification extends Mailable
      */
     public function build()
     {
-        return $this->to($this->user)
-                    ->subject('Bienvenue sur GéoRapport !')
-                    ->markdown('emails.userverify', ['url' => $this->verifyUrl,'user' => $this->user]);
+        return $this->subject('GéoRapport - Identifiant de connexion')
+                    ->markdown('emails.loginCredentials');
     }
 }

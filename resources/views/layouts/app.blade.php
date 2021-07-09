@@ -109,7 +109,7 @@
                     @endif
 
                     <div class="flex flex-col px-2 hover:bg-green-600">
-                        <a class="" href="{{ route("logout") }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Se déconnecter</a>
+                        <a href="{{ route("logout") }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Se déconnecter</a>
                         <form id="logout-form" action="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" method="POST" style="display: none;">
                             @csrf
                         </form>

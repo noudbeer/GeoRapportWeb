@@ -5,14 +5,7 @@
 
     <div class="sm:mx-56 space-y-5 divide-y-2 divide-green-700 divide-dashed text-center">
 
-        <div>
-            <h1 class="text-xl font-black underline py-5">Panneau Administrateurs</h1>
-
-            {{-- <nav class="flex flex-row justify-center space-x-6">
-                <a class="hover:underline" href="#existingCustomerAccess">Liste des accès client existant</a>
-                <a class="hover:underline" href="#addClientAccess">Ajouter un accès client</a>
-            </nav> --}}
-        </div>
+        <h1 class="text-xl font-black underline py-5">Panneau Administrateurs</h1>
 
         <div id="addClientAccess">
             <h2 class="text-base font-semibold underline">Ajouter des accès clients</h2>
