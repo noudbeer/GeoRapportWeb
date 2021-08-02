@@ -11,10 +11,12 @@ trait IssueTokenTrait {
 
         $params = [
             'grant_type' => $grantType,
+            'refresh_token' => $request->refresh_token,
             'client_id' => $this->client->id,
             'client_secret' => $this->client->secret,
             'username' => $request->username ?: $request->email,
-            'scope' => $scope
+            'password' => $request->password,
+            'scope' => '*'
         ];
 
         $request->request->add($params);
