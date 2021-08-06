@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use phpDocumentor\Reflection\Type;
+use Psy\Util\Json;
 use function Sodium\add;
 
 class SiteController extends Controller
@@ -13,18 +15,14 @@ class SiteController extends Controller
         $user = Auth::user();
         $sites = array();
 
-        foreach ($user->validatorSites as $site) {
-            $sites[$site->cpdNumber] = $site->name;
+        $sites = $user->validatorSites()->get();
+        $sites = $sites->merge($user->contributorSites()->get());
+        $sites = $sites->merge($user->ownerSites()->get());
+
+        foreach ($sites as $site) {
+            $site->points = json_decode($site->points);
         }
 
-        foreach ($user->contributorSites as $site) {
-            $sites[$site->cpdNumber] = $site->name;
-        }
-
-        foreach ($user->ownerSites as $site) {
-            $sites[$site->cpdNumber] = $site->name;
-        }
-
-        return response()->json(['data' => $sites], 200, [], JSON_NUMERIC_CHECK);
+         return response()->json(['data' => $sites], 200, [], JSON_NUMERIC_CHECK);
     }
 }
