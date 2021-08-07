@@ -108,6 +108,10 @@
                         </div>
                     @endif
 
+                    <div class="flex flex-col">
+                        <a href="{{ route('settings') }}" class="px-2 hover:bg-green-600">Paramètres</a>
+                    </div>
+
                     <div class="flex flex-col px-2 hover:bg-green-600">
                         <a href="{{ route("logout") }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Se déconnecter</a>
                         <form id="logout-form" action="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" method="POST" style="display: none;">
