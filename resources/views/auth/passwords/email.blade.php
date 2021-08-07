@@ -12,18 +12,16 @@
 
         <form class="space-y-2" method="POST" action="{{ route('password.email') }}">
             @csrf
-            <div class="">
-                <label for="email" class="@error('email') text-red-600 @enderror">{{ __('E-Mail Address') }}</label>
-
-                <div class="">
-                    <input class="border rounded @error('email') border-red-600 @enderror" id="email" type="email" autofocus>
-
-                    @error('email')
-                        <span>
-                            <strong class="text-red-600">{{ $message }}</strong>
-                        </span>
-                    @enderror
+            <div>
+                <label class="@error('email') text-red-600 @enderror" for="email">{{ __('E-Mail Address') }}</label>
+                <div>
+                    <input class="border rounded @error('email') border-red-600 @enderror" name="email" id="email" type="email" autofocus>
                 </div>
+                @error('email')
+                    <span>
+                        <strong class="text-red-600">{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
 
             <button type="submit" class="items-center bg-green-600 transition duration-150 ease-in-out hover:bg-green-700 rounded-md p-1">
