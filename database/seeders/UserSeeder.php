@@ -53,5 +53,14 @@ class UserSeeder extends Seeder
         $admin->role_id = $role_admin->id;
 	    $admin->email_verified_at = new \DateTime;
         $admin->save();
+
+        $admin = new User();
+        $admin->lastname = 'test';
+        $admin->firstname = 'test';
+        $admin->email = 'test@test.fr';
+        $admin->password = Hash::make('password');
+        $admin->role_id = $role_admin->id;
+	    $admin->email_verified_at = new \DateTime;
+        $admin->save();
     }
 }

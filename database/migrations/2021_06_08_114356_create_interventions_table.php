@@ -25,7 +25,7 @@ class CreateInterventionsTable extends Migration
             $table->json('location');
             
             // date of the intervention 
-            $table->datetime('datetimeOfIntervention');
+            $table->datetime('datetimeOfIntervention')->nullable();
 
             // id of user who created the intervention
             $table->foreignId('owner_id')
@@ -34,7 +34,7 @@ class CreateInterventionsTable extends Migration
                 ->ondDelete('cascade');
 
             // name of the contributors on the intervention 
-            $table->text('teamMembers');
+            $table->text('teamMembers')->nullable();
 
             // id of group of interventions 
             $table->foreignId('interventionsGroup_id')
@@ -45,18 +45,20 @@ class CreateInterventionsTable extends Migration
 
             // id intervention type
             $table->foreignId('type_id')
+                ->nullable()
                 ->constrained('interventionsType')
                 ->onUpdate('cascade')
                 ->ondDelete('cascade');
             
-            $table->integer('quantity');
-            $table->string('unit');
-            $table->text('comment');
+            $table->integer('quantity')->nullable();
+            $table->string('unit')->nullable();
+            $table->text('comment')->nullable();
             
             // time passed on the intervention
-            $table->integer('timeSpent');
+            $table->integer('timeSpent')->nullable();
             
             $table->foreignId('unitOfTime_id')
+                ->nullable()
                 ->constrained('unitOfTime')
                 ->onUpdate('cascade')
                 ->ondDelete('cascade');

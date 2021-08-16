@@ -93,6 +93,14 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->notify(new \App\Notifications\UserVerificationEmail);
     }
 
+    public function allSites() {
+        $oSites = $this->ownerSites()->get();
+        $vSites = $this->validatorSites()->get();
+        $cSites = $this->contributorSites()->get();
+
+        return $oSites->merge($vSites->merge($cSites));
+    }
+
     public function ownerSites() {
         return $this->hasMany(Site::class, 'owner_id');
     }

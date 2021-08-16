@@ -13,11 +13,11 @@ class SiteController extends Controller
 {
     public function index() {
         $user = Auth::user();
-        $sites = array();
 
-        $sites = $user->validatorSites()->get();
-        $sites = $sites->merge($user->contributorSites()->get());
-        $sites = $sites->merge($user->ownerSites()->get());
+        $sites = $user->allSites();
+//        $sites = $user->validatorSites()->get();
+//        $sites = $sites->merge($user->contributorSites()->get());
+//        $sites = $sites->merge($user->ownerSites()->get());
 
         foreach ($sites as $site) {
             $site->points = json_decode($site->points);

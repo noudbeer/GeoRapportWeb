@@ -18,9 +18,9 @@ class Intervention extends Model
      */
     protected $fillable = [
         'site_id',
+        'owner_id',
         'location',
         'datetimeOfIntervention',
-        'owner_id',
         'teamMembers',
         'interventionsGroup_id',
         'type_id',
