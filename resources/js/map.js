@@ -1,8 +1,10 @@
 import L, { bounds, icon, point, popup } from 'leaflet'
 require("leaflet/dist/leaflet.css");
 
-const mark = L.icon({
-    iconUrl: '/storage/app/public/img/marker-icon.png',
+const marker = L.icon({
+    iconUrl: 'assets/traffic_cone.png',
+    iconAnchor: [16, 32],
+    popupAnchor:  [0, -32]
  });
 
 /**
@@ -80,8 +82,12 @@ function onMapClick(e) {
     }
 }
 
-function onSiteClick(e) {
+function onPolySiteClick(e) {
     map.fitBounds(e.target._bounds)
+}
+
+function onMarkerSiteClick(e) {
+    map.setView(e.target._latlng, 14)
 }
 
 // Clic map
@@ -123,17 +129,27 @@ function setPopupSite(site) {
 }
 
 sites.forEach(site => {
-    let form
-    if(site.isZone)
-        form = L.polygon(JSON.parse(site.points))
-    else
-        form = L.polyline(JSON.parse(site.points))
+    let shape
 
-    form.on('click', onSiteClick)
-    form.addTo(map)
+    var pts = JSON.parse(site.points)
+
+    if(site.isZone){
+        shape = L.polygon(pts)
+        shape.on('click', onPolySiteClick)
+    }
+    else if (pts.length > 1){
+        shape = L.polyline(pts)
+        shape.on('click', onPolySiteClick)
+    }
+    else{
+        shape = L.marker(pts[0], {icon: marker})
+        shape.on('click', onMarkerSiteClick)
+    }
+
+    shape.addTo(map)
 
     let container = setPopupSite(site)
-    form.bindPopup(container)
+    shape.bindPopup(container)
 })
 
 
