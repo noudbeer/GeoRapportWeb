@@ -32,7 +32,7 @@
                     <form id="logout-form m-6" action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit" class="rounded-md p-3 bg-green-600 transition duration-150 ease-in-out hover:bg-green-700">
-                            Se déconecter
+                            Se déconnecter
                         </button>
                     </form>
                 </div>
