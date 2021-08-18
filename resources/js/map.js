@@ -39,10 +39,12 @@ function setPopup(latlng) {
     var container = document.createElement("div")
     container.classList.add("text-center", "space-y-2")
     container.innerHTML = `
-        <h1 class="text-center underline font-bold" id="titlePopup"></h1>
+        <h1 class="text-center underline font-bold" id="cpdTitlePopup"></h1>
         <div id="siteInformations">
-            <h1 class="text-center">N° de devis : <span id="orderNumberPopup"></span></h1>
             <h1 class="text-center">N° de CPD : <span id="cpdNumberPopup"></span></h1>
+            <br/>
+            <h1 class="text-center">Intitulé du devis : <span id="orderTitlePopup"></span></h1>
+            <h1 class="text-center">N° de devis : <span id="orderNumberPopup"></span></h1>
             <h1 class="text-center">Client : <span id="clientPopup"></span></h1>
         </div>
         <div>
@@ -100,13 +102,19 @@ map.on('click', onMapClick);
 const sites = JSON.parse(document.querySelector("#sites").value)
 
 function setPopupSite(site) {
+
+    console.log(site.cpd_title)
+    console.log(site.order_title)
+
     var container = document.createElement("div")
     container.classList.add("text-center", "space-y-2")
     container.innerHTML = `
-        <h1 class="text-center underline font-bold" id="titlePopup">`+ (site.name) +`</h1>
+        <h1 class="text-center underline font-bold" id="titlePopup">`+ (site.cpd_title) +`</h1>
         <div>
-            <h1 class="text-center">N° de devis : `+ (site.orderNumber) +`</h1>
             <h1 class="text-center">N° de CPD : `+ (site.cpdNumber) +`</h1>
+            </br>
+            <h1 class="text-center">Intitulé du devis : `+ (site.order_title) +`</h1>
+            <h1 class="text-center">N° de devis : `+ (site.orderNumber) +`</h1>
             <h1 class="text-center">Nom du client : `+ (site.client.name) +`</h1>
             <h1 class="text-center">Statut du chantier : `+ (site.status.name) +`</h1>
             <h1 class="text-center">Date du début du chantier : `+ (site.beginning) +`</h1>

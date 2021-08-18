@@ -21,21 +21,23 @@ class CreateSitesTable extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-            $table->string('name');
-
-            $table->string('orderNumber');
-            $table->string('cpdNumber');
-
             $table->foreignId('client_id')
                 ->constrained('societies')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
+            $table->string('order_title');
+            $table->string('orderNumber');
+
+            $table->string('cpd_title');
+            $table->string('cpdNumber');
+
+
             $table->boolean('isZone');
 
             $table->json('points');
 
-            $table->dateTime('beginning');
+            $table->dateTime('beginning')->nullable();
 
             $table->foreignId('status_id')
                 ->constrained('statuses')

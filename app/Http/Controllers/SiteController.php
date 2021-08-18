@@ -21,8 +21,9 @@ class SiteController extends Controller
     public function getSites() {
         return SiteResource::collection(Site::all());
     }
-
+    
     public function editSite(Request $request) {
+
         // OWNER
         $request['owner_id'] = auth()->user()->id;
         
@@ -81,15 +82,17 @@ class SiteController extends Controller
 
 
         // Champs à valider
+        // TODO: à revoir si on ajoute la modification de chantier
 		$fields = [
             'owner_id'    => 'required|integer',
-			'name'        => 'required|string',
-            'orderNumber' => 'required|string',
-            'cpdNumber'   => 'required|string',
             'client_id'   => 'required|integer',
+			'order_title' => 'required|string',
+            'orderNumber' => 'required|string',
+            'cpd_title'   => 'required|string',
+            'cpdNumber'   => 'required|string',
             'isZone'      => 'required|boolean',
             'points'      => 'required|json',
-            'beginning'   => 'required|date',
+            'beginning'   => 'date|nullable',
 			'status_id'   => 'required|integer',
             'end'         => 'date'
 		];

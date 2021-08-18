@@ -31,38 +31,47 @@
                     <div class="space-y-5">
                         <div>
                             <div>
-                                <label>Nom du chantier :</label>
-                                <input id="nameSite" class="rounded-lg w-full @error('nameSite') text-red-600 @enderror" type="text" name="name" oninput="changePopup('nameSite', 'titlePopup')" required>
-                            </div>
-                            @error('nameSite')
-                                <div class="text-red-600">{{ $message }}</div>
-                            @enderror
-                            
 
-                            <div>
-                                <label>N° de devis :</label>
-                                <input id="inputOrder" class="rounded-lg w-full @error('inputOrder') text-red-600 @enderror" type="text" name="orderNumber" oninput="changePopup('inputOrder', 'orderNumberPopup')" required>
-                            </div>
-                            @error('inputOrder')
-                                <div class="text-red-600">{{ $message }}</div>
-                            @enderror
-
-                            <div>
-                                <label>N° de CPD :</label>
-                                <input id="inputCpd" class="rounded-lg w-full @error('inputCpd') text-red-600 @enderror" type="text" name="cpdNumber" oninput="changePopup('inputCpd', 'cpdNumberPopup')" required>
-                            </div>
-                            @error('inputCpd')
-                                <div class="text-red-600">{{ $message }}</div>
-                            @enderror
+                                <div class="autocomplete">
+                                    <label>Client :</label>  
+                                    <input id="inputClient" class="rounded-lg w-full @error('inputClient') text-red-600 @enderror" type="text" name="client" oninput="changePopup('inputClient', 'clientPopup');" required>
+                                </div>
+                                @error('inputClient')
+                                    <div class="text-red-600">{{ $message }}</div>
+                                @enderror
 
 
-                            <div class="autocomplete">
-                                <label>Client :</label>  
-                                <input id="inputClient" class="rounded-lg w-full @error('inputClient') text-red-600 @enderror" type="text" name="client" oninput="changePopup('inputClient', 'clientPopup');" required>
-                            </div>
-                            @error('inputClient')
+                                <div>
+                                    <label>Intitulé du devis :</label>
+                                    <input id="orderTitle" class="rounded-lg w-full @error('orderTitle') text-red-600 @enderror" type="text" name="order_title" oninput="changePopup('orderTitle', 'orderTitlePopup')" required>
+                                </div>
+                                @error('orderTitle')
+                                    <div class="text-red-600">{{ $message }}</div>
+                                @enderror                                
+                                
+                                <div>
+                                    <label>N° de devis :</label>
+                                    <input id="inputOrder" class="rounded-lg w-full @error('inputOrder') text-red-600 @enderror" type="text" name="orderNumber" oninput="changePopup('inputOrder', 'orderNumberPopup')" required>
+                                </div>
+                                @error('inputOrder')
                                 <div class="text-red-600">{{ $message }}</div>
-                            @enderror
+                                @enderror
+
+                                <div>
+                                    <label>Nom du chantier :</label>
+                                    <input id="cpdTitle" class="rounded-lg w-full @error('cpdTitle') text-red-600 @enderror" type="text" name="cpd_title" oninput="changePopup('cpdTitle', 'cpdTitlePopup')" required>
+                                </div>
+                                @error('cpdTitle')
+                                    <div class="text-red-600">{{ $message }}</div>
+                                @enderror
+
+                                <div>
+                                    <label>N° de CPD :</label>
+                                    <input id="inputCpd" class="rounded-lg w-full @error('inputCpd') text-red-600 @enderror" type="text" name="cpdNumber" oninput="changePopup('inputCpd', 'cpdNumberPopup')" required>
+                                </div>
+                                @error('inputCpd')
+                                    <div class="text-red-600">{{ $message }}</div>
+                                @enderror
 
                         </div>
 
@@ -92,7 +101,7 @@
 
                         <div>
                             <label for="beginning">Date de début du chantier :</label>
-                            <input type="date" id="beginning" name="beginning" class="rounded-lg @error('beginning') text-red-600 @enderror" required>
+                            <input type="date" id="beginning" name="beginning" class="rounded-lg @error('beginning') text-red-600 @enderror">
                         </div>
                         @error('beginning')
                             <div class="text-red-600">{{ $message }}</div>

@@ -20,10 +20,11 @@ class SiteSeeder extends Seeder
 
         $site = new Site();
         $site->owner_id = $simon->id;
-        $site->name = 'Test';
-        $site->orderNumber = "123abc456def";
-        $site->cpdNumber = "987zyx654wvu";
         $site->client_id = 2;
+        $site->order_title = 'Test order title';
+        $site->orderNumber = "123abc456def";
+        $site->cpd_title = "test cpd title";
+        $site->cpdNumber = "987zyx654wvu";
         $site->isZone = 1;
         $site->points = "[{\"lat\":45.9236921010712,\"lng\":6.085739135742188},{\"lat\":45.937064449821484,\"lng\":6.111145019531251},{\"lat\":45.94028765874568,\"lng\":6.138267517089845},{\"lat\":45.93646753871873,\"lng\":6.167106628417969},{\"lat\":45.919870837827965,\"lng\":6.173629760742188},{\"lat\":45.904702604307666,\"lng\":6.168823242187501},{\"lat\":45.90529985724799,\"lng\":6.151485443115234},{\"lat\":45.902194071790355,\"lng\":6.129512786865235},{\"lat\":45.89383147810292,\"lng\":6.119728088378907},{\"lat\":45.899088112583115,\"lng\":6.089000701904297},{\"lat\":45.91091372080279,\"lng\":6.08144760131836}]";
         $site->beginning = new \DateTime;
@@ -33,10 +34,11 @@ class SiteSeeder extends Seeder
 
         $site = new Site();
         $site->owner_id = $test->id;
-        $site->name = 'Test';
-        $site->orderNumber = "123abc456def";
-        $site->cpdNumber = "987zyx654wvu";
         $site->client_id = 2;
+        $site->order_title = 'Test order title 2';
+        $site->orderNumber = "123abc456def";
+        $site->cpd_title = "test cpd title 2";
+        $site->cpdNumber = "987zyx654wvu";
         $site->isZone = 1;
         $site->points = "[{\"lat\":45.9236921010712,\"lng\":6.085739135742188},{\"lat\":45.937064449821484,\"lng\":6.111145019531251},{\"lat\":45.94028765874568,\"lng\":6.138267517089845},{\"lat\":45.93646753871873,\"lng\":6.167106628417969},{\"lat\":45.919870837827965,\"lng\":6.173629760742188},{\"lat\":45.904702604307666,\"lng\":6.168823242187501},{\"lat\":45.90529985724799,\"lng\":6.151485443115234},{\"lat\":45.902194071790355,\"lng\":6.129512786865235},{\"lat\":45.89383147810292,\"lng\":6.119728088378907},{\"lat\":45.899088112583115,\"lng\":6.089000701904297},{\"lat\":45.91091372080279,\"lng\":6.08144760131836}]";
         $site->beginning = new \DateTime;
