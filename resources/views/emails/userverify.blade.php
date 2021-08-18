@@ -9,9 +9,9 @@ Veuillez cliquer sur le bouton pour valider votre compte.
     Valider mon compte 
 @endcomponent
 
-Attention, ce lien ne fonctionnera plus 1 heure après la reception de celui-ci.
+## <p style="color: #FF0000">Attention, ce lien ne fonctionnera plus 1 heure après la reception de celui-ci.</p>
 
-Vos identifiants de connexion vous ont été envoyé dans un autre mail.
+## <p style="color: #FF0000">Vos identifiants de connexion vous ont été envoyé dans un autre mail.</p>
 
 Merci,  
 L'équipe de développement de {{ config('app.name') }}
