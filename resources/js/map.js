@@ -1,8 +1,10 @@
 import L, { bounds, icon, point, popup } from 'leaflet'
 require("leaflet/dist/leaflet.css");
 
-const mark = L.icon({
-    iconUrl: '/storage/app/public/img/marker-icon.png',
+const marker = L.icon({
+    iconUrl: 'assets/traffic_cone.png',
+    iconAnchor: [16, 32],
+    popupAnchor:  [0, -32]
  });
 
 /**
@@ -37,10 +39,12 @@ function setPopup(latlng) {
     var container = document.createElement("div")
     container.classList.add("text-center", "space-y-2")
     container.innerHTML = `
-        <h1 class="text-center underline font-bold" id="titlePopup"></h1>
+        <h1 class="text-center underline font-bold" id="cpdTitlePopup"></h1>
         <div id="siteInformations">
-            <h1 class="text-center">N° de devis : <span id="orderNumberPopup"></span></h1>
             <h1 class="text-center">N° de CPD : <span id="cpdNumberPopup"></span></h1>
+            <br/>
+            <h1 class="text-center">Intitulé du devis : <span id="orderTitlePopup"></span></h1>
+            <h1 class="text-center">N° de devis : <span id="orderNumberPopup"></span></h1>
             <h1 class="text-center">Client : <span id="clientPopup"></span></h1>
         </div>
         <div>
@@ -80,8 +84,12 @@ function onMapClick(e) {
     }
 }
 
-function onSiteClick(e) {
+function onPolySiteClick(e) {
     map.fitBounds(e.target._bounds)
+}
+
+function onMarkerSiteClick(e) {
+    map.setView(e.target._latlng, 14)
 }
 
 // Clic map
@@ -94,13 +102,19 @@ map.on('click', onMapClick);
 const sites = JSON.parse(document.querySelector("#sites").value)
 
 function setPopupSite(site) {
+
+    console.log(site.cpd_title)
+    console.log(site.order_title)
+
     var container = document.createElement("div")
     container.classList.add("text-center", "space-y-2")
     container.innerHTML = `
-        <h1 class="text-center underline font-bold" id="titlePopup">`+ (site.name) +`</h1>
+        <h1 class="text-center underline font-bold" id="titlePopup">`+ (site.cpd_title) +`</h1>
         <div>
-            <h1 class="text-center">N° de devis : `+ (site.orderNumber) +`</h1>
             <h1 class="text-center">N° de CPD : `+ (site.cpdNumber) +`</h1>
+            </br>
+            <h1 class="text-center">Intitulé du devis : `+ (site.order_title) +`</h1>
+            <h1 class="text-center">N° de devis : `+ (site.orderNumber) +`</h1>
             <h1 class="text-center">Nom du client : `+ (site.client.name) +`</h1>
             <h1 class="text-center">Statut du chantier : `+ (site.status.name) +`</h1>
             <h1 class="text-center">Date du début du chantier : `+ (site.beginning) +`</h1>
@@ -123,17 +137,27 @@ function setPopupSite(site) {
 }
 
 sites.forEach(site => {
-    let form
-    if(site.isZone)
-        form = L.polygon(JSON.parse(site.points))
-    else
-        form = L.polyline(JSON.parse(site.points))
+    let shape
 
-    form.on('click', onSiteClick)
-    form.addTo(map)
+    var pts = JSON.parse(site.points)
+
+    if(site.isZone){
+        shape = L.polygon(pts)
+        shape.on('click', onPolySiteClick)
+    }
+    else if (pts.length > 1){
+        shape = L.polyline(pts)
+        shape.on('click', onPolySiteClick)
+    }
+    else{
+        shape = L.marker(pts[0], {icon: marker})
+        shape.on('click', onMarkerSiteClick)
+    }
+
+    shape.addTo(map)
 
     let container = setPopupSite(site)
-    form.bindPopup(container)
+    shape.bindPopup(container)
 })
 
 

@@ -6,7 +6,7 @@ var interventionsList = []
  * @param {integer} siteNumber 
  */
 function displayInterventions(site) {
-    titleSiteInterventionsPanel.textContent = site.name
+    titleSiteInterventionsPanel.textContent = site.cpd_title
 
     fetch("site/" + site.id + "/interventions/")
         .then(json => json.json())
@@ -58,10 +58,12 @@ function displayInterventionDetails(intervention) {
     `
 
     document.querySelector("#intervention_site").innerHTML = `
-        <p class="text-xl font-semibold my-2 w-64">Chantier : ${i.site.name}</p>
+        <p class="text-xl font-semibold my-2 w-64">Chantier : ${i.site.cpd_title}</p>
         <div class="flex flex-col gap-2 text-gray-400 text-sm">
-            <div class="2xl">N° de devis : ${i.site.orderNumber}</div>
             <div class="2xl">N° CPD : ${i.site.cpdNumber}</div>
+            <br/>
+            <div class="2x1">Intitulé du devis : ${i.site.order_title}</div>
+            <div class="2xl">N° de devis : ${i.site.orderNumber}</div>
         </div>
     `
     document.querySelector("#intervention_comment").innerHTML = `

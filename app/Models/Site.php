@@ -15,16 +15,17 @@ class Site extends Model
     * @var array
     */
     protected $fillable = [
-    'owner_id',
-    'name',
-    'orderNumber',
-    'cpdNumber',
-    'client_id',
-    'isZone',
-    'points',
-    'beginning',
-    'status_id',
-    'end',
+      'owner_id',
+      'client_id',
+      'order_title',
+      'orderNumber',
+      'cpd_title',
+      'cpdNumber',
+      'isZone',
+      'points',
+      'beginning',
+      'status_id',
+      'end'
     ];
 
     /**
