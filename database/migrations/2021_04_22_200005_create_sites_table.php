@@ -26,11 +26,11 @@ class CreateSitesTable extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-            $table->string('order_title');
-            $table->string('orderNumber');
+            $table->string('order_title')->nullable();
+            $table->string('orderNumber')->nullable();
 
-            $table->string('cpd_title');
-            $table->string('cpdNumber');
+            $table->string('cpd_title')->nullable();
+            $table->string('cpdNumber')->nullable();
 
 
             $table->boolean('isZone');

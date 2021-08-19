@@ -43,7 +43,7 @@
 
                                 <div>
                                     <label>Intitulé du devis :</label>
-                                    <input id="orderTitle" class="rounded-lg w-full @error('orderTitle') text-red-600 @enderror" type="text" name="order_title" oninput="changePopup('orderTitle', 'orderTitlePopup')" required>
+                                    <input id="orderTitle" class="rounded-lg w-full @error('orderTitle') text-red-600 @enderror" type="text" name="order_title" oninput="changePopup('orderTitle', 'orderTitlePopup')">
                                 </div>
                                 @error('orderTitle')
                                     <div class="text-red-600">{{ $message }}</div>
@@ -51,7 +51,7 @@
                                 
                                 <div>
                                     <label>N° de devis :</label>
-                                    <input id="inputOrder" class="rounded-lg w-full @error('inputOrder') text-red-600 @enderror" type="text" name="orderNumber" oninput="changePopup('inputOrder', 'orderNumberPopup')" required>
+                                    <input id="inputOrder" class="rounded-lg w-full @error('inputOrder') text-red-600 @enderror" type="text" name="orderNumber" oninput="changePopup('inputOrder', 'orderNumberPopup')">
                                 </div>
                                 @error('inputOrder')
                                 <div class="text-red-600">{{ $message }}</div>
@@ -59,7 +59,7 @@
 
                                 <div>
                                     <label>Nom du chantier :</label>
-                                    <input id="cpdTitle" class="rounded-lg w-full @error('cpdTitle') text-red-600 @enderror" type="text" name="cpd_title" oninput="changePopup('cpdTitle', 'cpdTitlePopup')" required>
+                                    <input id="cpdTitle" class="rounded-lg w-full @error('cpdTitle') text-red-600 @enderror" type="text" name="cpd_title" oninput="changePopup('cpdTitle', 'cpdTitlePopup')">
                                 </div>
                                 @error('cpdTitle')
                                     <div class="text-red-600">{{ $message }}</div>
@@ -67,7 +67,7 @@
 
                                 <div>
                                     <label>N° de CPD :</label>
-                                    <input id="inputCpd" class="rounded-lg w-full @error('inputCpd') text-red-600 @enderror" type="text" name="cpdNumber" oninput="changePopup('inputCpd', 'cpdNumberPopup')" required>
+                                    <input id="inputCpd" class="rounded-lg w-full @error('inputCpd') text-red-600 @enderror" type="text" name="cpdNumber" oninput="changePopup('inputCpd', 'cpdNumberPopup')">
                                 </div>
                                 @error('inputCpd')
                                     <div class="text-red-600">{{ $message }}</div>
