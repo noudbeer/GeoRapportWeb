@@ -111,9 +111,12 @@ function retractPanel(panel) {
  */
  validator_infomation.addEventListener("click", (e) => {
     window.alert(`
-            \tQu'est ce qu'un valideur ?\n\n
-        Un valideur est un utilisateur qui peut donner les droits de contributeur (visibilité et ajout d'interventions) à un autre utilisateur.
-        Il possède également les droits de contributeur.
+            Qu'est ce qu'un valideur ?\n\n
+        Un valideur aura le droit de valider ou non les interventions envoyé sur le chantier pour que le client puisse les voir à son tour.
+        Il a aussi le droit de modifier un chantier après qu'il ai été créé.
+        Il possède aussi les droits du contributeur.
+
+        Exemple de personne qui peuvent avoir les droits de valideur : Conducteur de travaux, Responsable d'opération.
     `)
 })
 /**
@@ -121,7 +124,10 @@ function retractPanel(panel) {
  */
  contributor_infomation.addEventListener("click", (e) => {
     window.alert(`
-            \tQu'est ce qu'un contributeur ?\n\n
-        Un contributeur est un utilisateur qui peut à des droits de visibilité d'un chantier et des interventions et d'ajout d'interventions.
+            Qu'est ce qu'un contributeur ?\n\n
+        Un contributeur peut voir les chantiers qui lui sont associés.
+        Il peut aussi envoyer des interventionssur ce chantier à partir de l'application mobile.
+        
+        Exemple de personne qui peuvent avoir les droits de contributeur : ouvrier, chef d'équipe.
     `)
 })
