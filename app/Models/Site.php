@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Site extends Model
 {
@@ -25,7 +26,8 @@ class Site extends Model
       'points',
       'beginning',
       'status_id',
-      'end'
+      'end',
+      'interventions'
     ];
 
     /**
@@ -59,5 +61,9 @@ class Site extends Model
 
     public function contributorUsers() {
         return $this->belongsToMany(User::class, 'contributor_site', 'site_id', 'user_id');
+    }
+
+    public function getInterventions() {
+      return $this->hasMany(Intervention::class, 'site_id', 'id');
     }
 }

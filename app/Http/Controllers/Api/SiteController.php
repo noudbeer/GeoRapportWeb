@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Intervention;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use phpDocumentor\Reflection\Type;
@@ -13,6 +14,7 @@ class SiteController extends Controller
 {
     public function index() {
         $user = Auth::user();
+        $interventions = Intervention::all();
 
         $sites = $user->allSites();
 //        $sites = $user->validatorSites()->get();
@@ -21,8 +23,13 @@ class SiteController extends Controller
 
         foreach ($sites as $site) {
             $site->points = json_decode($site->points);
+            $site->interventions = $interventions->where('site_id', $site->id);
+
+            foreach ($site->interventions as $it) {
+                $it->location = json_decode($it->location);
+            }
         }
 
-         return response()->json(['data' => $sites], 200, [], JSON_NUMERIC_CHECK);
+         return response()->json(['sites' => $sites], 200, [], JSON_NUMERIC_CHECK);
     }
 }
