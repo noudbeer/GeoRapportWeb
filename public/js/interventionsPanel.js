@@ -15,7 +15,7 @@ function displayInterventions(site) {
 
             interventionsList = data.data
             
-            data.data.forEach(intervention => {
+            interventionsList.forEach(intervention => {
 
                 const el = document.createElement("tr")
                 el.classList = "hover:bg-gray-200"

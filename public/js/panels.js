@@ -126,7 +126,7 @@ function retractPanel(panel) {
     window.alert(`
             Qu'est ce qu'un contributeur ?\n\n
         Un contributeur peut voir les chantiers qui lui sont associés.
-        Il peut aussi envoyer des interventionssur ce chantier à partir de l'application mobile.
+        Il peut aussi envoyer des interventions sur ce chantier à partir de l'application mobile.
         
         Exemple de personne qui peuvent avoir les droits de contributeur : ouvrier, chef d'équipe.
     `)
