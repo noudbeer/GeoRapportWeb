@@ -30,6 +30,16 @@ class Site extends Model
       'interventions'
     ];
 
+    protected $hidden = [
+      'client_id',
+      'owner_id',
+      'beginning',
+      'status_id',
+      'end',
+      'created_at',
+      'updated_at'
+  ];
+
     /**
     * get the users who are validator.
     */
@@ -65,5 +75,10 @@ class Site extends Model
 
     public function getInterventions() {
       return $this->hasMany(Intervention::class, 'site_id', 'id');
+    }
+
+    public function getUnitOfTime($unit_id) {
+      dd($unit_id);
+      // return UnitOfTime::all()->where("id", $this->unitOfTime_id);
     }
 }

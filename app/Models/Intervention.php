@@ -23,12 +23,24 @@ class Intervention extends Model
         'datetimeOfIntervention',
         'teamMembers',
         'interventionsGroup_id',
+        'interventionsGroup',
         'type_id',
+        'interventionsType',
         'quantity',
         'unit',
         'comment',
         'timeSpent',
         'unitOfTime_id'
+    ];
+
+    protected $hidden = [
+        'owner_id',
+        'interventionsGroup_id',
+        'type_id',
+        'unit',
+        'unitOfTime_id',
+        'created_at',
+        'updated_at'
     ];
 
     /**

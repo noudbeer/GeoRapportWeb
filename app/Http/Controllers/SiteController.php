@@ -30,7 +30,6 @@ class SiteController extends Controller
 
         // CLIENT
         $client = $request['client'];
-        var_dump($client);
         $society = Society::where('name', $client)->get()->first(); // search the society $request['client] in bdd
         
         // If society dosen't excite in bdd
