@@ -16,7 +16,7 @@ class SiteSeeder extends Seeder
     public function run()
     {
         $simon = User::where('firstname', 'Simon')->first();
-        $test = User::where('firstname', 'test')->first();
+        $nicolas = User::where('firstname', 'Nicolas')->first();
 
         $site = new Site();
         $site->owner_id = $simon->id;
@@ -33,7 +33,7 @@ class SiteSeeder extends Seeder
         $site->save();
 
         $site = new Site();
-        $site->owner_id = $test->id;
+        $site->owner_id = $nicolas->id;
         $site->client_id = 2;
         $site->order_title = 'Test order title 2';
         $site->orderNumber = "123abc456def";
