@@ -22,6 +22,5 @@ Route::post('refresh', 'App\Http\Controllers\Api\Auth\LoginController@refresh');
 Route::middleware('auth:api')->group(function () {
     Route::post('logout', 'App\Http\Controllers\Api\Auth\LoginController@logout');
     Route::get('sites', 'App\Http\Controllers\Api\SiteController@index');
-    Route::POST('create_intervention', 'App\Http\Controllers\Api\InterventionController@addIntervention');
-    Route::POST('update_intervention', 'App\Http\Controllers\Api\InterventionController@updateIntervention');
+    Route::POST('intervention', 'App\Http\Controllers\Api\InterventionController@intervention');
 });
