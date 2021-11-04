@@ -53,5 +53,4 @@
                 <div>{{ $intervention->updated_at->format('d-m-Y')}}</div>
             </div>
         </div>
-
 @endsection
