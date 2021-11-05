@@ -34,6 +34,10 @@ Route::get('/intervention/{intervention_id}', [App\Http\Controllers\Intervention
     ->middleware('verified')
     ->name('intervention');
 
+Route::get('/settings', [App\Http\Controllers\SettingsController::class, 'index'])
+    ->middleware('verified')
+    ->name('settings');
+
 
 // Admin page
 Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'index'])
