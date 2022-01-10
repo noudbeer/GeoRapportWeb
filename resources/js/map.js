@@ -103,6 +103,34 @@ map.on('click', onMapClick);
 // SITE LAYER
 const sites = JSON.parse(document.querySelector("#sites").value)
 
+/**
+ * function to complete the inputs on the site form 
+ * @param {*} site 
+ */
+function setEditSite(site) {
+    document.querySelector("#titlePanelSite").innerHTML = `Modification de `+ (site.cpd_title)
+    document.querySelector("#site_id").value     = site.id
+    document.querySelector("#inputClient").value = site.client.name
+    document.querySelector("#orderTitle").value  = site.order_title
+    document.querySelector("#inputOrder").value  = site.orderNumber
+    document.querySelector("#cpdTitle").value    = site.cpd_title
+    document.querySelector("#inputCpd").value    = site.cpdNumber
+    document.querySelector("#inputPoints").value = site.points
+    document.querySelector("#checkbox_zone").checked = Boolean(site.isZone)
+
+    var beginning = new Date(site.beginning)
+    document.querySelector("#beginning").value = beginning.toISOString().split("T")[0]
+
+    document.querySelector('#status').value = site.status.id
+    document.querySelector("#validatorsInput").value   = JSON.stringify(site.validatorUsers)
+    document.querySelector("#contributorsInput").value = JSON.stringify(site.contributorUsers)
+
+    redrawPoints()
+    redrawContributors()
+    redrawValidators()
+}
+
+
 function setPopupSite(site) {
     var container = document.createElement("div")
     container.classList.add("text-center", "space-y-2")
@@ -144,6 +172,16 @@ function setPopupSite(site) {
         </div>
         `
 
+    container.querySelector('#buttonEditSite').onclick = () => {
+        hidePanelContent(document.querySelector('#panel'))
+        document.querySelector('#panelContent_site').classList.remove("hidden")
+        openPanel(document.querySelector('#panel'))
+        setEditSite(site)
+        drawEdit(getPoints())
+
+        // TODO: utiliser un proxy pour drawEdit quand on supprime un point
+    };
+    
     container.querySelector('#buttonShowIntervention').onclick = () => { 
         hidePanelContent()
         document.querySelector('#panelContent_interventions').classList.remove("hidden")

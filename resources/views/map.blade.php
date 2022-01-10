@@ -23,7 +23,7 @@
 
             {{-- Panneau nouveau chantier --}}
             <div id="panelContent_site" class="hidden w-full m-2 overflow-y-auto">
-                <h1 class="font-bold text-center underline">NOUVEAU CHANTIER</h1>
+                <h1 id="titlePanelSite" class="font-bold text-center underline">NOUVEAU CHANTIER</h1>
 
                 <form method="POST" action="{{ route('editSite') }}" autocomplete="off" class="flex flex-col mt-3">
                     @csrf
@@ -31,6 +31,7 @@
                     <div class="space-y-5">
                         <div>
                             <div>
+                                <input id="site_id" type="input" value="" name="site_id">
 
                                 <div class="autocomplete">
                                     <label>Client :</label>  
@@ -39,7 +40,6 @@
                                 @error('inputClient')
                                     <div class="text-red-600">{{ $message }}</div>
                                 @enderror
-
 
                                 <div>
                                     <label>Intitulé du devis :</label>
@@ -110,7 +110,7 @@
 
                         <div>
                             <label>Statut :</label>
-                            <select  id="status" class="rounded-lg w-full @error('status') text-red-600 @enderror" name="status_id" required>
+                            <select id="status" class="rounded-lg w-full @error('status') text-red-600 @enderror" name="status_id" required>
                                 @foreach ($status as $stat)
                                     <option value={{ $stat->id }}>{{ $stat->name }}</option>
                                 @endforeach
@@ -145,8 +145,8 @@
                                     <input type="button" name="userSearchButton" id="userSearchButton" class="bg-blue-400 p-2 hover:bg-blue-500 rounded w-1/3"  value="Chercher">
                                 </div>
 
-                                <input type="hidden" name="validators"  value="[]">
-                                <input type="hidden" name="contributors" value="[]">
+                                <input id="validatorsInput"   type="hidden" name="validators"   value="[]">
+                                <input id="contributorsInput" type="hidden" name="contributors" value="[]">
                             </div>
 
                             <div id="reponseRequest"></div>
@@ -158,12 +158,13 @@
                 </form>
             </div>
 
+            {{-- Panneau de toutes les internvtions d'un chantier --}}
             <div id="panelContent_interventions" class="hidden w-full m-2 overflow-y-auto px-1">
                 <h1 class="font-bold text-center underline" id="titleSiteInterventionsPanel"></h1>
 
                 <div class="flex flex-col justify-center mt-3 space-y-1">
                     <h2 class="underline">Interventions :</h2>
-                    <button class="rounded-md p-2 m-20 text-white bg-green-600 hover:bg-green-700">Ajouter une intervention</button>
+                    <button id="button_addIntervention" class="rounded-md p-2 m-20 text-white bg-green-600 hover:bg-green-700">Ajouter une intervention</button>
 
                     <table class="table-fixed">
                         <thead>
@@ -183,6 +184,7 @@
                 </div>
             </div>
 
+            {{-- Paneau d'une intervention --}}
             <div id="panelContent_interventionDetails" class="hidden w-full m-2 overflow-y-auto px-1">
                 <div class="py-8 flex flex-col gap-4 items-center mx-4" id="interventionInfo">
 

@@ -98,7 +98,14 @@ class SiteController extends Controller
 
         $data = $request->validate($fields);
 
-        $site = Site::create($data);
+        $site_id = $request['site_id'];
+
+        if($site_id != null) {
+            $site = Site::find($site_id);
+            $site->update($data);
+        } 
+        else
+            $site = Site::create($data);
 
         // Validators attachement
         foreach($validators as $user)

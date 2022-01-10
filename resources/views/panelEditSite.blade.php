@@ -15,6 +15,8 @@
 				{{ $errors }}
 				<div class="space-y-5">
 					<div>
+						<input id="id_site" type="hidden" value="">
+						
 						<div>
 							<label>Nom du chantier :</label>
 							<input id="nameSite" class="rounded-lg w-full @error('nameSite') text-red-600 @enderror" type="text" name="name" oninput="changePopup('nameSite', 'titlePopup')" required>

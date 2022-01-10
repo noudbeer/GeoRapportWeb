@@ -1,4 +1,8 @@
 const divInterventionsSite = document.querySelector("#interventionsSite");
+
+const buttonAddIntervention    = document.querySelector("#button_addIntervention")
+const panelCreate_intervention = document.querySelector("#panelCreate_intervention")
+
 var interventionsList = []
 
 /**
@@ -78,4 +82,8 @@ function displayInterventionDetails(intervention) {
             <div class="2xl">Time spent    : ${i.timeSpent} ${i.unitOfTime.name}</div>
         </div>
     `
+}
+
+function openAddInterventionPanel() {
+    
 }
